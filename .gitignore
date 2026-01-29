@@ -1,0 +1,12 @@
+# Environnement
+.env
+
+# IDE
+.vscode/
+.php-cs-fixer.php
+
+# Logs
+*.log
+
+# Uploads
+public/uploads/*
