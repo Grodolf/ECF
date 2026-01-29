@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\AbstractController;
+use App\Core\DbConnection;
 
 class MainController extends AbstractController
 {
@@ -23,4 +24,6 @@ class MainController extends AbstractController
             'description' => ''
         ]);
     }
+
+
 }

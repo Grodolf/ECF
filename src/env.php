@@ -3,6 +3,7 @@
 function loadEnv($path)
 {
     if (!file_exists($path)) {
+        var_dump($path);
         return;
     }
 
@@ -26,4 +27,4 @@ function loadEnv($path)
     }
 }
 
-loadEnv(__DIR__ . '/../.env');
+loadEnv(__DIR__ . '/../config/.env');

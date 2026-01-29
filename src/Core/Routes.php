@@ -20,6 +20,10 @@ class Routes
         'contact' => [
             'controller' => MainController::class,
             'method' => 'contact'
+        ],
+        'test-db' => [
+            'controller' => MainController::class,
+            'method' => 'testDatabase'
         ]
     ];
 }

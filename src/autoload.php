@@ -21,8 +21,7 @@ spl_autoload_register(function (string $class): void {
 
     $file = str_replace('/src/Controllers/', '/controllers/', $file);
     $file = str_replace('/src/Models/', '/models/', $file);
-    $file = str_replace('/src/Templates/', '/templates/', $file);
-    $file = str_replace('/src/Partials/', '/templates/partials/', $file);
+    $file = str_replace('/src/Config/', '/config/', $file);
 
     // Charger le fichier si il existe
     if (file_exists($file)) {

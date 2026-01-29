@@ -4,22 +4,10 @@ namespace App\Core;
 
 use PDO;
 use PDOStatement;
-use App\Config\Database;
+use App\Core\DbConnection;
 
 abstract class AbstractManager
 {
-    private function connect(): PDO
-    {
-        $config = Database::getConfig();
-        $db = new PDO(
-            "mysql:host=" . $config['host'] . ";port=" . $config['port'] . ";dbname=" . $config['dbname'],
-            $config['username'],
-            $config['password']
-        );
-        $db->exec("SET NAMES utf8");
-        return $db;
-    }
-
     private function getTableName(string $class): string
     {
         if (defined($class . '::TABLE_NAME')) {
@@ -33,7 +21,7 @@ abstract class AbstractManager
 
     private function executeQuery(string $query, array $params = []): PDOStatement
     {
-        $db = $this->connect();
+        $db = DbConnection::getInstance();
         $stmt = $db->prepare($query);
         foreach ($params as $key => $param) {
             $stmt->bindValue($key, $param);
