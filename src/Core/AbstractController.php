@@ -18,6 +18,7 @@ abstract class AbstractController
 
         // Vérifier que la vue existe
         if (!file_exists($viewPath)) {
+            var_dump($viewPath);
             throw new UnexpectedValueException("La vue {$view} n'existe pas.");
         }
 

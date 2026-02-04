@@ -57,23 +57,23 @@ class Security
 
         if (strlen($password) < 10) {
             $valid = false;
-            array_push($errors, 'Le mot de passe doit contenir au moins 10 caractères');
+            array_push($errors, 'Le mot de passe doit contenir au moins 10 caractères.');
         }
         if (!preg_match('/[A-Z]/', $password)) {
             $valid = false;
-            array_push($errors, 'Le mot de passe doit contenir au moins une lettre majuscule');
+            array_push($errors, 'Le mot de passe doit contenir au moins une lettre majuscule.');
         }
         if (!preg_match('/[a-z]/', $password)) {
             $valid = false;
-            array_push($errors, 'Le mot de passe doit contenir au moins une lettre minuscule');
+            array_push($errors, 'Le mot de passe doit contenir au moins une lettre minuscule.');
         }
         if (!preg_match('/\d/', $password)) {
             $valid = false;
-            array_push($errors, 'Le mot de passe doit contenir au moins un chiffre');
+            array_push($errors, 'Le mot de passe doit contenir au moins un chiffre.');
         }
         if (!preg_match('/[^A-Za-z0-9]/', $password)) {
             $valid = false;
-            array_push($errors, 'Le mot de passe doit contenir au moins un caractère spécial');
+            array_push($errors, 'Le mot de passe doit contenir au moins un caractère spécial.');
         }
         return [$valid,$errors];
     }

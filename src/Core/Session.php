@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Models\User;
+
 class Session
 {
     private static bool $started = false;
@@ -87,8 +89,14 @@ class Session
         if (self::$started) {
             $_SESSION = [];
             $params = session_get_cookie_params();
-            $params['lifetime'] = -3600;
-            setcookie('PHPSESSIONID', $_COOKIE['PHPSESSIONID'], $params);
+            setcookie(session_name(), '', [
+                'expires' => time() - 3600,
+                'path' => $params['path'],
+                'domain' => $params['domain'],
+                'secure' => $params['secure'],
+                'httponly' => $params['httponly'],
+                'samesite' => $params['samesite'] ?? 'Strict'
+            ]);
             session_destroy();
             self::$started = false;
         }
@@ -121,13 +129,25 @@ class Session
         return null;
     }
 
-    /**
-     * TODO
-     *
-     * Après userController
-     *
-     * isAuthenticted()
-     * getUser()
-     * setUser
-     */
+    public static function isAuthenticated(): bool
+    {
+        return isset($_SESSION['user']) && is_array($_SESSION['user']) && !empty($_SESSION['user']);
+    }
+
+    public static function setUser(array $user): void
+    {
+        if (isset($user['password'])) {
+            unset($user['password']);
+        }
+        self::set('user', $user);
+    }
+
+    public static function getUser(): ?array
+    {
+        if (!self::isAuthenticated()) {
+            return null;
+        }
+
+        return self::get('user');
+    }
 }
