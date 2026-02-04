@@ -6,7 +6,7 @@ use App\Config\Database;
 use PDO;
 use PDOException;
 
-class DbConnection
+class DatabaseConnection
 {
     private static ?PDO $instance = null;
 

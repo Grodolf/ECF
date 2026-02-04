@@ -27,4 +27,4 @@ function loadEnv($path)
     }
 }
 
-loadEnv(__DIR__ . '/../config/.env');
+loadEnv(__DIR__ . '/../config/.env.local');
