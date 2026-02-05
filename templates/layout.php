@@ -36,14 +36,13 @@ use App\Core\Session;
     <body>
         <nav>
             <a href="/login">Login</a>
-            <a href="/register">Register</a>
-            <a href="/reset-password">Reset Password</a>
+            <a href="/profile">Profile</a>
             <a href="/logout">Logout</a>
         </nav>
         <main>
             <?php
                 // Affichage des messages flash
-                $flashKeys = ['csrf', 'fields', 'email', 'password', 'login', 'register', 'reset-password', 'new-password'];
+                $flashKeys = ['generic', 'auth', 'profile'];
 
 foreach ($flashKeys as $key) {
     $flash = Session::getFlash($key);

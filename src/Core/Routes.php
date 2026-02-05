@@ -6,6 +6,7 @@ namespace App\Core;
 
 use App\Controllers\MainController;
 use App\Controllers\AuthController;
+use App\Controllers\UserController;
 
 class Routes
 {
@@ -41,6 +42,18 @@ class Routes
         'new-password/{token}' => [
             'controller' => AuthController::class,
             'method' => 'newPassword'
+        ],
+        'profile' => [
+            'controller' => UserController::class,
+            'method' => 'profile'
+        ],
+        'edit-profile' => [
+            'controller' => UserController::class,
+            'method' => 'editProfile'
+        ],
+        'change-password' => [
+            'controller' => UserController::class,
+            'method' => 'changePassword'
         ],
     ];
 }

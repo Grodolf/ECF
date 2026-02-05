@@ -21,7 +21,7 @@ class User
     {
         self::$db = self::getDb();
 
-        $query = "SELECT nom, prenom, email, gsm, adresse FROM users WHERE id = ?";
+        $query = "SELECT id, nom, prenom, email, gsm, adresse, role, created_at FROM users WHERE id = ?";
         $stmt = self::$db->prepare($query);
         $stmt->execute([$id]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
