@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Core\AbstractController;
 use App\Core\Security;
 use App\Core\Session;
+use App\Core\Mailer;
 use App\Core\FlashMessage;
 use App\Models\User;
 
@@ -130,10 +131,12 @@ class AuthController extends AbstractController
                 die;
             }
 
-            /**
-            * TODO
-            * Mail de bienvenue
-            */
+            $email = new Mailer();
+            $data = [
+                'nom' => $_POST['nom'],
+                'prenom' => $_POST['prenom']
+            ];
+            $email->sendWithTemplate($_POST['email'], $_POST['prenom'] . ' ' . $_POST['nom'], 'Bienvenue', 'welcome', $data);
 
             FlashMessage::registerSuccess();
             $this->redirectToRoute('login');
@@ -187,13 +190,22 @@ class AuthController extends AbstractController
                 FlashMessage::genericError();
             }
 
-            /**
-             * TODO
-             * Mail avec lien /new-password/{$token}
-             */
+            $user = $this->userModel->findByEmail($_POST['email']);
+            if ($user === null) {
+                FlashMessage::invalidCredentials();
+                $this->redirectToRoute('login');
+                die;
+            }
 
-            header('Location: /new-password/' . $token); // pour test
-            // $this->redirectToRoute('login');
+            $email = new Mailer();
+            $data = [
+                'nom' => $user['nom'],
+                'prenom' => $user['prenom'],
+                'resetLink' => $_ENV['APP_URL'] . '/new-password/' . $token
+            ];
+            $email->sendWithTemplate($_POST['email'], $user['prenom'] . ' ' . $user['nom'], 'Mot de passe oublié', 'reset-password', $data);
+
+            $this->redirectToRoute('login');
             exit;
         }
     }
