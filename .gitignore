@@ -12,4 +12,8 @@ ECF.session.sql
 
 # Uploads
 public/uploads/*
+tmp/
+
+#A remettre en ligne
 _documentation/
+_docker/
