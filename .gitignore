@@ -6,6 +6,7 @@
 .vscode/
 .php-cs-fixer.php
 ECF.session.sql
+vendor/
 
 # Logs
 *.log
