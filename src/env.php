@@ -1,13 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 function loadEnv($path)
 {
-    if (!file_exists($path)) {
-        var_dump($path);
-        return;
+    $file = $path . '.env.local';
+    if (!file_exists($file)) {
+
+        $file = $path . '.env';
+
+        if (!file_exists($file)) {
+            var_dump($file);
+            return;
+        }
     }
 
-    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+    $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
         // Ignorer les commentaires
         if (strpos(trim($line), '#') === 0) {
@@ -26,5 +35,3 @@ function loadEnv($path)
         }
     }
 }
-
-loadEnv(__DIR__ . '/../config/.env.local');
