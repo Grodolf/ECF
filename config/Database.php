@@ -10,11 +10,13 @@ class Database
     {
 
         return [
-            'host'     => $_ENV['MARIADB_HOST'],
-            'port'     => $_ENV['MARIADB_PORT'],
-            'dbname'   => $_ENV['MARIADB_DATABASE'],
-            'username' => $_ENV['MARIADB_USER'],
-            'password' => $_ENV['MARIADB_PASSWORD'],
+            'host'     => $_ENV['DB_HOST'],
+            'port'     => $_ENV['DB_PORT'],
+            'dbname'   => $_ENV['DB_DATABASE'],
+            'username' => $_ENV['DB_USER'],
+            'password' => $_ENV['DB_PASSWORD'],
+            'ssl' => $_ENV['DB_SSL_MODE'],
+            'ca_cert' => $_ENV['DB_CA_CERT'],
             'charset'  => 'utf8mb4'
             ];
     }

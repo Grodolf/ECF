@@ -23,16 +23,27 @@ class DatabaseConnection
                 $config['charset']
             );
 
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ];
+
+            // Ajouter les options SSL si nécessaire (Aiven en prod)
+            if (isset($config['ssl']) && $config['ssl'] === 'REQUIRED') {
+                if (!empty($config['ca_cert']) && file_exists($config['ca_cert'])) {
+                    $options[PDO::MYSQL_ATTR_SSL_CA] = $config['ca_cert'];
+                } else {
+                    throw new PDOException("Certificat SSL CA introuvable ou non configuré");
+                }
+            }
+
             try {
                 self::$instance = new PDO(
                     $dsn,
                     $config['username'],
                     $config['password'],
-                    [
-                        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                        PDO::ATTR_EMULATE_PREPARES => false
-                    ]
+                    $options
                 );
             } catch (PDOException $e) {
                 throw new PDOException("Erreur de connexion à la base de données : " . $e->getMessage());

@@ -10,7 +10,6 @@ function loadEnv($path)
         $file = $path . '.env';
 
         if (!file_exists($file)) {
-            var_dump($file);
             return;
         }
     }

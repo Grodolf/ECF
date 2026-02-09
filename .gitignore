@@ -8,6 +8,9 @@
 ECF.session.sql
 vendor/
 
+# Certificats SSL
+/config/ssl/*.pem
+
 # Logs
 *.log
 
@@ -15,6 +18,11 @@ vendor/
 public/uploads/*
 tmp/
 
-#A remettre en ligne
+# Fly.io
+fly.toml
+.dockerignore
+Dockerfile
+
+# A remettre en ligne
 _documentation/
 _docker/
