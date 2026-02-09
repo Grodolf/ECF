@@ -1,0 +1,101 @@
+/* Fonts */
+@font-face {
+    font-family: Playfair;
+    src: url(../fonts/PlayfairDisplay-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: Lora;
+    src: url(../fonts/Lora-Regular.ttf);
+}
+
+@font-face {
+    font-family: Playwrite;
+    src: url(../fonts/PlaywriteNZBasicGuides-Regular.ttf);
+}
+
+
+:root {
+
+    /* COLORS */
+    --primary: #6B1F3F;
+    --secondary: #D4AF37;
+    --border: #3F3F3F;
+    --light-1: #faf9f6;
+    --light-2: #f5f3ee;
+    --dark-1: #1A1A1A;
+    --dark-2: #2F2F2F;
+    --success: #78ffcb;
+    --success-contrast: var(--dark-2);
+    --error: #C41E3A;
+    --error-contrast: var(--light-1);
+
+    /* Typogaphie */
+    --font-headline: Playfair, serif;
+    --font-primary: Lora, sans-serif;
+    --font-secondary: Playwrite, serif;
+    --base-unit: 14px;
+    --ratio-line-height: 1.22;
+
+    --max-width: 750px;
+
+    /* Animation */
+    --transition-duration: 300ms;
+    --transition-type: ease;
+}
+
+/* Responsive */
+@media screen and (min-width: 768px) {
+    :root {
+        --base-unit: 15px;
+        --ratio-line-height: 1.24;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    :root {
+        --base-unit: 16px;
+        --ratio-line-height: 1.26;
+    }
+}
+
+::selection {
+    background-color: var(--primary);
+    color: var(--light-2);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--typography-main), sans-serif;
+    transition: all var(--transition-type) var(--transition-duration);
+    appearance: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: var(--base-unit);
+}
+
+/* Gestion des themes */
+body[data-theme=auto] {
+    color: light-dark(var(--dark-1), var(--light-1));
+    background-color: light-dark(var(--light-1), var(--dark-1));
+}
+
+body[data-theme=light] {
+    color: var(--dark-1);
+    background-color: var(--light-1);
+}
+
+body[data-theme=dark] {
+    color: var(--light-1);
+    background-color: var(--dark-1);
+}

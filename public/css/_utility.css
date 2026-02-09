@@ -1,0 +1,144 @@
+/* Flex */
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.f-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.nowrap {
+    flex-wrap: nowrap;
+}
+
+.ju-start {
+    justify-content: flex-start;
+}
+
+.ju-center {
+    justify-content: center;
+}
+
+.ju-end {
+    justify-content: flex-end;
+}
+
+.ju-between {
+    justify-content: space-between;
+}
+
+.ju-around {
+    justify-content: space-around;
+}
+
+.ju-evenly {
+    justify-content: space-evenly;
+}
+
+.it-start {
+    align-items: flex-start;
+}
+
+.it-center {
+    align-items: center;
+}
+
+.it-end {
+    align-items: flex-end;
+}
+
+.it-stretch {
+    align-items: stretch;
+}
+
+.it-baseline {
+    align-items: baseline;
+}
+
+.grow-0 {
+    flex-grow: 0;
+}
+
+.grow-1 {
+    flex-grow: 1;
+}
+
+.shrink-0 {
+    flex-shrink: 0;
+}
+
+.shrink-1 {
+    flex-shrink: 1;
+}
+
+/* Position */
+
+.rel {
+    position: relative;
+}
+
+.abs {
+    position: absolute;
+}
+
+.fix {
+    position: fixed
+}
+
+.sti {
+    position: sticky;
+}
+
+.top {
+    top: 0;
+}
+
+.top5 {
+    top: 5%;
+}
+
+.top10 {
+    top: 10%;
+}
+
+.bot {
+    bottom: 0;
+}
+
+.bot5 {
+    bottom: 5%;
+}
+
+.bot10 {
+    bottom: 10%;
+}
+
+.left {
+    left: 0;
+}
+
+.left5 {
+    left: 5%;
+}
+
+.left10 {
+    left: 10%;
+}
+
+.right {
+    right: 0;
+}
+
+.right5 {
+    right: 5%;
+}
+
+.right10 {
+    right: 10%;
+}

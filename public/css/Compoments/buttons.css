@@ -1,0 +1,98 @@
+/* Boutons */
+
+.btn {
+    border-radius: calc(var(--base-unit) / 2);
+    cursor: pointer;
+    display: inline-block;
+    padding: calc(var(--base-unit) * 0.625) calc(var(--base-unit) * 1);
+    border-style: solid;
+    border-width: 2px;
+    outline: none;
+}
+
+/* Boutons pleins */
+body[data-theme=auto] .btn {
+    color: light-dark(var(--primary), var(--secondary));
+    background-color: light-dark(var(--secondary), var(--primary));
+    border-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] .btn {
+    color: var(--primary);
+    background-color: var(--secondary);
+    border-color: var(--primary);
+}
+
+body[data-theme=dark] .btn {
+    color: var(--secondary);
+    background-color: var(--primary);
+    border-color: var(--secondary);
+}
+
+/* Boutons outline */
+body[data-theme=auto] .btn.outline {
+    color: light-dark(var(--primary), var(--secondary));
+    background-color: transparent;
+    border-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=auto] .btn.outline:hover {
+    color: light-dark(var(--secondary), var(--primary));
+    background-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] .btn.outline {
+    color: var(--primary);
+    background-color: transparent;
+    border-color: var(--primary);
+}
+
+body[data-theme=light] .btn.outline:hover {
+    color: var(--light1);
+    background-color: var(--primary);
+}
+
+body[data-theme=dark] .btn.outline {
+    color: var(--secondary);
+    background-color: transparent;
+    border-color: var(--secondary);
+}
+
+body[data-theme=dark] .btn.outline:hover {
+    color: var(--dark1);
+    background-color: var(--secondary);
+}
+
+/* Boutons textes */
+body[data-theme=auto] .btn.text {
+    color: light-dark(var(--dark1), var(--light1));
+    background-color: transparent;
+    border-color: transparent;
+}
+
+body[data-theme=auto] .btn.text:hover {
+    color: light-dark(var(--dark2), var(--light2));
+    background-color: light-dark(var(--light2), var(--dark2));
+}
+
+body[data-theme=light] .btn.text {
+    color: var(--dark1);
+    background-color: transparent;
+    border-color: transparent;
+}
+
+body[data-theme=light] .btn.text:hover {
+    color: var(--dark2);
+    background-color: var(--light2);
+}
+
+body[data-theme=dark] .btn.text {
+    color: var(--light1);
+    background-color: transparent;
+    border-color: transparent;
+}
+
+body[data-theme=dark] .btn.text:hover {
+    color: var(--light2);
+    background-color: var(--dark2);
+}

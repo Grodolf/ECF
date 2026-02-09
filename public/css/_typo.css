@@ -1,0 +1,79 @@
+:root {
+    --p-size: var(--base-unit);
+    --p-line-height: calc(var(--p-size) * var(--ratio-line-height));
+    --p-weight: 500;
+    --h1-size: calc(var(--base-unit) * 3);
+    --h1-line-height: calc(var(--h1-size) * var(--ratio-line-height));
+    --h1-weight: 900;
+    --h2-size: calc(var(--base-unit) * 2.25);
+    --h2-line-height: calc(var(--h2-size) * var(--ratio-line-height));
+    --h2-weight: 700;
+    --h3-size: calc(var(--base-unit) * 1.625);
+    --h3-line-height: calc(var(--h3-size) * var(--ratio-line-height));
+    --h3-weight: 600;
+    --h4-size: calc(var(--base-unit) * 1.5);
+    --h4-line-height: calc(var(--h4-size) * var(--ratio-line-height));
+    --h4-weight: 600;
+    --h5-size: calc(var(--base-unit) * 1.375);
+    --h5-line-height: calc(var(--h5-size) * var(--ratio-line-height));
+    --h5-weight: 500;
+    --h6-size: calc(var(--base-unit) * 1.25);
+    --h6-line-height: calc(var(--h6-size) * var(--ratio-line-height));
+    --h6-weight: 500;
+}
+
+p {
+    font-size: var(--p-size);
+    line-height: var(--p-line-height);
+    font-weight: var(--p-weight);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-headline), sans-serif;
+}
+
+h1 {
+    font-size: var(--h1-size);
+    line-height: var(--h1-line-height);
+    font-weight: var(--h1-weight);
+}
+
+h2 {
+    font-size: var(--h2-size);
+    line-height: var(--h2-line-height);
+    font-weight: var(--h2-weight);
+}
+
+h3 {
+    font-size: var(--h3-size);
+    line-height: var(--h3-line-height);
+    font-weight: var(--h3-weight);
+}
+
+h4 {
+    font-size: var(--h4-size);
+    line-height: var(--h4-line-height);
+    font-weight: var(--h4-weight);
+}
+
+h5 {
+    font-size: var(--h5-size);
+    line-height: var(--h5-line-height);
+    font-weight: var(--h5-weight);
+}
+
+h6 {
+    font-size: var(--h6-size);
+    line-height: var(--h6-line-height);
+    font-weight: var(--h6-weight);
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}

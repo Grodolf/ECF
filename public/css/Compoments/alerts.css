@@ -1,0 +1,18 @@
+.alert {
+    padding: calc(var(--base-unit) * 1.5);
+    border-radius: calc(var(--base-unit) / 2);
+    border-style: solid;
+    border-width: 2px;
+}
+
+.alert.error {
+    color: var(--error-contrast);
+    background-color: var(--error);
+    border-color: var(--error-contrast);
+}
+
+.alert.success {
+    color: var(--success-contrast);
+    background-color: var(--success);
+    border-color: var(--success-contrast);
+}
