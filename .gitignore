@@ -21,7 +21,6 @@ tmp/
 # Fly.io
 fly.toml
 .dockerignore
-Dockerfile
 
 # A remettre en ligne
 _documentation/
