@@ -37,7 +37,7 @@
     --base-unit: 14px;
     --ratio-line-height: 1.22;
 
-    --max-width: 750px;
+    --max-width: 100%;
 
     /* Animation */
     --transition-duration: 300ms;
@@ -49,6 +49,7 @@
     :root {
         --base-unit: 15px;
         --ratio-line-height: 1.24;
+        --max-width: 90%;
     }
 }
 
@@ -56,6 +57,7 @@
     :root {
         --base-unit: 16px;
         --ratio-line-height: 1.26;
+        --max-width: 1200px;
     }
 }
 
@@ -71,7 +73,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: var(--typography-main), sans-serif;
+    font-family: var(--font-primary), sans-serif;
     transition: all var(--transition-type) var(--transition-duration);
     appearance: none;
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="85"
+   viewBox="0 0 26.458332 22.489582"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="Menu.svg"
+   inkscape:export-filename="Menu.webp"
+   inkscape:export-xdpi="144.00002"
+   inkscape:export-ydpi="144.00002"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="13.647059"
+     inkscape:cx="40.045259"
+     inkscape:cy="34"
+     inkscape:window-width="3440"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="26.458332"
+       height="22.489582"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch2"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="0"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#swatch2"
+       id="linearGradient2"
+       x1="0.25545993"
+       y1="0.82397181"
+       x2="1.7220722"
+       y2="0.82397181"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-0.38775143,-0.31020114)" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(2.645833,0.26458305)">
+    <rect
+       style="fill:#6b1f3f;stroke:#b8860b;stroke-width:0.25797;stroke-opacity:1"
+       id="rect1"
+       width="20.908695"
+       height="3.9753628"
+       x="0.1289852"
+       y="2.1133602"
+       rx="1.9130566"
+       ry="1.9876814" />
+    <rect
+       style="fill:#6b1f3f;stroke:#b8860b;stroke-width:0.25797;stroke-opacity:1"
+       id="rect1-0"
+       width="20.908695"
+       height="3.9753628"
+       x="0.1289852"
+       y="8.992527"
+       rx="1.9130566"
+       ry="1.9876814" />
+    <rect
+       style="fill:#6b1f3f;stroke:#b8860b;stroke-width:0.25797;stroke-opacity:1"
+       id="rect1-6"
+       width="20.908695"
+       height="3.9753628"
+       x="0.1289852"
+       y="15.871694"
+       rx="1.9130566"
+       ry="1.9876814" />
+  </g>
+  <rect
+     style="fill:url(#linearGradient2);stroke:none;stroke-width:0.264583"
+     id="rect2"
+     width="26.458332"
+     height="22.489582"
+     x="0"
+     y="0" />
+</svg>

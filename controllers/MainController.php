@@ -11,8 +11,9 @@ class MainController extends AbstractController
     public function home()
     {
         return $this->renderView('home.php', [
-            'title' => '',
-            'description' => ''
+            'title' => 'Bienvenue chez Vite & Gourmand',
+            'description' => 'Traiteur Bordeaux depuis 1999. Menus raffinés sur mesure pour vos événements : mariages, réceptions, repas famille. Commande en ligne. Devis gratuit.',
+            'h1' => 'Bienvenue'
             ]);
     }
 
@@ -20,7 +21,8 @@ class MainController extends AbstractController
     {
         return $this->renderView('contact.php', [
             'title' => '',
-            'description' => ''
+            'description' => '',
+            'h1' => ''
         ]);
     }
 

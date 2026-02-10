@@ -1,0 +1,137 @@
+/* --- Fichier Principal --- */
+
+@import 'app.css';
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    width: var(--max-width);
+    flex: 1 0 max-content;
+}
+
+header,
+footer {
+    flex: 0 0 max-content;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Header --- */
+
+body[data-theme=auto] header {
+    background-color: light-dark(var(--light-2), var(--dark-2));
+}
+
+body[data-theme=light] header {
+    background-color: var(--light-2);
+}
+
+body[data-theme=dark] header {
+    background-color: var(--dark-2);
+}
+
+header select {
+    padding: calc(var(--base-unit) / 2) var(--base-unit);
+    width: max-content;
+    text-align: center;
+    border-radius: calc(var(--base-unit) / 3);
+}
+
+body[data-theme=auto] header select {
+    color: light-dark(var(--primary), var(--secondary));
+    background-color: light-dark(var(--light-2), var(--dark-2));
+    border-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] header select {
+    color: var(--primary);
+    background-color: var(--light-2);
+    border-color: var(--primary);
+}
+
+body[data-theme=dark] header select {
+    color: var(--secondary);
+    background-color: var(--dark-1);
+    border-color: var(--secondary);
+}
+
+body[data-theme=auto] header select:focus {
+    outline: 2px solid light-dark(var(--secondary), var(--primary));
+}
+
+body[data-theme=light] header select:focus {
+    outline: 2px solid var();
+}
+
+body[data-theme=dark] header select:focus {
+    outline: 2px solid var();
+}
+
+body[data-theme=auto] h1 {
+    color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] h1 {
+    color: var(--primary);
+}
+
+body[data-theme=dark] h1 {
+    color: var(--secondary);
+}
+
+header li {
+    list-style: none;
+}
+
+header img {
+    height: 8vh;
+    width: auto;
+}
+
+header>div>div>div {
+    width: 50%;
+    text-align: center;
+}
+
+nav {
+    width: 50%;
+}
+
+#toggle-nav {
+    width: max-content;
+    height: max-content;
+    border: none;
+}
+
+/* --- Footer --- */
+
+footer li {
+    list-style: none;
+}
+
+footer h3::before {
+    content: '\2BC6';
+    margin-right: calc(var(--base-unit) / 4);
+}
+
+body[data-theme=auto] footer {
+    background-color: light-dark(var(--light-2), var(--dark-2));
+}
+
+body[data-theme=light] footer {
+    background-color: var(--light-2);
+}
+
+body[data-theme=dark] footer {
+    background-color: var(--dark-2);
+}

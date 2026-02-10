@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="481"
+   height="481"
+   viewBox="0 0 127.26458 127.26459"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="LogoVG.svg"
+   inkscape:export-filename="LogoVG.svg"
+   inkscape:export-xdpi="13.970894"
+   inkscape:export-ydpi="13.970894"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="2.32"
+     inkscape:cx="249.78448"
+     inkscape:cy="250"
+     inkscape:window-width="3440"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="127.26458"
+       height="127.26459"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <rect
+       x="141.3793"
+       y="142.67241"
+       width="117.2692"
+       height="75.010147"
+       id="rect6" />
+    <linearGradient
+       id="linearGradient4">
+      <stop
+         style="stop-color:#d4af37;stop-opacity:1;"
+         offset="0"
+         id="stop4" />
+      <stop
+         style="stop-color:#b8860b;stop-opacity:1;"
+         offset="1"
+         id="stop5" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2">
+      <stop
+         style="stop-color:#6b1f3f;stop-opacity:1;"
+         offset="0"
+         id="stop2" />
+      <stop
+         style="stop-color:#8b2f4f;stop-opacity:1;"
+         offset="1"
+         id="stop3" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient2"
+       id="linearGradient3"
+       x1="2.6275885"
+       y1="66.088814"
+       x2="129.89217"
+       y2="66.088814"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0.01824764,0.18931105)" />
+    <linearGradient
+       xlink:href="#linearGradient4"
+       id="linearGradient5"
+       x1="13.22917"
+       y1="66.27813"
+       x2="119.32709"
+       y2="66.27813"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="layer1"
+     sodipodi:insensitive="true"
+     transform="translate(-2.6458304,-2.6458304)">
+    <g
+       id="g1"
+       sodipodi:insensitive="true">
+      <circle
+         style="fill:url(#linearGradient3);stroke:#793132;stroke-width:0.264583"
+         id="path1"
+         cx="66.278122"
+         cy="66.278122"
+         r="63.5"
+         sodipodi:insensitive="true" />
+      <circle
+         style="fill:url(#linearGradient5);fill-opacity:1;stroke:#793132;stroke-width:0.264583"
+         id="path3"
+         cx="66.27813"
+         cy="66.27813"
+         r="52.916668"
+         sodipodi:insensitive="true" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26920504,0,0,0.26448933,12.401678,0.01466099)"
+         id="text5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:63.4595px;font-family:'RIT Rachana';-inkscape-font-specification:'RIT Rachana';writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect6);fill:#6b1f3f;fill-opacity:1;stroke:#793132"
+         sodipodi:insensitive="true"><tspan
+           x="141.37891"
+           y="183.84059"
+           id="tspan1">Vite</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:'RIT Rachana';-inkscape-font-specification:'RIT Rachana';writing-mode:lr-tb;direction:ltr;fill:#6b1f3f;fill-opacity:1;stroke:#793132;stroke-width:0.264583"
+         x="60.043884"
+         y="63.864944"
+         id="text7"
+         sodipodi:insensitive="true"><tspan
+           id="tspan7"
+           style="stroke-width:0.264583"
+           x="60.043884"
+           y="63.864944">&amp;</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:'RIT Rachana';-inkscape-font-specification:'RIT Rachana';writing-mode:lr-tb;direction:ltr;fill:#6b1f3f;fill-opacity:1;stroke:#793132;stroke-width:0.264583"
+         x="28.244272"
+         y="80.466385"
+         id="text8"
+         sodipodi:insensitive="true"><tspan
+           id="tspan8"
+           style="stroke-width:0.264583"
+           x="28.244272"
+           y="80.466385">Gourmand</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -14,14 +14,12 @@ use App\Core\Session;
         <?php if (isset($description)): ?>
         <meta name="description" content="<?= htmlspecialchars($description) ?>">
         <?php endif; ?>
+        <link rel="stylesheet" href="./css/style.css">
     </head>
-    <body data-theme="auto" class="f-col ju-between">
-        <header class="grow0 shrink0">
+    <body data-theme="auto">
+        <header>
             <?php include_once __DIR__ . '/partials/header.php' ?>
         </header>
-        <nav class="grow0 shrink0">
-            <?php include_once __DIR__ . '/partials/nav.php' ?>
-        </nav>
 
 <?php
 $flashKeys = ['generic', 'auth', 'profile'];
@@ -34,10 +32,10 @@ foreach ($flashKeys as $key) {
     }
 }
 ?>
-        <main class="grow1">
+        <main>
             <?= $content ?>
         </main>
-        <footer class="grow0 shrink0">
+        <footer>
             <?php include_once __DIR__ . '/partials/footer.php' ?>
         </footer>
     </body>
