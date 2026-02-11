@@ -46,7 +46,7 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
     </div>
 </div>
 <div class="f-col it-center g--">
-    <button class="btn text">
+    <button id="footer-button" class="btn text">
         <h3>Horaires :</h3>
     </button>
     <div class="grid-2 g- hidden">

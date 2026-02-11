@@ -38,5 +38,6 @@ foreach ($flashKeys as $key) {
         <footer>
             <?php include_once __DIR__ . '/partials/footer.php' ?>
         </footer>
+        <script src="./js/scripts.js"></script>
     </body>
 </html>

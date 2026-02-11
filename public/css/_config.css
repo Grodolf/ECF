@@ -1,17 +1,17 @@
 /* Fonts */
 @font-face {
     font-family: Playfair;
-    src: url(../fonts/PlayfairDisplay-SemiBold.ttf);
+    src: url(../fonts/PlayfairDisplay-VariableFont_wght.ttf);
 }
 
 @font-face {
     font-family: Lora;
-    src: url(../fonts/Lora-Regular.ttf);
+    src: url(../fonts/Lora-VariableFont_wght.ttf);
 }
 
 @font-face {
     font-family: Playwrite;
-    src: url(../fonts/PlaywriteNZBasicGuides-Regular.ttf);
+    src: url(../fonts/PlaywriteAUNSW-VariableFont_wght.ttf);
 }
 
 

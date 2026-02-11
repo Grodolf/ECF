@@ -1,4 +1,6 @@
-/* --- Fichier Principal --- */
+/**
+ *  === Main CSS (Mobile) === 
+ */
 
 @import 'app.css';
 
@@ -9,11 +11,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-main {
-    width: var(--max-width);
-    flex: 1 0 max-content;
 }
 
 header,
@@ -70,22 +67,32 @@ body[data-theme=auto] header select:focus {
 }
 
 body[data-theme=light] header select:focus {
-    outline: 2px solid var();
+    outline: 2px solid var(--secondary);
 }
 
 body[data-theme=dark] header select:focus {
-    outline: 2px solid var();
+    outline: 2px solid var(--primary);
 }
 
-body[data-theme=auto] h1 {
+#headline {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+header button>p {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+body[data-theme=auto] #headline {
     color: light-dark(var(--primary), var(--secondary));
 }
 
-body[data-theme=light] h1 {
+body[data-theme=light] #headline {
     color: var(--primary);
 }
 
-body[data-theme=dark] h1 {
+body[data-theme=dark] #headline {
     color: var(--secondary);
 }
 
@@ -107,10 +114,98 @@ nav {
     width: 50%;
 }
 
-#toggle-nav {
+#nav-button {
     width: max-content;
     height: max-content;
     border: none;
+    background-color: transparent;
+}
+
+/* --- Main (common) --- */
+
+main {
+    width: var(--max-width);
+    flex: 1 0 max-content;
+    padding: 1vh 4vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    align-items: center;
+}
+
+h1,
+h2 {
+    text-align: center;
+    margin: var(--base-unit) calc(var(--base-unit) * 2);
+}
+
+main>picture>img {
+    width: 100%;
+}
+
+body[data-theme=auto] h1,
+body[data-theme=auto] h2 {
+    color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] h1,
+body[data-theme=light] h2 {
+    color: var(--primary);
+}
+
+body[data-theme=dark] h1,
+body[data-theme=dark] h2 {
+    color: var(--secondary);
+}
+
+/* --- Home --- */
+
+#salad {
+    width: 100%;
+    margin-bottom: var(--base-unit);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    align-content: center;
+    gap: var(--base-unit);
+    padding: calc(var(--base-unit) / 2);
+    border-radius: var(--base-unit);
+    border-width: 2px;
+    border-style: solid;
+}
+
+#salad picture {
+    height: fit-content;
+}
+
+#salad img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--base-unit);
+}
+
+#salad p {
+    font-family: var(--font-secondary);
+    font-size: 0.7rem;
+}
+
+body[data-theme=auto] #salad {
+    color: light-dark(var(--dark-2), var(--light-2));
+    background-color: light-dark(var(--light-2), var(--dark-2));
+    border-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] #salad {
+    color: var(--dark-2);
+    background-color: var(--light-2);
+    border-color: var(--primary);
+}
+
+body[data-theme=dark] #salad {
+    color: var(--light-2);
+    background-color: var(--dark-2);
+    border-color: var(--secondary);
 }
 
 /* --- Footer --- */
@@ -124,6 +219,11 @@ footer h3::before {
     margin-right: calc(var(--base-unit) / 4);
 }
 
+#footer-button.rotate h3::before {
+    display: inline-block;
+    transform: rotate(-90deg);
+}
+
 body[data-theme=auto] footer {
     background-color: light-dark(var(--light-2), var(--dark-2));
 }
@@ -134,4 +234,18 @@ body[data-theme=light] footer {
 
 body[data-theme=dark] footer {
     background-color: var(--dark-2);
+}
+
+/**
+=== Tablette ===
+**/
+
+@media screen and (min-width: 768px) {
+
+    /* --- Home --- */
+
+    #salad p {
+        padding: 0 var(--base-unit);
+        font-size: 0.9rem;
+    }
 }
