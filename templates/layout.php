@@ -33,6 +33,7 @@ foreach ($flashKeys as $key) {
 }
 ?>
         <main>
+            <h1><?= $title ?></h1>
             <?= $content ?>
         </main>
         <footer>

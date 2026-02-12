@@ -21,7 +21,7 @@
 }
 
 /* Carte Verticale */
-.card:not(.is-inline) {
+.card:not(.inline) {
     flex-direction: column;
 }
 
@@ -70,15 +70,15 @@
     flex-direction: row;
 }
 
-.card.is-inline .card-header {
+.card.inline .card-header {
     max-width: calc(100% / 3);
 }
 
-.card.is-inline .card-header>img {
+.card.inline .card-header>img {
     height: 100%;
     object-fit: cover;
 }
 
-.card.is-inline .card-body {
+.card.inline .card-body {
     align-self: center;
 }

@@ -26,7 +26,7 @@
     --dark-1: #1A1A1A;
     --dark-2: #2F2F2F;
     --success: #78ffcb;
-    --success-contrast: var(--dark-2);
+    --success-contrast: var(--dark-1);
     --error: #C41E3A;
     --error-contrast: var(--light-1);
 
@@ -75,10 +75,10 @@
     padding: 0;
     font-family: var(--font-primary), sans-serif;
     transition: all var(--transition-type) var(--transition-duration);
-    appearance: none;
 }
 
 html {
+    color-scheme: light dark;
     scroll-behavior: smooth;
 }
 

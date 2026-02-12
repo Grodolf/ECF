@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use App\Core\FlashMessage;
 use App\Core\Session;
 
 class Security
@@ -105,6 +106,70 @@ class Security
     public static function escapeHtml(string $data): string
     {
         return htmlspecialchars($data);
+    }
+
+    /**
+     * Vérifie que l'utilisateur est connecté.
+     * Redirige vers /login si non authentifié.
+     *
+     * @return array Les données de l'utilisateur courant
+     */
+    public static function requireAuth(): array
+    {
+        if (!Session::isAuthenticated()) {
+            FlashMessage::authRequired();
+            header('Location: /login');
+            exit;
+        }
+
+        $user = Session::getUser();
+
+        if ($user === null) {
+            Session::destroy();
+            FlashMessage::sessionExpired();
+            header('Location: /login');
+            exit;
+        }
+
+        return $user;
+    }
+
+    /**
+     * Vérifie que l'utilisateur a le rôle employé ou admin.
+     * Redirige vers /home si rôle insuffisant.
+     *
+     * @return array Les données de l'utilisateur courant
+     */
+    public static function requireEmploye(): array
+    {
+        $user = self::requireAuth();
+
+        if ($user['role'] === 'user') {
+            FlashMessage::accessDenied();
+            header('Location: /home');
+            exit;
+        }
+
+        return $user;
+    }
+
+    /**
+     * Vérifie que l'utilisateur a le rôle admin.
+     * Redirige vers /home si rôle insuffisant.
+     *
+     * @return array Les données de l'utilisateur courant
+     */
+    public static function requireAdmin(): array
+    {
+        $user = self::requireAuth();
+
+        if ($user['role'] !== 'admin') {
+            FlashMessage::adminRequired();
+            header('Location: /home');
+            exit;
+        }
+
+        return $user;
     }
 
     /**

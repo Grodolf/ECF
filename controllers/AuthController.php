@@ -26,7 +26,11 @@ class AuthController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            $this->renderView('auth/login.php', ['csrfToken' => Security::generateCsrfToken()]);
+            $this->renderView('auth/login.php', [
+                'csrfToken' => Security::generateCsrfToken(),
+                'title' => 'Page de connexion',
+                'headline' => 'Connexion'
+            ]);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -84,7 +88,11 @@ class AuthController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            $this->renderView('auth/register.php', ['csrfToken' => Security::generateCsrfToken()]);
+            $this->renderView('auth/register.php', [
+                'csrfToken' => Security::generateCsrfToken(),
+                'title' => 'Créer un compte',
+                'headline' => 'Enregistrement'
+            ]);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -150,7 +158,11 @@ class AuthController extends AbstractController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            $this->renderView('auth/reset-password.php', ['csrfToken' => Security::generateCsrfToken()]);
+            $this->renderView('auth/reset-password.php', [
+                'csrfToken' => Security::generateCsrfToken(),
+                'title' => 'Mot de passe oublié',
+                'headline' => 'Mot de passe'
+            ]);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -225,7 +237,9 @@ class AuthController extends AbstractController
             $this->renderView('auth/new-password.php', [
                 'token' => $token,
                 'email' => $tokenData['email'],
-                'csrfToken' => Security::generateCsrfToken()
+                'csrfToken' => Security::generateCsrfToken(),
+                'title' => 'Réinitialiser mon mot de passe',
+                'headline' => 'Mot de passe'
             ]);
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

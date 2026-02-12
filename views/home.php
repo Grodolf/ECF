@@ -1,4 +1,3 @@
-<h1><?= $title ?></h1>
 
 <picture>
     <source srcset="./img/devanture_400.webp" media="(max-width: 480px)">
@@ -16,7 +15,7 @@
         <source srcset="./img/salad_400.webp" media="(max-width: 480px)">
         <source srcset="./img/salad_800.webp" media="(max-width: 768px)">
         <source srcset="./img/salad_1100.webp" media="(min-width: 769px)">
-        <img src="salad_800.webp" alt="Petits plats, grande qualité">
+        <img src="./img/salad_800.webp" alt="Petits plats, grande qualité">
     </picture>
     <p>Menu traditionnel, végétarien, vegan  ou adapté à des régimes spécifiques, nous composons pour vous des plats  qui raviront vos convives.</p>
 </div>

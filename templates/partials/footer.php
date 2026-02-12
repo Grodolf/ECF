@@ -47,7 +47,7 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
 </div>
 <div class="f-col it-center g--">
     <button id="footer-button" class="btn text">
-        <h3>Horaires :</h3>
+        <p>Horaires :</p>
     </button>
     <div class="grid-2 g- hidden">
         <ul>
@@ -63,7 +63,7 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
     </div>
 </div>
 <div class="flex ju-between it-center py px--">
-    <div class="btn text"><a href="">Mentions Légales</a></div>
-    <div class="btn text"><a href="">Conditions Générales de ventes</a></div>
+    <div class="btn text"><a href="/mentions-legales">Mentions Légales</a></div>
+    <div class="btn text"><a href="/cgv">Conditions Générales de ventes</a></div>
 </div>
 

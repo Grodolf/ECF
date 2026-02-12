@@ -2,7 +2,7 @@
     <div class="flex ju-between it-center p">
         <img src="./img/LogoVG.svg" alt="Logo Vite et gourmand">
         <p id="headline"><?= htmlspecialchars($headline) ?></p>
-        <button id="nav-button"><img src="./img/Menu.svg" alt=""></button>
+        <button id="nav-button"><img src="./img/Menu.svg" alt="Menu de navigation" aria-label="Menu de navigation"></button>
     </div>
 
     <div id="nav-bar" class="flex ju-between it-center hidden">

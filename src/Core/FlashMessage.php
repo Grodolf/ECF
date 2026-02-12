@@ -59,6 +59,22 @@ class FlashMessage
     {
         Session::setFlash('auth', 'Le mot de passe a été réinitialisé.', 'success');
     }
+    public static function authRequired(): void
+    {
+        Session::setFlash('auth', 'Vous devez être connecté pour accéder à cette page', 'error');
+    }
+    public static function sessionExpired(): void
+    {
+        Session::setFlash('auth', 'Votre session a expiré, veuillez vous reconnecter', 'error');
+    }
+    public static function accessDenied(): void
+    {
+        Session::setFlash('auth', 'Vous n\'avez pas l\'autorisation d\'accéder à cette page.', 'error');
+    }
+    public static function adminRequired(): void
+    {
+        Session::setFlash('auth', 'Réservé à l\'administrateur du site.', 'error');
+    }
 
     // Profile
     public static function profileUpdated(): void

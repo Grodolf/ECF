@@ -13,7 +13,6 @@ use App\Models\User;
 class UserController extends AbstractController
 {
     private User $userModel;
-    private $auth = '/templates/partials/auth-check.php';
 
     public function __construct()
     {
@@ -22,20 +21,26 @@ class UserController extends AbstractController
 
     public function profile(): void
     {
-        require_once dirname(__DIR__, 1) . $this->auth;
+        $currentUser = Security::requireAuth();
 
-        $this->renderView('user/profile.php', ['user' => $currentUser]);
+        $this->renderView('user/profile.php', [
+            'user' => $currentUser,
+            'title' => 'Mes coordonnées',
+            'headline' => 'Compte'
+        ]);
     }
 
     public function editProfile(): void
     {
-        require_once dirname(__DIR__, 1) . $this->auth;
+        $currentUser = Security::requireAuth();
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             $this->renderView('user/edit-profile.php', [
                 'user' => $currentUser,
-                'csrfToken' => Security::generateCsrfToken()
+                'csrfToken' => Security::generateCsrfToken(),
+                'title' => 'Modifier mes coordonnées',
+                'headline' => 'Compte'
             ]);
         }
 
@@ -80,13 +85,15 @@ class UserController extends AbstractController
 
     public function changePassword(): void
     {
-        require_once dirname(__DIR__, 1) . $this->auth;
+        $currentUser = Security::requireAuth();
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             $this->renderView('user/change-password.php', [
                 'user' => $currentUser,
-                'csrfToken' => Security::generateCsrfToken()
+                'csrfToken' => Security::generateCsrfToken(),
+                'title' => 'Modifier mon mot de passe',
+                'headline' => 'Compte'
             ]);
         }
 

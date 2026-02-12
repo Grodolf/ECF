@@ -1,6 +1,7 @@
 /**
  *  === Main CSS (Mobile) === 
  */
+/** biome-ignore-all lint/style/noDescendingSpecificity: <explanation> */
 
 @import 'app.css';
 
@@ -17,24 +18,38 @@ header,
 footer {
     flex: 0 0 max-content;
     width: 100%;
+    border-style: solid;
+    border-width: 2px;
 }
 
 .hidden {
     display: none;
+    top: 0;
 }
 
 /* --- Header --- */
 
+header {
+    position: sticky;
+    top: 0;
+    container-type: scroll-state;
+    container-name: sticky-scroll;
+    z-index: 1;
+}
+
 body[data-theme=auto] header {
     background-color: light-dark(var(--light-2), var(--dark-2));
+    border-color: light-dark(var(--secondary), var(--primary));
 }
 
 body[data-theme=light] header {
     background-color: var(--light-2);
+    border-color: var(--secondary);
 }
 
 body[data-theme=dark] header {
     background-color: var(--dark-2);
+    border-color: var(--primary);
 }
 
 header select {
@@ -75,7 +90,7 @@ body[data-theme=dark] header select:focus {
 }
 
 #headline {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
@@ -114,6 +129,13 @@ nav {
     width: 50%;
 }
 
+nav a {
+    font-family: var(--font-headline), sans-serif;
+    font-size: var(--h3-size);
+    line-height: var(--h3-line-height);
+    font-weight: var(--h3-weight);
+}
+
 #nav-button {
     width: max-content;
     height: max-content;
@@ -133,6 +155,10 @@ main {
     align-items: center;
 }
 
+main>p {
+    align-self: flex-start;
+}
+
 h1,
 h2 {
     text-align: center;
@@ -144,17 +170,26 @@ main>picture>img {
 }
 
 body[data-theme=auto] h1,
-body[data-theme=auto] h2 {
+body[data-theme=auto] h2,
+body[data-theme=auto] a,
+body[data-theme=auto] a:visited,
+body[data-theme=auto] a:active {
     color: light-dark(var(--primary), var(--secondary));
 }
 
 body[data-theme=light] h1,
-body[data-theme=light] h2 {
+body[data-theme=light] h2,
+body[data-theme=light] a,
+body[data-theme=light] a:visited,
+body[data-theme=light] a:active {
     color: var(--primary);
 }
 
 body[data-theme=dark] h1,
-body[data-theme=dark] h2 {
+body[data-theme=dark] h2,
+body[data-theme=dark] a,
+body[data-theme=dark] a:visited,
+body[data-theme=dark] a:active {
     color: var(--secondary);
 }
 
@@ -208,32 +243,62 @@ body[data-theme=dark] #salad {
     border-color: var(--secondary);
 }
 
+/* --- Login - Register - reset,new password --- */
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base-unit) * 2);
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+/* --- Profile --- */
+
+#infos {
+    padding: 0 calc(var(--base-unit) * 2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: var(--base-unit);
+}
+
 /* --- Footer --- */
 
 footer li {
     list-style: none;
 }
 
-footer h3::before {
+#footer-button>p {
+    font-family: var(--font-headline), sans-serif;
+    font-size: var(--h3-size);
+    line-height: var(--h3-line-height);
+    font-weight: var(--h3-weight);
+}
+
+#footer-button>p::before {
     content: '\2BC6';
     margin-right: calc(var(--base-unit) / 4);
 }
 
-#footer-button.rotate h3::before {
+#footer-button.rotate>p::before {
     display: inline-block;
     transform: rotate(-90deg);
 }
 
 body[data-theme=auto] footer {
     background-color: light-dark(var(--light-2), var(--dark-2));
+    border-color: light-dark(var(--secondary), var(--primary));
 }
 
 body[data-theme=light] footer {
     background-color: var(--light-2);
+    border-color: var(--secondary);
 }
 
 body[data-theme=dark] footer {
     background-color: var(--dark-2);
+    border-color: var(--primary);
 }
 
 /**
@@ -243,6 +308,11 @@ body[data-theme=dark] footer {
 @media screen and (min-width: 768px) {
 
     /* --- Home --- */
+
+    #headline {
+        font-size: 2.2rem;
+        font-weight: 600;
+    }
 
     #salad p {
         padding: 0 var(--base-unit);

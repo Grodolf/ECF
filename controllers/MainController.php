@@ -20,8 +20,8 @@ class MainController extends AbstractController
     public function contact()
     {
         return $this->renderView('contact.php', [
-            'title' => '',
-            'description' => '',
+            'title' => 'Prendre contact avec nous.',
+            'description' => 'Pour toute question, demandes spéciales ou rensignement vous pouvez utiliser ce formulaire.',
             'headline' => 'Contact'
         ]);
     }

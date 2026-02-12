@@ -1,0 +1,73 @@
+/**
+ * Form layout
+ */
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base-unit) * 1.5);
+    padding: 0 var(--base-unit);
+}
+
+label {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+input {
+    appearance: none;
+    font-size: 1.1rem;
+    padding: calc(var(--base-unit) / 2);
+    border-radius: calc(var(--base-unit) / 2);
+    border-width: 2px;
+}
+
+body[data-theme=auto] input {
+    border-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] input {
+    border-color: var(--primary);
+}
+
+body[data-theme=dark] input {
+    border-color: var(--secondary);
+}
+
+body[data-theme=auto] input:focus {
+    outline: solid 2px light-dark(var(--secondary), var(--primary));
+}
+
+body[data-theme=light] input:focus {
+    outline: solid 2px var(--secondary);
+}
+
+body[data-theme=dark] input:focus {
+    outline: solid 2px var(--primary);
+}
+
+form>button {
+    margin: var(--base-unit) calc(var(--base-unit) * 4);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base-unit) / 2);
+}
+
+/* === Tablette === */
+
+@media screen and (min-width: 768px) {
+
+    form {
+        width: 80%;
+    }
+
+    form>button {
+        margin: var(--base-unit) calc(var(--base-unit) * 8);
+    }
+}
