@@ -8,8 +8,8 @@
 ECF.session.sql
 vendor/
 
-# Certificats SSL
-/config/ssl/*.pem
+# Certificats SSL (clés privées uniquement)
+/config/ssl/*.key
 
 # Logs
 *.log
