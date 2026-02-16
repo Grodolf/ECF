@@ -1,6 +1,6 @@
 /**
- *  === Main CSS (Mobile) === 
- */
+        === Main CSS (Mobile) === 
+**/
 /** biome-ignore-all lint/style/noDescendingSpecificity: <explanation> */
 
 @import 'app.css';
@@ -32,9 +32,8 @@ footer {
 header {
     position: sticky;
     top: 0;
-    container-type: scroll-state;
-    container-name: sticky-scroll;
     z-index: 1;
+    padding: calc(var(--base-unit) / 2);
 }
 
 body[data-theme=auto] header {
@@ -90,13 +89,10 @@ body[data-theme=dark] header select:focus {
 }
 
 #headline {
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-header button>p {
-    font-size: 1.6rem;
-    font-weight: 500;
+    font-family: var(--font-headline);
+    font-size: var(--h3-size);
+    font-weight: var(--h3-weight);
+    line-height: var(--h3-line-height);
 }
 
 body[data-theme=auto] #headline {
@@ -120,16 +116,17 @@ header img {
     width: auto;
 }
 
-header>div>div>div {
-    width: 50%;
+/* --- Nav --- */
+
+#nav-bar>div {
     text-align: center;
 }
 
-nav {
-    width: 50%;
+#nav-bar>div>div>button {
+    width: max-content;
 }
 
-nav a {
+#nav-bar a {
     font-family: var(--font-headline), sans-serif;
     font-size: var(--h3-size);
     line-height: var(--h3-line-height);
@@ -143,16 +140,17 @@ nav a {
     background-color: transparent;
 }
 
+nav>ul {
+    margin: 0 auto;
+    width: max-content;
+}
+
 /* --- Main (common) --- */
 
 main {
-    width: var(--max-width);
     flex: 1 0 max-content;
-    padding: 1vh 4vw;
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
-    align-items: center;
+    width: var(--main-width);
+    margin: 0 auto;
 }
 
 main>p {
@@ -162,42 +160,19 @@ main>p {
 h1,
 h2 {
     text-align: center;
-    margin: var(--base-unit) calc(var(--base-unit) * 2);
-}
-
-main>picture>img {
-    width: 100%;
-}
-
-body[data-theme=auto] h1,
-body[data-theme=auto] h2,
-body[data-theme=auto] a,
-body[data-theme=auto] a:visited,
-body[data-theme=auto] a:active {
-    color: light-dark(var(--primary), var(--secondary));
-}
-
-body[data-theme=light] h1,
-body[data-theme=light] h2,
-body[data-theme=light] a,
-body[data-theme=light] a:visited,
-body[data-theme=light] a:active {
-    color: var(--primary);
-}
-
-body[data-theme=dark] h1,
-body[data-theme=dark] h2,
-body[data-theme=dark] a,
-body[data-theme=dark] a:visited,
-body[data-theme=dark] a:active {
-    color: var(--secondary);
 }
 
 /* --- Home --- */
 
-#salad {
+picture>img {
+    display: block;
     width: 100%;
-    margin-bottom: var(--base-unit);
+    height: auto;
+}
+
+#salad {
+    width: 94%;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -214,9 +189,6 @@ body[data-theme=dark] a:active {
 }
 
 #salad img {
-    display: block;
-    width: 100%;
-    height: auto;
     border-radius: var(--base-unit);
 }
 
@@ -302,7 +274,7 @@ body[data-theme=dark] footer {
 }
 
 /**
-=== Tablette ===
+        === Tablette ===
 **/
 
 @media screen and (min-width: 768px) {
@@ -314,8 +286,78 @@ body[data-theme=dark] footer {
         font-weight: 600;
     }
 
+    nav>ul {
+        width: 30vw;
+    }
+
     #salad p {
         padding: 0 var(--base-unit);
         font-size: 0.9rem;
+    }
+}
+
+/**
+        === desktop ===
+**/
+
+@media screen and (min-width: 1200px) {
+
+    /* --- Header --- */
+
+    #nav-button {
+        display: none;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav>ul {
+        width: 100%;
+    }
+
+    nav>ul>li {
+        flex: 1 0 10vw;
+    }
+
+    #nav-bar a {
+        font-size: var(--h6-size);
+        line-height: var(--h6-line-height);
+        font-weight: var(--h6-weight);
+    }
+
+    #headline {
+        font-size: var(--h1-size);
+        font-weight: var(--h1-weight);
+        line-height: var(--h1-line-height);
+        margin-right: var(--base-unit);
+    }
+
+    /* --- Home --- */
+
+    main h2,
+    main h3 {
+        text-align: start;
+    }
+
+    #devanture {
+        grid-row: 2 / span 2;
+    }
+
+    #team {
+        grid-column: 3 /span 3;
+        grid-row: 5 / span 3;
+    }
+
+    /* --- Login - Register - reset,new password --- */
+
+    .links {
+        grid-column: span 5;
+    }
+
+    /* --- Footer --- */
+
+    #footer-button>p::before {
+        content: '';
     }
 }

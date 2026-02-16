@@ -12,10 +12,9 @@ if (Session::isAuthenticated()) {
 
 ?>
 
-<ul class="f-col g p">
+<ul class="f-col g d:flex d:g-">
     <li class="btn outline"><a href="/home">Accueil</a></li>
     <li class="btn outline"><a href="/menus">Les menus</a></li>
-    <li class="btn outline"><a href="<?= $login ?>"><?= $compte ?></a></li>
+    <li class="btn outline"><a href="<?= htmlspecialchars($login) ?>" aria-label="<?= htmlspecialchars($compte) ?>"><?= htmlspecialchars($compte) ?></a></li>
     <li class="btn outline"><a href="/contact">Contact</a></li>
 </ul>
-

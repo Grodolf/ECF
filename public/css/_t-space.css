@@ -1,0 +1,362 @@
+/* Gap */
+.t\:g-- {
+    gap: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:g- {
+    gap: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:g {
+    gap: var(--base-unit);
+}
+
+.t\:g\+ {
+    gap: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:g\+\+ {
+    gap: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:g-row-- {
+    row-gap: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:g-row- {
+    row-gap: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:g-row {
+    row-gap: var(--base-unit);
+}
+
+.t\:g-row\+ {
+    row-gap: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:g-row\+\+ {
+    row-gap: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:g-col-- {
+    column-gap: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:g-col- {
+    column-gap: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:g-col {
+    column-gap: var(--base-unit);
+}
+
+.t\:g-col\+ {
+    column-gap: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:g-col\+\+ {
+    column-gap: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+/* Margin */
+.t\:m-- {
+    margin: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:m- {
+    margin: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:m {
+    margin: var(--base-unit);
+}
+
+.t\:m\+ {
+    margin: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:m\+\+ {
+    margin: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mx-- {
+    margin-left: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+    margin-right: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mx- {
+    margin-left: calc(var(--base-unit) / var(--spacing-ratio));
+    margin-right: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:mx {
+    margin-left: var(--base-unit);
+    margin-right: var(--base-unit);
+}
+
+.t\:mx\+ {
+    margin-left: calc(var(--base-unit) * var(--spacing-ratio));
+    margin-right: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:mx\+\+ {
+    margin-left: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+    margin-right: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:my-- {
+    margin-top: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+    margin-bottom: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:my- {
+    margin-top: calc(var(--base-unit) / var(--spacing-ratio));
+    margin-bottom: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:my {
+    margin-top: var(--base-unit);
+    margin-bottom: var(--base-unit);
+}
+
+.t\:my\+ {
+    margin-top: calc(var(--base-unit) * var(--spacing-ratio));
+    margin-bottom: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:my\+\+ {
+    margin-top: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+    margin-bottom: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mt-- {
+    margin-top: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mt- {
+    margin-top: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:mt {
+    margin-top: var(--base-unit);
+}
+
+.t\:mt\+ {
+    margin-top: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:mt\+\+ {
+    margin-top: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mb-- {
+    margin-bottom: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mb- {
+    margin-bottom: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:mb {
+    margin-bottom: var(--base-unit);
+}
+
+.t\:mb\+ {
+    margin-bottom: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:mb\+\+ {
+    margin-bottom: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:ml-- {
+    margin-left: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:ml- {
+    margin-left: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:ml {
+    margin-left: var(--base-unit);
+}
+
+.t\:ml\+ {
+    margin-left: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:ml\+\+ {
+    margin-left: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mr-- {
+    margin-right: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:mr- {
+    margin-right: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:mr {
+    margin-right: var(--base-unit);
+}
+
+.t\:mr\+ {
+    margin-right: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:mr\+\+ {
+    margin-right: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+/* Padding */
+.t\:p-- {
+    padding: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:p- {
+    padding: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:p {
+    padding: var(--base-unit);
+}
+
+.t\:p\+ {
+    padding: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:p\+\+ {
+    padding: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:px-- {
+    padding-left: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+    padding-right: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:px- {
+    padding-left: calc(var(--base-unit) / var(--spacing-ratio));
+    padding-right: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:px {
+    padding-left: var(--base-unit);
+    padding-right: var(--base-unit);
+}
+
+.t\:px\+ {
+    padding-left: calc(var(--base-unit) * var(--spacing-ratio));
+    padding-right: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:px\+\+ {
+    padding-left: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+    padding-right: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:py-- {
+    padding-top: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+    padding-bottom: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:py- {
+    padding-top: calc(var(--base-unit) / var(--spacing-ratio));
+    padding-bottom: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:py {
+    padding-top: var(--base-unit);
+    padding-bottom: var(--base-unit);
+}
+
+.t\:py\+ {
+    padding-top: calc(var(--base-unit) * var(--spacing-ratio));
+    padding-bottom: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:py\+\+ {
+    padding-top: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+    padding-bottom: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pt-- {
+    padding-top: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pt- {
+    padding-top: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:pt {
+    padding-top: var(--base-unit);
+}
+
+.t\:pt\+ {
+    padding-top: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:pt\+\+ {
+    padding-top: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pb-- {
+    padding-bottom: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pb- {
+    padding-bottom: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:pb {
+    padding-bottom: var(--base-unit);
+}
+
+.t\:pb\+ {
+    padding-bottom: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:pb\+\+ {
+    padding-bottom: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pl-- {
+    padding-left: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pl- {
+    padding-left: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:pl {
+    padding-left: var(--base-unit);
+}
+
+.t\:pl\+ {
+    padding-left: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:pl\+\+ {
+    padding-left: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pr-- {
+    padding-right: calc(var(--base-unit) / calc(var(--spacing-ratio) * 2));
+}
+
+.t\:pr- {
+    padding-right: calc(var(--base-unit) / var(--spacing-ratio));
+}
+
+.t\:pr {
+    padding-right: var(--base-unit);
+}
+
+.t\:pr\+ {
+    padding-right: calc(var(--base-unit) * var(--spacing-ratio));
+}
+
+.t\:pr\+\+ {
+    padding-right: calc(var(--base-unit) * calc(var(--spacing-ratio) * 2));
+}

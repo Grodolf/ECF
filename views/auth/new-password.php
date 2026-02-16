@@ -5,13 +5,14 @@
     <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
     <input type="hidden" name="reset_token" value="<?= htmlspecialchars($token) ?>">
     
-    <div class="input-container">
+    <div class="input-container rel">
         <label for="password">Nouveau mot de passe *</label>
         <input type="password" id="password" name="password" required autofocus>
-        <small style="display: block; margin-top: 5px; color: #666;">
-            10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial
-        </small>
+        <img id="eye" src="./img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
     </div>
+    <small style="display: block; margin-top: 5px; color: #666;">
+        10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial
+    </small>
     
     <button class="btn outline" type="submit">Réinitialiser mon mot de passe</button>
 </form>

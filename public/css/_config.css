@@ -37,27 +37,28 @@
     --base-unit: 14px;
     --ratio-line-height: 1.22;
 
-    --max-width: 100%;
-
     /* Animation */
     --transition-duration: 300ms;
     --transition-type: ease;
+
+    /* main */
+    --main-width: 100%
 }
 
 /* Responsive */
 @media screen and (min-width: 768px) {
     :root {
-        --base-unit: 15px;
+        --base-unit: 16px;
         --ratio-line-height: 1.24;
-        --max-width: 90%;
+        --main-width: 80%
     }
 }
 
 @media screen and (min-width: 1200px) {
     :root {
-        --base-unit: 16px;
+        --base-unit: 18px;
         --ratio-line-height: 1.26;
-        --max-width: 1200px;
+        --main-width: clamp(1200px, 80%, 1600px)
     }
 }
 
@@ -86,6 +87,12 @@ body {
     font-size: var(--base-unit);
 }
 
+a,
+a:active,
+a:visited {
+    appearance: none;
+}
+
 /* Gestion des themes */
 body[data-theme=auto] {
     color: light-dark(var(--dark-1), var(--light-1));
@@ -100,4 +107,28 @@ body[data-theme=light] {
 body[data-theme=dark] {
     color: var(--light-1);
     background-color: var(--dark-1);
+}
+
+body[data-theme=auto] h1,
+body[data-theme=auto] h2,
+body[data-theme=auto] a,
+body[data-theme=auto] a:visited,
+body[data-theme=auto] a:active {
+    color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] h1,
+body[data-theme=light] h2,
+body[data-theme=light] a,
+body[data-theme=light] a:visited,
+body[data-theme=light] a:active {
+    color: var(--primary);
+}
+
+body[data-theme=dark] h1,
+body[data-theme=dark] h2,
+body[data-theme=dark] a,
+body[data-theme=dark] a:visited,
+body[data-theme=dark] a:active {
+    color: var(--secondary);
 }

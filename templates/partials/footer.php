@@ -37,19 +37,19 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
 
 ?>
 
-<div class="flex ju-between p">
+<div class="container p- flex ju-between">
     <p><?= breadcrumbs(); ?></p>
-    <div>
+    <div class="f-col g- it-end shrink-0">
         <p>05 56 12 34 56</p>
         <p class="hidden">76 rue des Trois-Conils</p>
         <p class="hidden">Bordeaux</p>
     </div>
 </div>
-<div class="f-col it-center g--">
+<div class="">
     <button id="footer-button" class="btn text">
         <p>Horaires :</p>
     </button>
-    <div class="grid-2 g- hidden">
+    <div class="grid-2 g hidden">
         <ul>
             <li>Lundi</li>
             <li>Mardi à Samedi</li>
@@ -62,8 +62,7 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
         </ul>
     </div>
 </div>
-<div class="flex ju-between it-center py px--">
+<div class="container px- flex ju-between ">
     <div class="btn text"><a href="/mentions-legales">Mentions Légales</a></div>
     <div class="btn text"><a href="/cgv">Conditions Générales de ventes</a></div>
 </div>
-

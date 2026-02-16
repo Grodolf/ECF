@@ -1,6 +1,6 @@
 /**
- * Form layout
- */
+    === Form layout ===
+**/
 
 form {
     width: 100%;
@@ -48,7 +48,8 @@ body[data-theme=dark] input:focus {
 }
 
 form>button {
-    margin: var(--base-unit) calc(var(--base-unit) * 4);
+    align-self: center;
+    width: max-content;
     font-size: 1.2rem;
     font-weight: 600;
 }
@@ -59,15 +60,52 @@ form>button {
     gap: calc(var(--base-unit) / 2);
 }
 
-/* === Tablette === */
+#eye {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    scale: 0.8;
+}
+
+/**
+    === Tablette === 
+**/
 
 @media screen and (min-width: 768px) {
 
     form {
-        width: 80%;
+        width: 70%;
+        margin: 0 auto;
     }
 
-    form>button {
-        margin: var(--base-unit) calc(var(--base-unit) * 8);
+    #eye {
+        right: calc(var(--base-unit) * -2.5);
+        top: calc(var(--base-unit) * 2.2);
+        scale: 1;
+    }
+}
+
+/**
+    === Desktop ===
+**/
+
+@media screen and (min-width: 1200px) {
+
+    form {
+        grid-column: span 5;
+        width: max-content;
+    }
+
+    .input-container {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: calc(var(--base-unit) * 2);
+        align-items: center;
+    }
+
+    #eye {
+        right: calc(var(--base-unit) * -2.5);
+        top: calc(var(--base-unit) * 0.5);
+        scale: 1;
     }
 }

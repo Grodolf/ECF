@@ -24,16 +24,27 @@
     </div>
     
     <div class="input-container">
-        <label for="adresse">Adresse postale :</label>
+        <label for="adresse">Adresse :</label>
         <input type="text" id="adresse" name="adresse" required>
-        <small>adresse, ville</small>
+    </div>
+
+    <div class="input-container">
+        <label for="code_postal">Code postal :</label>
+        <input type="text" id="code_postal" name="code_postal" required>
+    </div>
+
+    <div class="input-container">
+        <label for="ville">Ville :</label>
+        <input type="text" id="ville" name="ville" required>
     </div>
     
-    <div class="input-container">
+    <div class="input-container rel">
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
-        <small>10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial</small>
+        <img id="eye" src="./img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
     </div>
+
+    <small>10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial</small>
     
     <button class="btn outline" type="submit">Créer mon compte</button>
 </form>

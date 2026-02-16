@@ -7,9 +7,10 @@
         <input type="email" id="email" name="email" required autofocus>
     </div>
     
-    <div class="input-container">
+    <div class="input-container rel">
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
+        <img id="eye" src="./img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
     </div>
     
     <button class="btn outline" type="submit">Se connecter</button>

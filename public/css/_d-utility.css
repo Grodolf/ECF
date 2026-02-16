@@ -1,156 +1,155 @@
 /* Flex */
-.flex {
+.d\:flex {
     display: flex;
     flex-direction: row;
 }
 
-.f-col {
+.d\:f-col {
     display: flex;
     flex-direction: column;
 }
 
-.wrap {
+.d\:wrap {
     flex-wrap: wrap;
 }
 
-.nowrap {
+.d\:nowrap {
     flex-wrap: nowrap;
 }
 
-.ju-start {
+.d\:ju-start {
     justify-content: flex-start;
 }
 
-.ju-center {
+.d\:ju-center {
     justify-content: center;
 }
 
-.ju-end {
+.d\:ju-end {
     justify-content: flex-end;
 }
 
-.ju-between {
+.d\:ju-between {
     justify-content: space-between;
 }
 
-.ju-around {
+.d\:ju-around {
     justify-content: space-around;
 }
 
-.ju-evenly {
+.d\:ju-evenly {
     justify-content: space-evenly;
 }
 
-.it-start {
+.d\:it-start {
     align-items: flex-start;
 }
 
-.it-center {
+.d\:it-center {
     align-items: center;
 }
 
-.it-end {
+.d\:it-end {
     align-items: flex-end;
 }
 
-.it-stretch {
+.d\:it-stretch {
     align-items: stretch;
 }
 
-.it-baseline {
+.d\:it-baseline {
     align-items: baseline;
 }
 
-.ju-it-center {
+.d\:ju-it-center {
     justify-items: center;
 }
 
-.ju-it-start {
+.d\:ju-it-start {
     justify-items: start;
 }
 
-.ju-it-end {
+.d\:ju-it-end {
     justify-items: end;
 }
 
-.grow-0 {
+.d\:grow-0 {
     flex-grow: 0;
 }
 
-.grow-1 {
+.d\:grow-1 {
     flex-grow: 1;
 }
 
-.shrink-0 {
+.d\:shrink-0 {
     flex-shrink: 0;
 }
 
-.shrink-1 {
+.d\:shrink-1 {
     flex-shrink: 1;
 }
 
 /* Position */
-
-.rel {
+.d\:rel {
     position: relative;
 }
 
-.abs {
+.d\:abs {
     position: absolute;
 }
 
-.fix {
-    position: fixed
+.d\:fix {
+    position: fixed;
 }
 
-.sti {
+.d\:sti {
     position: sticky;
 }
 
-.top {
+.d\:top {
     top: 0;
 }
 
-.top5 {
+.d\:top5 {
     top: 5%;
 }
 
-.top10 {
+.d\:top10 {
     top: 10%;
 }
 
-.bot {
+.d\:bot {
     bottom: 0;
 }
 
-.bot5 {
+.d\:bot5 {
     bottom: 5%;
 }
 
-.bot10 {
+.d\:bot10 {
     bottom: 10%;
 }
 
-.left {
+.d\:left {
     left: 0;
 }
 
-.left5 {
+.d\:left5 {
     left: 5%;
 }
 
-.left10 {
+.d\:left10 {
     left: 10%;
 }
 
-.right {
+.d\:right {
     right: 0;
 }
 
-.right5 {
+.d\:right5 {
     right: 5%;
 }
 
-.right10 {
+.d\:right10 {
     right: 10%;
 }

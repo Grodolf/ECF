@@ -8,15 +8,10 @@
     border-style: solid;
     border-width: 2px;
     outline: none;
+    text-align: center;
 }
 
 /* Boutons pleins */
-
-body[data-theme=dark] .btn {
-    color: var(--primary);
-    background-color: var(--secondary);
-    border-color: var(--primary);
-}
 
 body[data-theme=auto] .btn {
     color: light-dark(var(--secondary), var(--primary));
@@ -30,6 +25,30 @@ body[data-theme=light] .btn {
     border-color: var(--secondary);
 }
 
+body[data-theme=dark] .btn {
+    color: var(--primary);
+    background-color: var(--secondary);
+    border-color: var(--primary);
+}
+
+body[data-theme=auto] .btn>a,
+body[data-theme=auto] .btn>a:active,
+body[data-theme=auto] .btn>a:visited {
+    color: light-dark(var(--secondary), var(--primary));
+}
+
+body[data-theme=light] .btn>a,
+body[data-theme=light] .btn>a:active,
+body[data-theme=light] .btn>a:visited {
+    color: var(--secondary);
+}
+
+body[data-theme=dark] .btn>a,
+body[data-theme=dark] .btn>a:active,
+body[data-theme=dark] .btn>a:visited {
+    color: var(--primary);
+}
+
 /* Boutons outline */
 
 body[data-theme=auto] .btn.outline {
@@ -38,9 +57,21 @@ body[data-theme=auto] .btn.outline {
     border-color: light-dark(var(--primary), var(--secondary));
 }
 
+body[data-theme=auto] .btn.outline>a,
+body[data-theme=auto] .btn.outline>a:active,
+body[data-theme=auto] .btn.outline>a:visited {
+    color: light-dark(var(--primary), var(--secondary));
+}
+
 body[data-theme=auto] .btn.outline:hover {
-    color: light-dark(var(--secondary), var(--primary));
+    color: light-dark(var(--light-1), var(--dark-1));
     background-color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=auto] .btn.outline:hover>a,
+body[data-theme=auto] .btn.outline:hover>a:active,
+body[data-theme=auto] .btn.outline:hover>a:visited {
+    color: light-dark(var(--light-1), var(--dark-1));
 }
 
 body[data-theme=light] .btn.outline {
@@ -49,9 +80,21 @@ body[data-theme=light] .btn.outline {
     border-color: var(--primary);
 }
 
+body[data-theme=light] .btn.outline>a,
+body[data-theme=light] .btn.outline>a:active,
+body[data-theme=light] .btn.outline>a:visited {
+    color: var(--primary);
+}
+
 body[data-theme=light] .btn.outline:hover {
     color: var(--light-1);
     background-color: var(--primary);
+}
+
+body[data-theme=light] .btn.outline:hover>a,
+body[data-theme=light] .btn.outline:hover>a:active,
+body[data-theme=light] .btn.outline:hover>a:visited {
+    color: var(--light-1);
 }
 
 body[data-theme=dark] .btn.outline {
@@ -60,9 +103,21 @@ body[data-theme=dark] .btn.outline {
     border-color: var(--secondary);
 }
 
+body[data-theme=dark] .btn.outline>a,
+body[data-theme=dark] .btn.outline>a:active,
+body[data-theme=dark] .btn.outline>a:visited {
+    color: var(--secondary);
+}
+
 body[data-theme=dark] .btn.outline:hover {
     color: var(--dark-1);
     background-color: var(--secondary);
+}
+
+body[data-theme=dark] .btn.outline:hover>a,
+body[data-theme=dark] .btn.outline:hover>a:active,
+body[data-theme=dark] .btn.outline:hover>a:visited {
+    color: var(--dark-1);
 }
 
 /* Boutons textes */
@@ -78,6 +133,12 @@ body[data-theme=auto] .btn.text:hover {
     background-color: light-dark(var(--light-2), var(--dark-2));
 }
 
+body[data-theme=auto] .btn.text>a,
+body[data-theme=auto] .btn.text>a:active,
+body[data-theme=auto] .btn.text>a:visited {
+    color: light-dark(var(--primary), var(--secondary));
+}
+
 body[data-theme=light] .btn.text {
     color: var(--dark-1);
     background-color: transparent;
@@ -89,6 +150,12 @@ body[data-theme=light] .btn.text:hover {
     background-color: var(--light-2);
 }
 
+body[data-theme=light] .btn.text>a,
+body[data-theme=light] .btn.text>a:active,
+body[data-theme=light] .btn.text>a:visited {
+    color: var(--primary);
+}
+
 body[data-theme=dark] .btn.text {
     color: var(--light-1);
     background-color: transparent;
@@ -98,4 +165,10 @@ body[data-theme=dark] .btn.text {
 body[data-theme=dark] .btn.text:hover {
     color: var(--light-2);
     background-color: var(--dark-2);
+}
+
+body[data-theme=dark] .btn.text>a,
+body[data-theme=dark] .btn.text>a:active,
+body[data-theme=dark] .btn.text>a:visited {
+    color: var(--secondary);
 }
