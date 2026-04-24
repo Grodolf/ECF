@@ -6,6 +6,7 @@ namespace App\Core;
 
 use App\Controllers\MainController;
 use App\Controllers\AuthController;
+use App\Controllers\MenuController;
 use App\Controllers\UserController;
 
 class Routes
@@ -54,6 +55,18 @@ class Routes
         'change-password' => [
             'controller' => UserController::class,
             'method' => 'changePassword'
+        ],
+        'menus' => [
+            'controller' => MenuController::class,
+            'method' => 'list'
+        ],
+        'menu/{id}' => [
+            'controller' => MenuController::class,
+            'method' => 'detail'
+        ],
+        'menus/filter' => [
+            'controller' => MenuController::class,
+            'method' => 'filter'
         ],
     ];
 }

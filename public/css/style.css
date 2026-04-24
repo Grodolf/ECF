@@ -1,7 +1,6 @@
 /**
         === Main CSS (Mobile) === 
 **/
-/** biome-ignore-all lint/style/noDescendingSpecificity: <explanation> */
 
 @import 'app.css';
 
@@ -234,6 +233,75 @@ body[data-theme=dark] #salad {
     grid-template-columns: 1fr 1fr;
     row-gap: var(--base-unit);
 }
+
+/* --- List --- */
+
+#menu-button {
+    width: max-content;
+    margin: 0 auto;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter>input {
+    width: 6rem;
+    text-align: right;
+    height: 2rem;
+}
+
+.filter>select {
+    width: 6rem;
+    text-align: right;
+    height: 2.5rem;
+}
+
+.card {
+    margin: 0 var(--base-unit);
+}
+
+.filter-suggestions {
+    margin-bottom: 1rem;
+}
+
+.filter-suggestions.hidden {
+    display: none;
+}
+
+.suggestions-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.suggestion-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    border-radius: calc(var(--base-unit) / 2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.suggestion-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.suggestion-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* --- Detail --- */
+
+
 
 /* --- Footer --- */
 

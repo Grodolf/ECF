@@ -93,4 +93,11 @@ class FlashMessage
     {
         Session::setFlash('profile', 'Le mot de passe n\'est pas correct.', 'error');
     }
+
+    // Menus
+
+    public static function wrongMenu(): void
+    {
+        Session::setFlash('menus', 'Le menu demandé n\'éxiste pas', 'error');
+    }
 }

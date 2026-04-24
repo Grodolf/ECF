@@ -8,7 +8,7 @@ use App\Core\DatabaseConnection;
 use App\Core\Security;
 use PDO;
 
-class User
+class UserModel
 {
     private static PDO $db;
 
@@ -61,7 +61,7 @@ class User
     {
         self::$db = self::getDb();
 
-        $query = "INSERT INTO users (nom, prenom, email, gsm, adresse, password) VALUES (:nom,:prenom,:email,:gsm,:adresse, :password)";
+        $query = "INSERT INTO users (nom, prenom, email, gsm, adresse, code_postal, city, password) VALUES (:nom,:prenom,:email,:gsm,:adresse,:code_postal,:city,:password)";
         $stmt = self::$db->prepare($query);
         $stmt->execute([
             'nom' => $data['nom'],
@@ -69,6 +69,8 @@ class User
             'email' => $data['email'],
             'gsm' => $data['gsm'],
             'adresse' => $data['adresse'],
+            'code_postal' => $data['code_postal'],
+            'city' => $data['city'],
             'password' => $data['password']
         ]);
 

@@ -1,0 +1,126 @@
+/* <div class="card">
+  <div class="card-header">
+    <img
+      src="..."
+      alt="Description de l'image"
+    />
+    <div class="badge"></div>
+    <div class="badge"></div>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Titre</h3>
+    <p class="card-description">Lorem ipsum dolor sit amet...</p>
+    <div class="card-actions">
+      ...
+    </div>
+  </div>
+  </div> */
+
+.card {
+    border-radius: calc(var(--base-unit) / 1.5);
+    display: flex;
+    overflow: hidden;
+    border-width: 2px;
+    border-style: solid;
+    flex-direction: column;
+}
+
+body[data-theme=auto] .card {
+    color: light-dark(var(--dark-1), var(--light-1));
+    background-color: light-dark(var(--light-2), var(--dark-2));
+    border-color: light-dark(var(--secondary), var(--primary));
+}
+
+body[data-theme=light] .card {
+    color: var(--dark-1);
+    background-color: var(--light-2);
+    border-color: var(--secondary);
+}
+
+body[data-theme=dark] .card {
+    color: var(--light-1);
+    background-color: var(--dark-2);
+    border-color: var(--primary);
+}
+
+.card-header {
+    overflow: hidden;
+    position: relative;
+}
+
+.card-header>img {
+    display: block;
+    width: 100%;
+}
+
+.card:hover .card-header>img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: calc(var(--base-unit) * 1.5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--base-unit);
+    align-items: flex-start;
+}
+
+.card-title {
+    font-size: calc(var(--base-unit) * 1.375);
+    line-height: calc(calc(var(--base-unit) * 1.375) * var(--ratio-line-height));
+    font-weight: 700;
+}
+
+.card-description {
+    font-size: var(--base-unit);
+    line-height: calc(var(--base-unit) * var(--ratio-line-height));
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base-unit) / 2);
+    align-items: center;
+}
+
+/**
+    === Tablette ===
+**/
+
+@media screen and (min-width: 768px) {
+    .card {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+/**
+    === Desktop ===
+**/
+
+@media screen and (min-width: 1200px) {
+
+    .card {
+        flex-direction: row;
+    }
+
+    .card.inline .card-header {
+        max-width: calc(100% / 3);
+    }
+
+    .card.inline .card-header>img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card.inline .card-body {
+        align-self: center;
+    }
+}

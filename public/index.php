@@ -7,10 +7,9 @@ require_once dirname(__DIR__) . '/src/autoload.php';
 
 use App\Core\Router;
 use App\Core\Session;
+use App\Core\Env;
 
-require_once dirname(__DIR__) . '/src/env.php';
-
-loadEnv(__DIR__ . '/../config/');
+Env::loadEnv(__DIR__ . '/../config/');
 
 Session::start();
 

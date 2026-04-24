@@ -23,37 +23,54 @@ class Router
     private function parseRoutes(): void
     {
         $explodedRequestedPath = $this->explodePath($this->requestedPath);
-        $params = [];
 
         foreach ($this->availablePaths as $candidatePath) {
+            $params = $this->matchPath($candidatePath, $explodedRequestedPath);
 
-            $foundMatch = true;
-            $explodedCandidatePath = $this->explodePath($candidatePath);
-
-            if (count($explodedCandidatePath) == count($explodedRequestedPath)) {
-                foreach ($explodedRequestedPath as $key => $requestedPathPart) {
-                    $candidatePathPart = $explodedCandidatePath[$key];
-
-                    if ($this->isParam($candidatePathPart)) {
-                        $params[substr($candidatePathPart, 1, -1)] = $requestedPathPart;
-                    } elseif ($candidatePathPart !== $requestedPathPart) {
-                        $foundMatch = false;
-                        break;
-                    }
-                }
-
-                if ($foundMatch) {
-                    $route = $this->routes[$candidatePath];
-                    break;
-                }
+            if ($params !== null) {
+                $route = $this->routes[$candidatePath];
+                $controller = new $route['controller']();
+                $controller->{$route['method']}(...$this->castParams($params));
+                return;
             }
         }
 
-        if (isset($route)) {
-            $controller = new $route['controller']();
-            $controller->{$route['method']}(...$params);
+        header('Location: /');
+        exit;
+    }
+
+    private function matchPath(string $candidatePath, array $explodedRequestedPath): ?array
+    {
+        $explodedCandidatePath = $this->explodePath($candidatePath);
+
+        if (count($explodedCandidatePath) !== count($explodedRequestedPath)) {
+            return null;
         }
 
+        $params = [];
+
+        foreach ($explodedRequestedPath as $key => $requestedPathPart) {
+            $candidatePathPart = $explodedCandidatePath[$key];
+
+            if ($this->isParam($candidatePathPart)) {
+                $params[substr($candidatePathPart, 1, -1)] = $requestedPathPart;
+            } elseif ($candidatePathPart !== $requestedPathPart) {
+                return null;
+            }
+        }
+
+        return $params;
+    }
+
+    private function castParams(array $params): array
+    {
+        foreach ($params as $key => $value) {
+            if (is_numeric($value)) {
+                $params[$key] = (int) $value;
+            }
+        }
+
+        return $params;
     }
 
     private function explodePath(string $path): array

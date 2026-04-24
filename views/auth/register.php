@@ -34,8 +34,8 @@
     </div>
 
     <div class="input-container">
-        <label for="ville">Ville :</label>
-        <input type="text" id="ville" name="ville" required>
+        <label for="city">Ville :</label>
+        <input type="text" id="city" name="city" required>
     </div>
     
     <div class="input-container rel">

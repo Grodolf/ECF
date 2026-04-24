@@ -8,15 +8,15 @@ use App\Core\AbstractController;
 use App\Core\FlashMessage;
 use App\Core\Security;
 use App\Core\Session;
-use App\Models\User;
+use App\Models\UserModel;
 
 class UserController extends AbstractController
 {
-    private User $userModel;
+    private UserModel $userModel;
 
     public function __construct()
     {
-        $this->userModel = new User();
+        $this->userModel = new UserModel();
     }
 
     public function profile(): void

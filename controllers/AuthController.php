@@ -9,15 +9,15 @@ use App\Core\Security;
 use App\Core\Session;
 use App\Core\Mailer;
 use App\Core\FlashMessage;
-use App\Models\User;
+use App\Models\UserModel;
 
 class AuthController extends AbstractController
 {
-    private User $userModel;
+    private UserModel $userModel;
 
     public function __construct()
     {
-        $this->userModel = new User();
+        $this->userModel = new UserModel();
     }
 
     // --- Connexion ---
