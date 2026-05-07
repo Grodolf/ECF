@@ -9,7 +9,7 @@ $description = '';
 if (!empty($dishesByType)) {
     $description .= '<p class="px">'. $menu['description'] .'</p>';
 } else {
-    $description .= '<p class="px">Ce menu est en cours </p>';
+    $description .= '<p class="px">Ce menu est en cours de création.</p>';
 }
 
 // Menu image carousel
@@ -108,7 +108,7 @@ if (!empty($menu['conditions'])) {
     ';
 }
 
-// Sotck
+// Stock
 
 $stock = '';
 if (isset($menu['stock']) && $menu['stock'] >= $menu['min_people']) {

@@ -1,3 +1,17 @@
+/**
+ * Auto-playing image carousel with prev/next buttons, dot indicators, and swipe support.
+ *
+ * Expected DOM structure inside the root element ([data-carousel]):
+ *   - .carousel-slide          — one element per slide
+ *   - [data-carousel-dot]      — one dot per slide (order must match slides)
+ *   - [data-carousel-prev]     — previous button (optional)
+ *   - [data-carousel-next]     — next button (optional)
+ *
+ * Autoplay pauses on mouseenter and resumes on mouseleave.
+ * Any manual interaction (button click, dot click, swipe) resets the autoplay timer.
+ *
+ * Instantiated automatically for every [data-carousel] element found in the document.
+ */
 class Carousel {
     #carousel;
     #slides;
@@ -6,8 +20,12 @@ class Carousel {
     #nextBtn;
     #currentIndex = 0;
     #autoplayInterval = null;
+    /** Milliseconds between automatic slide advances. */
     #autoplayDelay = 5000;
 
+    /**
+     * @param {HTMLElement} element Root carousel element ([data-carousel]).
+     */
     constructor(element) {
         this.#carousel = element;
         this.#slides = element.querySelectorAll('.carousel-slide');
@@ -17,6 +35,11 @@ class Carousel {
         this.#init();
     }
 
+    /**
+     * Activates the slide at the given index and updates the corresponding dot.
+     *
+     * @param {number} index Zero-based slide index.
+     */
     #showSlide(index) {
         this.#slides.forEach(s => s.classList.remove('active'));
         this.#dots.forEach(d => d.classList.remove('active'));
@@ -25,6 +48,9 @@ class Carousel {
         this.#currentIndex = index;
     }
 
+    /**
+     * Starts the autoplay timer, advancing to the next slide every #autoplayDelay ms.
+     */
     #startAutoplay() {
         this.#autoplayInterval = setInterval(() => {
             const next = this.#currentIndex === this.#slides.length - 1 ? 0 : this.#currentIndex + 1;
@@ -32,10 +58,19 @@ class Carousel {
         }, this.#autoplayDelay);
     }
 
+    /**
+     * Clears the autoplay timer without changing the current slide.
+     */
     #stopAutoplay() {
         clearInterval(this.#autoplayInterval);
     }
 
+    /**
+     * Binds all event listeners and starts autoplay.
+     *
+     * Swipe detection uses a 50 px horizontal threshold: swipe left advances,
+     * swipe right goes back.
+     */
     #init() {
         this.#startAutoplay();
 

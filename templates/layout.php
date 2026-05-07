@@ -5,22 +5,16 @@ declare(strict_types=1);
 use App\Core\Session;
 use App\Core\Security;
 
-function formatText($texte)
-{
-    $texte = str_replace('&nbsp;', 'NBSP', $texte);
-    $texte = Security::escapeHtml($texte);
-    $texte = str_replace('NBSP', '&nbsp;', $texte);
-
-    return $texte;
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?= formatText($title) ?></title>
+        <?php if (Session::isAuthenticated()): ?>
+        <meta name="csrf-token" content="<?= Security::generateCsrfToken() ?>">
+        <?php endif; ?>
+        <title><?= Security::formatText($title) ?></title>
         <?php if (isset($description)): ?>
         <meta name="description" content="<?= Security::escapeHtml($description) ?>">
         <?php endif; ?>
@@ -33,18 +27,15 @@ function formatText($texte)
         </header>
 
 <?php
-$flashKeys = ['generic', 'auth', 'profile', 'menus'];
-foreach ($flashKeys as $key) {
-    $flash = Session::getFlash($key);
-    if ($flash) {
-        echo '<div class="flash ' . Security::escapeHtml($flash['type']) . '">';
-        echo Security::escapeHtml($flash['message']);
-        echo '</div>';
-    }
+$flash = Session::getFlash();
+if ($flash) {
+    echo '<div class="flash-container"><div class="flash ' . Security::escapeHtml($flash['type']) . '">';
+    echo Security::escapeHtml($flash['message']);
+    echo '</div></div>';
 }
 ?>
         <main class="grid-1 g my- d:grid-5 d:my+">
-            <h1 class="d:col-5 d:my"><?= formatText($title) ?></h1>
+            <h1 class="d:col-5 d:my"><?= Security::formatText($title) ?></h1>
             <?= $content ?>
         </main>
         <footer class="container f-col it-center">

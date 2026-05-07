@@ -234,6 +234,21 @@ body[data-theme=dark] #salad {
     row-gap: var(--base-unit);
 }
 
+body[data-theme=auto] .card-order {
+    height: 6dvh;
+    background: linear-gradient(45deg, light-dark(var(--primary), var(--secondary)), light-dark(var(--secondary), var(--primary)));
+}
+
+body[data-theme=light] .card-order {
+    height: 6dvh;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+}
+
+body[data-theme=dark] .card-order {
+    height: 6dvh;
+    background: linear-gradient(45deg, var(--secondary), var(--primary));
+}
+
 /* --- List --- */
 
 #menu-button {
@@ -298,10 +313,6 @@ body[data-theme=dark] #salad {
     color: white;
     border-color: var(--primary);
 }
-
-/* --- Detail --- */
-
-
 
 /* --- Footer --- */
 

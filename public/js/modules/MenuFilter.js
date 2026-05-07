@@ -1,6 +1,30 @@
+/** Absolute minimum value of the price range slider. */
 const PRICE_MIN = 5;
+/** Absolute maximum value of the price range slider. */
 const PRICE_MAX = 25;
 
+/**
+ * Live AJAX filter for the menu list page.
+ *
+ * Listens for changes on all filter inputs (text, select, range sliders) and
+ * POSTs the form to /menus/filter on every change, debounced at 500 ms for
+ * free-text inputs. The response replaces the menu cards in the container and
+ * updates the available theme/regime options to reflect the current result set.
+ *
+ * Expected DOM:
+ *   - #menu-filter              — the filter <form>
+ *   - #menus-container          — the card grid to replace on each response
+ *   - #price-min-slider         — range input for minimum price (optional)
+ *   - #price-max-slider         — range input for maximum price (optional)
+ *   - #price-min-display        — element showing the current min price label
+ *   - #price-max-display        — element showing the current max price label
+ *   - .range-slider             — container whose --left/--right CSS vars drive the progress bar
+ *   - #results-count            — element showing the result count string (optional)
+ *   - #reset-filters            — button that resets all inputs and re-fetches (optional)
+ *   - meta[name="csrf-token"]   — CSRF token passed in the X-CSRF-Token request header
+ *
+ * Instantiated automatically when both #menu-filter and #menus-container exist.
+ */
 class MenuFilter {
     #form;
     #container;
@@ -10,6 +34,10 @@ class MenuFilter {
     #priceMaxDisplay;
     #rangeSliderContainer;
 
+    /**
+     * @param {HTMLFormElement} formEl      The filter form (#menu-filter).
+     * @param {HTMLElement}     containerEl The card grid to update (#menus-container).
+     */
     constructor(formEl, containerEl) {
         this.#form = formEl;
         this.#container = containerEl;
@@ -21,6 +49,9 @@ class MenuFilter {
         this.#init();
     }
 
+    /**
+     * Binds all event listeners: filter inputs, reset button, and price sliders.
+     */
     #init() {
         const filterInputs = this.#form.querySelectorAll('input:not([type="range"]), select');
         filterInputs.forEach(input => {
@@ -47,6 +78,12 @@ class MenuFilter {
         }
     }
 
+    /**
+     * Syncs the price label elements and the progress bar with the current slider values.
+     *
+     * Enforces a minimum gap of 1 between min and max: if the user drags min above max,
+     * min is clamped to max - 1.
+     */
     #updatePriceDisplay() {
         let minVal = Number.parseInt(this.#priceMinSlider.value);
         let maxVal = Number.parseInt(this.#priceMaxSlider.value);
@@ -61,6 +98,13 @@ class MenuFilter {
         this.#updateProgressBar(minVal, maxVal);
     }
 
+    /**
+     * Updates the --left and --right CSS custom properties on .range-slider to
+     * visually fill the track between the two slider thumbs.
+     *
+     * @param {number} minVal Current minimum price value.
+     * @param {number} maxVal Current maximum price value.
+     */
     #updateProgressBar(minVal, maxVal) {
         const range = PRICE_MAX - PRICE_MIN;
         const leftPercent = ((minVal - PRICE_MIN) / range) * 100;
@@ -69,12 +113,23 @@ class MenuFilter {
         this.#rangeSliderContainer?.style.setProperty('--right', `${rightPercent}%`);
     }
 
+    /**
+     * POSTs the current form state to /menus/filter and updates the UI.
+     *
+     * Fades the container to 50% opacity during the request and restores it in
+     * the finally block. On success, re-renders the card grid and refreshes the
+     * available filter options. On error, replaces the container with an error message.
+     */
     async #filter() {
         this.#container.style.opacity = '0.5';
         try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content ?? '';
             const response = await fetch('/menus/filter', {
                 method: 'POST',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-Token': csrfToken
+                },
                 body: new FormData(this.#form)
             });
             if (!response.ok) throw new Error('Erreur serveur');
@@ -89,6 +144,14 @@ class MenuFilter {
         }
     }
 
+    /**
+     * Replaces the card container's innerHTML with the rendered menu cards.
+     *
+     * All user-facing strings are passed through escapeHtml() before injection.
+     * Shows an empty-state message when the array is empty.
+     *
+     * @param {Array<Object>} menus Menu objects returned by the filter endpoint.
+     */
     #renderMenus(menus) {
         const resultsCount = document.querySelector('#results-count');
 
@@ -120,6 +183,13 @@ class MenuFilter {
         `).join('');
     }
 
+    /**
+     * Refreshes the min_people input bounds and the theme/regime select options
+     * based on the stats and available options returned by the filter endpoint.
+     *
+     * @param {{count: number, min_people: number}} stats           Aggregate stats for the current result set.
+     * @param {{themes: number[], regimes: number[]}} availableOptions IDs of themes and regimes still present in results.
+     */
     #updateFiltersFromStats(stats, availableOptions) {
         const minPeopleInput = this.#form.querySelector('#min_people');
         if (minPeopleInput && stats.count > 0) {
@@ -130,6 +200,16 @@ class MenuFilter {
         this.#updateSelectOptions('regime', availableOptions.regimes);
     }
 
+    /**
+     * Disables options in a <select> whose IDs are not in the available set.
+     *
+     * The empty/placeholder option (value="") is always kept enabled.
+     * Unavailable options are greyed out rather than removed so the user can
+     * see what exists but is filtered out.
+     *
+     * @param {string}   selectId     The id attribute of the target <select>.
+     * @param {number[]} availableIds IDs of the options that should remain enabled.
+     */
     #updateSelectOptions(selectId, availableIds) {
         const select = this.#form.querySelector(`#${selectId}`);
         if (!select) return;
@@ -146,16 +226,37 @@ class MenuFilter {
     }
 }
 
+/**
+ * Escapes a string for safe insertion into HTML by delegating to the browser's
+ * text-node serialiser — avoids XSS when rendering server data into innerHTML.
+ *
+ * @param {string} text Raw string to escape.
+ * @returns {string} HTML-safe string.
+ */
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 }
 
+/**
+ * Formats a price as a French decimal string (comma separator, 2 decimal places).
+ *
+ * @param {number|string} price Numeric price value.
+ * @returns {string} e.g. "12,50"
+ */
 function formatPrice(price) {
     return Number.parseFloat(price).toFixed(2).replace('.', ',');
 }
 
+/**
+ * Returns a debounced version of func that delays execution until wait ms have
+ * elapsed since the last call.
+ *
+ * @param {Function} func Callback to debounce.
+ * @param {number}   wait Delay in milliseconds.
+ * @returns {Function} Debounced function.
+ */
 function debounce(func, wait) {
     let timeout;
     return function (...args) {

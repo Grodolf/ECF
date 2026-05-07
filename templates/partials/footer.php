@@ -41,15 +41,15 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
     <p><?= breadcrumbs(); ?></p>
     <div class="f-col g- it-end shrink-0">
         <p>05 56 12 34 56</p>
-        <p class="hidden">76 rue des Trois-Conils</p>
-        <p class="hidden">Bordeaux</p>
+        <p class="hidden" data-mobile>76 rue des Trois-Conils</p>
+        <p class="hidden" data-mobile>Bordeaux</p>
     </div>
 </div>
 <div class="">
     <button id="footer-button" class="btn text">
         <p>Horaires :</p>
     </button>
-    <div class="grid-2 g hidden">
+    <div class="grid-2 g hidden" data-mobile>
         <ul>
             <li>Lundi</li>
             <li>Mardi à Samedi</li>
@@ -64,5 +64,5 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
 </div>
 <div class="container px- flex ju-between ">
     <div class="btn text"><a href="/mentions-legales">Mentions Légales</a></div>
-    <div class="btn text"><a href="/cgv">Conditions Générales de ventes</a></div>
+    <div class="btn text"><a href="/cgv">Conditions Générales de Vente</a></div>
 </div>

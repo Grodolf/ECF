@@ -11,12 +11,12 @@ class Smtp
         return [
             'host' => $_ENV['SMTP_HOST'],
             'port' => (int)$_ENV['SMTP_PORT'],
-            'useAuth' => (bool)$_ENV['SMTP_USE_AUTH'],
+            'useAuth' => filter_var($_ENV['SMTP_USE_AUTH'], FILTER_VALIDATE_BOOLEAN),
             'user' => $_ENV['SMTP_USER'],
             'password' => $_ENV['SMTP_PASSWORD'],
             'fromEmail' => $_ENV['SMTP_FROM_EMAIL'],
             'fromName' => $_ENV['SMTP_FROM_NAME'],
-            'debug' => (bool)$_ENV['SMTP_DEBUG'],
+            'debug' => filter_var($_ENV['SMTP_DEBUG'], FILTER_VALIDATE_BOOLEAN),
         ];
     }
 }

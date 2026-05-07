@@ -2,7 +2,7 @@
 <form method="POST" action="/new-password/<?= htmlspecialchars($token) ?>">
     <p>Compte : <strong><?= htmlspecialchars($email) ?></strong></p>
 
-    <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
     <input type="hidden" name="reset_token" value="<?= htmlspecialchars($token) ?>">
     
     <div class="input-container rel">

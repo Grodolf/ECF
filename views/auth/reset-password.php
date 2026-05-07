@@ -1,7 +1,7 @@
 
 <form method="POST" action="/reset-password">
     <p>Entrez votre adresse email pour recevoir un lien de réinitialisation.</p>
-    <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
     
     <div class="input-container">
         <label for="email">Adresse email</label>

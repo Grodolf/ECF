@@ -8,7 +8,7 @@ foreach ($menus as $menu) {
     if (in_array($menu['theme_id'], $themes_seen)) {
         continue;
     }
-    array_push($themes_seen, $menu['theme_id']);
+    $themes_seen[] = $menu['theme_id'];
     $theme_options .= '<option value="' . $menu['theme_id'] . '">' . $menu['theme'] . '</option>';
 }
 unset($menu);
@@ -19,7 +19,7 @@ foreach ($menus as $menu) {
     if (in_array($menu['regime_id'], $regimes_seen)) {
         continue;
     }
-    array_push($regimes_seen, $menu['regime_id']);
+    $regimes_seen[] = $menu['regime_id'];
     $regime_options .= '<option value="' . $menu['regime_id'] . '">' . $menu['regime'] . '</option>';
 }
 unset($menu);
@@ -44,7 +44,7 @@ foreach ($menus as $menu) {
         <div class="card-body">
             <h3 class="card-title">' . Security::escapeHtml($menu['title']) . '</h3>
             <p class="card-description">' . Security::escapeHtml($menu['description']) . '</p>
-            <p>Menu pour ' . $menu['min_people'] . ' personnes minimum, au prix de ' . number_format($menu['base_price'], 2, ',', ' ') . '€ par personnes.</p>
+            <p>Menu pour ' . $menu['min_people'] . ' personnes minimum, au prix de ' . number_format($menu['base_price'], 2, ',', ' ') . '€ par personne.</p>
             <div class="btn">
                 <a href="/menu/' . $menu['id'] . '">Détails</a>
             </div>
@@ -69,7 +69,7 @@ unset($menu);
 
 <form id="menu-filter" class="hidden">
     <div class="filter price-filter">
-        <label>Prix par personnes :</label>
+        <label>Prix par personne :</label>
         <div class="price-display">
             <span id="price-min-display">0€</span>
             <span> - </span>

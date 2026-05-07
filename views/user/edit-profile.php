@@ -1,5 +1,5 @@
 <form method="POST" action="/edit-profile">
-    <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
     
     <div class="input-container">
         <label for="nom">Nom *</label>

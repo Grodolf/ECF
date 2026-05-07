@@ -1,6 +1,6 @@
 
 <form method="POST" action="/register">
-    <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
     <p>Tous les champs sont requis.</p>
     
     <div class="input-container">

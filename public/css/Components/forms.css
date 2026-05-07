@@ -31,6 +31,11 @@ select {
     border-width: 2px;
 }
 
+fieldset {
+    border-radius: calc(var(--base-unit) / 2);
+    padding: calc(var(--base-unit));
+}
+
 body[data-theme=auto] input,
 body[data-theme=auto] select {
     border-color: light-dark(var(--primary), var(--secondary));

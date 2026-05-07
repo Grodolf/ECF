@@ -1,6 +1,15 @@
+<?php
 
+declare(strict_types=1);
+use App\Core\Security;
+
+?>
 <form method="POST" action="/login">
-    <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
+
+    <?php if (isset($redirect) && $redirect !== null): ?>
+        <input type="hidden" name="redirect" value="<?= Security::escapeHtml($redirect) ?>">
+    <?php endif; ?>
     
     <div class="input-container">
         <label for="email">Adresse email :</label>
