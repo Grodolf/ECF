@@ -1,10 +1,10 @@
 <div class="wrapper flex ju-between it-center d:col-2">
-    <img src="./img/LogoVG.svg" alt="Logo Vite et gourmand">
+    <img src="/img/LogoVG.svg" alt="Logo Vite et gourmand">
     <p id="headline">Vite & Gourmand</p>
-    <button id="nav-button"><img src="./img/Menu.svg" alt="Menu de navigation" aria-label="Menu de navigation"></button>
+    <button id="nav-button"><img src="/img/Menu.svg" alt="Menu de navigation" aria-label="Menu de navigation"></button>
 </div>
 
-<div id="nav-bar" class="grid-1 g+ hidden d:col-3">
+<div id="nav-bar" class="grid-1 g+ hidden d:col-3" data-mobile>
     <div class="grid-1 g+ d:grid-3 d:it-center">
         <div class="grid-1 ju-it-center g- d:col-2">
             <p>Prêt à découvrir nos créations culinaires ?</p>

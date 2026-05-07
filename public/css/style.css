@@ -1,7 +1,6 @@
 /**
         === Main CSS (Mobile) === 
 **/
-/** biome-ignore-all lint/style/noDescendingSpecificity: <explanation> */
 
 @import 'app.css';
 
@@ -233,6 +232,86 @@ body[data-theme=dark] #salad {
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: var(--base-unit);
+}
+
+body[data-theme=auto] .card-order {
+    height: 6dvh;
+    background: linear-gradient(45deg, light-dark(var(--primary), var(--secondary)), light-dark(var(--secondary), var(--primary)));
+}
+
+body[data-theme=light] .card-order {
+    height: 6dvh;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+}
+
+body[data-theme=dark] .card-order {
+    height: 6dvh;
+    background: linear-gradient(45deg, var(--secondary), var(--primary));
+}
+
+/* --- List --- */
+
+#menu-button {
+    width: max-content;
+    margin: 0 auto;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter>input {
+    width: 6rem;
+    text-align: right;
+    height: 2rem;
+}
+
+.filter>select {
+    width: 6rem;
+    text-align: right;
+    height: 2.5rem;
+}
+
+.card {
+    margin: 0 var(--base-unit);
+}
+
+.filter-suggestions {
+    margin-bottom: 1rem;
+}
+
+.filter-suggestions.hidden {
+    display: none;
+}
+
+.suggestions-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.suggestion-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    border-radius: calc(var(--base-unit) / 2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.suggestion-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.suggestion-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
 }
 
 /* --- Footer --- */

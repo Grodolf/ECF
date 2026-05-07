@@ -1,6 +1,6 @@
 
 <form method="POST" action="/register">
-    <input type="hidden" name="token" value="<?= htmlspecialchars($csrfToken) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
     <p>Tous les champs sont requis.</p>
     
     <div class="input-container">
@@ -34,8 +34,8 @@
     </div>
 
     <div class="input-container">
-        <label for="ville">Ville :</label>
-        <input type="text" id="ville" name="ville" required>
+        <label for="city">Ville :</label>
+        <input type="text" id="city" name="city" required>
     </div>
     
     <div class="input-container rel">

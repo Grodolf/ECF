@@ -1,4 +1,13 @@
+.flash-container {
+    position: relative;
+}
+
 .flash {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 50dvw;
     padding: calc(var(--base-unit) * 1);
     border-radius: calc(var(--base-unit) / 2);
     border-style: solid;

@@ -1,0 +1,80 @@
+.badge {
+    font-size: 0.7rem;
+    border-radius: var(--base-unit);
+    border-width: 2px;
+    border-style: solid;
+    padding: calc(var(--base-unit) / 4);
+    width: fit-content;
+    position: absolute;
+}
+
+.badge:first-of-type {
+    top: 2%;
+    right: 1%;
+}
+
+.badge:nth-of-type(2) {
+    top: 14%;
+    right: 1%;
+}
+
+.badge:nth-of-type(3) {
+    top: 26%;
+    right: 1%;
+}
+
+.badge:nth-of-type(4) {
+    top: 38%;
+    right: 1%;
+}
+
+.badge:nth-of-type(5) {
+    top: 50%;
+    right: 1%;
+}
+
+body[data-theme=auto] .badge {
+    color: light-dark(var(--light-1), var(--dark-1));
+    background-color: light-dark(var(--primary), var(--secondary));
+    border-color: light-dark(var(--secondary), var(--primary));
+}
+
+body[data-theme=light] .badge {
+    color: var(--light-1);
+    background-color: var(--primary);
+    border-color: var(--secondary);
+}
+
+body[data-theme=dark] .badge {
+    color: var(--dark-1);
+    background-color: var(--secondary);
+    border-color: var(--primary);
+}
+
+body[data-theme=auto] .badge.danger {
+    color: light-dark(var(--light-1), var(--dark-1));
+    background-color: light-dark(var(--error), var(--error));
+    border-color: light-dark(var(--light-1), var(--dark-1));
+}
+
+body[data-theme=light] .badge.danger {
+    color: var(--light-1);
+    background-color: var(--error);
+    border-color: var(--light-1);
+}
+
+body[data-theme=dark] .badge.danger {
+    color: var(--dark-1);
+    background-color: var(--error);
+    border-color: var(--dark-1);
+}
+
+/* Structure html */
+
+/***
+
+<div class="badge">
+    <p>Lorem</p>
+</div>
+
+***/

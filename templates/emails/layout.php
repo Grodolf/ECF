@@ -35,7 +35,7 @@
                                 Vite & Gourmand
                             </p>
                             <p style="color: #cccccc; margin: 0; font-size: 14px;">
-                                Traiteur professionnel à Bordeaux depuis 25 ans
+                                Traiteur professionnel à Bordeaux depuis 25 ans.
                             </p>
                         </td>
                     </tr>

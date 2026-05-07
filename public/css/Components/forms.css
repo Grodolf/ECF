@@ -23,27 +23,46 @@ input {
     border-width: 2px;
 }
 
-body[data-theme=auto] input {
+select {
+    appearance: none;
+    font-size: 1.1rem;
+    padding: calc(var(--base-unit) / 2);
+    border-radius: calc(var(--base-unit) / 2);
+    border-width: 2px;
+}
+
+fieldset {
+    border-radius: calc(var(--base-unit) / 2);
+    padding: calc(var(--base-unit));
+}
+
+body[data-theme=auto] input,
+body[data-theme=auto] select {
     border-color: light-dark(var(--primary), var(--secondary));
 }
 
-body[data-theme=light] input {
+body[data-theme=light] input,
+body[data-theme=light] select {
     border-color: var(--primary);
 }
 
-body[data-theme=dark] input {
+body[data-theme=dark] input,
+body[data-theme=dark] select {
     border-color: var(--secondary);
 }
 
-body[data-theme=auto] input:focus {
+body[data-theme=auto] input:focus,
+body[data-theme=auto] select:focus {
     outline: solid 2px light-dark(var(--secondary), var(--primary));
 }
 
-body[data-theme=light] input:focus {
+body[data-theme=light] input:focus,
+body[data-theme=light] select:focus {
     outline: solid 2px var(--secondary);
 }
 
-body[data-theme=dark] input:focus {
+body[data-theme=dark] input:focus,
+body[data-theme=dark] select:focus {
     outline: solid 2px var(--primary);
 }
 
