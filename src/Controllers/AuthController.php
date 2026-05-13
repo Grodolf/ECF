@@ -17,6 +17,11 @@ use App\Models\UserModel;
  */
 class AuthController extends AbstractController
 {
+    private const ROUTE_LOGIN          = 'login';
+    private const ROUTE_REGISTER       = 'register';
+    private const ROUTE_RESET_PASSWORD = 'reset-password';
+    private const ROUTE_HOME           = 'home';
+
     private UserModel $userModel;
 
     public function __construct()
@@ -45,21 +50,21 @@ class AuthController extends AbstractController
             return;
         }
 
-        $this->verifyCsrf($_POST['csrf_token'] ?? '', 'login');
+        $this->verifyCsrf($_POST['csrf_token'] ?? '', self::ROUTE_LOGIN);
 
         $redirect = isset($_POST['redirect']) ? Security::validateRedirect($_POST['redirect']) : null;
         $password = $_POST['password'] ?? '';
         $ip       = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
         $_POST    = Security::sanitizeInput($_POST);
 
-        $this->requireFields($_POST, ['email', 'password', 'csrf_token'], 'login');
-        $this->requireValidEmail($_POST['email'], 'login');
+        $this->requireFields($_POST, ['email', 'password', 'csrf_token'], self::ROUTE_LOGIN);
+        $this->requireValidEmail($_POST['email'], self::ROUTE_LOGIN);
 
         $loginId = RateLimiter::loginIdentifier($ip, $_POST['email']);
 
         if (!RateLimiter::check('login', $loginId)) {
             Session::setFlash(FlashMessage::RATE_LIMIT_LOGIN, 'error');
-            $this->redirectToRoute('login');
+            $this->redirectToRoute(self::ROUTE_LOGIN);
             exit;
         }
 
@@ -68,7 +73,7 @@ class AuthController extends AbstractController
         if ($user === null || !Security::verifyPassword($password, $user['password'])) {
             RateLimiter::hit('login', $loginId);
             Session::setFlash(FlashMessage::INVALID_CREDENTIALS, 'error');
-            $this->redirectToRoute('login');
+            $this->redirectToRoute(self::ROUTE_LOGIN);
             exit;
         }
 
@@ -81,7 +86,7 @@ class AuthController extends AbstractController
         if ($redirect !== null) {
             header("Location: {$redirect}");
         } else {
-            $this->redirectToRoute('home');
+            $this->redirectToRoute(self::ROUTE_HOME);
         }
         exit;
     }
@@ -92,7 +97,7 @@ class AuthController extends AbstractController
     public function logout(): void
     {
         Session::destroy();
-        $this->redirectToRoute('home');
+        $this->redirectToRoute(self::ROUTE_HOME);
     }
 
     /**
@@ -113,34 +118,34 @@ class AuthController extends AbstractController
             return;
         }
 
-        $this->verifyCsrf($_POST['csrf_token'] ?? '', 'register');
+        $this->verifyCsrf($_POST['csrf_token'] ?? '', self::ROUTE_REGISTER);
 
         $password = $_POST['password'] ?? '';
         $_POST    = Security::sanitizeInput($_POST);
 
-        $this->requireFields($_POST, ['nom', 'prenom', 'email', 'gsm', 'adresse', 'password', 'csrf_token'], 'login');
-        $this->requireValidEmail($_POST['email'], 'register');
+        $this->requireFields($_POST, ['nom', 'prenom', 'email', 'gsm', 'adresse', 'password', 'csrf_token'], self::ROUTE_LOGIN);
+        $this->requireValidEmail($_POST['email'], self::ROUTE_REGISTER);
 
         if ($this->userModel->emailExists($_POST['email'])) {
             Session::setFlash(FlashMessage::EMAIL_ALREADY_EXISTS, 'error');
-            $this->redirectToRoute('register');
+            $this->redirectToRoute(self::ROUTE_REGISTER);
             exit;
         }
 
-        $this->requireValidPassword($password, 'register');
+        $this->requireValidPassword($password, self::ROUTE_REGISTER);
 
         $_POST['password'] = Security::hashPassword($password);
 
         if (!$this->userModel->create($_POST)) {
             Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
-            $this->redirectToRoute('register');
+            $this->redirectToRoute(self::ROUTE_REGISTER);
             exit;
         }
 
         $this->sendWelcomeEmail($_POST);
 
         Session::setFlash(FlashMessage::REGISTER_SUCCESS, 'success');
-        $this->redirectToRoute('login');
+        $this->redirectToRoute(self::ROUTE_LOGIN);
         exit;
     }
 
@@ -163,18 +168,18 @@ class AuthController extends AbstractController
             return;
         }
 
-        $this->verifyCsrf($_POST['csrf_token'] ?? '', 'reset-password');
+        $this->verifyCsrf($_POST['csrf_token'] ?? '', self::ROUTE_RESET_PASSWORD);
 
         $_POST = Security::sanitizeInput($_POST);
 
-        $this->requireFields($_POST, ['email', 'csrf_token'], 'reset-password');
-        $this->requireValidEmail($_POST['email'], 'reset-password');
+        $this->requireFields($_POST, ['email', 'csrf_token'], self::ROUTE_RESET_PASSWORD);
+        $this->requireValidEmail($_POST['email'], self::ROUTE_RESET_PASSWORD);
 
         $resetId = RateLimiter::ipIdentifier($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0');
 
         if (!RateLimiter::check('reset_password', $resetId)) {
             Session::setFlash(FlashMessage::RATE_LIMIT_RESET, 'error');
-            $this->redirectToRoute('reset-password');
+            $this->redirectToRoute(self::ROUTE_RESET_PASSWORD);
             exit;
         }
 
@@ -186,7 +191,7 @@ class AuthController extends AbstractController
         Session::setFlash(FlashMessage::PASSWORD_RESET_SENT, 'success');
 
         if (!$this->userModel->emailExists($_POST['email'])) {
-            $this->redirectToRoute('login');
+            $this->redirectToRoute(self::ROUTE_LOGIN);
             exit;
         }
 
@@ -201,12 +206,12 @@ class AuthController extends AbstractController
         $user = $this->userModel->findByEmailPublic($_POST['email']);
         if ($user === null) {
             Session::setFlash(FlashMessage::INVALID_CREDENTIALS, 'error');
-            $this->redirectToRoute('login');
+            $this->redirectToRoute(self::ROUTE_LOGIN);
             exit;
         }
 
         $this->sendResetPasswordEmail($user, $_POST['email'], $token);
-        $this->redirectToRoute('login');
+        $this->redirectToRoute(self::ROUTE_LOGIN);
         exit;
     }
 
@@ -226,7 +231,7 @@ class AuthController extends AbstractController
             $tokenData = $this->userModel->findPasswordResetToken($token);
             if ($tokenData === null) {
                 Session::setFlash(FlashMessage::TOKEN_EXPIRED, 'error');
-                $this->redirectToRoute('reset-password');
+                $this->redirectToRoute(self::ROUTE_RESET_PASSWORD);
                 exit;
             }
             $this->renderView('auth/new-password.php', [
@@ -239,31 +244,31 @@ class AuthController extends AbstractController
             return;
         }
 
-        $this->verifyCsrf($_POST['csrf_token'] ?? '', 'reset-password');
+        $this->verifyCsrf($_POST['csrf_token'] ?? '', self::ROUTE_RESET_PASSWORD);
 
         $tokenData = $this->userModel->findPasswordResetToken($_POST['reset_token'] ?? '');
         if ($tokenData === null) {
             Session::setFlash(FlashMessage::TOKEN_EXPIRED, 'error');
-            $this->redirectToRoute('reset-password');
+            $this->redirectToRoute(self::ROUTE_RESET_PASSWORD);
             exit;
         }
 
         $password = $_POST['password'] ?? '';
         $_POST    = Security::sanitizeInput($_POST);
 
-        $this->requireFields($_POST, ['password', 'csrf_token', 'reset_token'], 'reset-password');
-        $this->requireValidPassword($password, 'reset-password');
+        $this->requireFields($_POST, ['password', 'csrf_token', 'reset_token'], self::ROUTE_RESET_PASSWORD);
+        $this->requireValidPassword($password, self::ROUTE_RESET_PASSWORD);
 
         if (!$this->userModel->updatePassword($tokenData['user_id'], Security::hashPassword($password))) {
             Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
-            $this->redirectToRoute('reset-password');
+            $this->redirectToRoute(self::ROUTE_RESET_PASSWORD);
             exit;
         }
 
         $this->userModel->markPasswordResetTokenAsUsed(Security::hashToken($_POST['reset_token']));
 
         Session::setFlash(FlashMessage::PASSWORD_UPDATED, 'success');
-        $this->redirectToRoute('login');
+        $this->redirectToRoute(self::ROUTE_LOGIN);
         exit;
     }
 
@@ -368,7 +373,7 @@ class AuthController extends AbstractController
                 $email,
                 $user['prenom'] . ' ' . $user['nom'],
                 'Mot de passe oublié',
-                'reset-password',
+                self::ROUTE_RESET_PASSWORD,
                 [
                     'nom'       => $user['nom'],
                     'prenom'    => $user['prenom'],

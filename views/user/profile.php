@@ -50,20 +50,12 @@ $date = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatte
 
 <div class="links">
     <?php if (in_array($user['role'], ['employe', 'admin'])) : ?>
-        <div class="btn primary">
-            <a href="/employe/orders">Gestion des commandes</a>
-        </div>
+        <a class="btn primary" href="/employe/orders">Gestion des commandes</a>
+        <a class="btn primary" href="/employe/dishes">Gestion des plats</a>
+        <a class="btn primary" href="/employe/menus">Gestion des menus</a>
     <?php endif; ?>
-    <div class="btn text">
-        <a href="/edit-profile">Modifier mes informations</a>
-    </div>
-    <div class="btn text">
-        <a href="/change-password">Changer mon mot de passe</a>
-    </div>
-    <div class="btn text">
-        <a href="/logout">Se déconnecter</a>
-    </div>
-    <div class="btn text">
-        <a href="/home">Retour à l'accueil</a>
-    </div>
+    <a class="btn text" href="/edit-profile">Modifier mes informations</a>
+    <a class="btn text" href="/change-password">Changer mon mot de passe</a>
+    <a class="btn text" href="/logout">Se déconnecter</a>
+    <a class="btn text" href="/home">Retour à l'accueil</a>
 </div>

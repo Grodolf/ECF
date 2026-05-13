@@ -8,9 +8,7 @@
     <div class="grid-1 g+ d:grid-3 d:it-center">
         <div class="grid-1 ju-it-center g- d:col-2">
             <p>Prêt à découvrir nos créations culinaires ?</p>
-            <button class="btn">
-                <a href="/commande">Commander un menu</a>
-            </button>
+            <a class="btn" href="/commande">Commander un menu</a>
         </div>
         <div class="d:col-1">
             <label for="mode">Thème :</label>

@@ -17,6 +17,10 @@ use App\Models\OrderModel;
  */
 class UserController extends AbstractController
 {
+    private const ROUTE_PROFILE         = 'profile';
+    private const ROUTE_EDIT_PROFILE    = 'edit-profile';
+    private const ROUTE_CHANGE_PASSWORD = 'change-password';
+
     private UserModel $userModel;
 
     public function __construct()
@@ -66,7 +70,7 @@ class UserController extends AbstractController
 
             if (!Security::verifyCsrfToken($_POST['csrf_token'])) {
                 Session::setFlash(FlashMessage::INVALID_CSRF, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
@@ -76,13 +80,13 @@ class UserController extends AbstractController
             $validate_required = Security::validateRequired($_POST, $fields);
             if ($validate_required !== []) {
                 Session::setFlash(implode(', ', $validate_required), 'error');
-                $this->redirectToRoute('edit-profile');
+                $this->redirectToRoute(self::ROUTE_EDIT_PROFILE);
                 exit;
             }
 
             if (!$this->userModel->update($currentUser['id'], $_POST)) {
                 Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
-                $this->redirectToRoute('edit-profile');
+                $this->redirectToRoute(self::ROUTE_EDIT_PROFILE);
                 exit;
             }
 
@@ -90,13 +94,13 @@ class UserController extends AbstractController
 
             if ($updatedUser === null) {
                 Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
             Session::setUser($updatedUser);
             Session::setFlash(FlashMessage::PROFILE_UPDATED, 'success');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
     }
@@ -132,7 +136,7 @@ class UserController extends AbstractController
     {
         if (!Security::verifyCsrfToken($_POST['csrf_token'])) {
             Session::setFlash(FlashMessage::INVALID_CSRF, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
@@ -140,14 +144,14 @@ class UserController extends AbstractController
 
         if (!RateLimiter::check('change_password', $pwdId)) {
             Session::setFlash(FlashMessage::RATE_LIMIT_CHANGE_PWD, 'error');
-            $this->redirectToRoute('change-password');
+            $this->redirectToRoute(self::ROUTE_CHANGE_PASSWORD);
             exit;
         }
 
         $missing = Security::validateRequired($_POST, ['old_password', 'new_password', 'csrf_token']);
         if ($missing !== []) {
             Session::setFlash(implode(', ', $missing), 'error');
-            $this->redirectToRoute('change-password');
+            $this->redirectToRoute(self::ROUTE_CHANGE_PASSWORD);
             exit;
         }
 
@@ -156,7 +160,7 @@ class UserController extends AbstractController
 
         if ($newPassword === $oldPassword) {
             Session::setFlash(FlashMessage::SAME_PASSWORD, 'error');
-            $this->redirectToRoute('change-password');
+            $this->redirectToRoute(self::ROUTE_CHANGE_PASSWORD);
             exit;
         }
 
@@ -164,25 +168,25 @@ class UserController extends AbstractController
         if (!Security::verifyPassword($oldPassword, $dbData['password'])) {
             RateLimiter::hit('change_password', $pwdId);
             Session::setFlash(FlashMessage::WRONG_PASSWORD, 'error');
-            $this->redirectToRoute('change-password');
+            $this->redirectToRoute(self::ROUTE_CHANGE_PASSWORD);
             exit;
         }
 
         [$valid, $errors] = Security::validatePassword($newPassword);
         if (!$valid) {
             Session::setFlash(implode(', ', $errors), 'error');
-            $this->redirectToRoute('change-password');
+            $this->redirectToRoute(self::ROUTE_CHANGE_PASSWORD);
             exit;
         }
 
         if (!$this->userModel->updatePassword($currentUser['id'], Security::hashPassword($newPassword))) {
             Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
-            $this->redirectToRoute('change-password');
+            $this->redirectToRoute(self::ROUTE_CHANGE_PASSWORD);
             exit;
         }
 
         Session::setFlash(FlashMessage::PASSWORD_CHANGED, 'success');
-        $this->redirectToRoute('profile');
+        $this->redirectToRoute(self::ROUTE_PROFILE);
         exit;
     }
 }

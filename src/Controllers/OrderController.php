@@ -18,7 +18,13 @@ use App\Models\OrderModel;
  */
 class OrderController extends AbstractController
 {
-    private const ORDER_ROUTE = 'order/';
+    private const ORDER_ROUTE              = 'order/';
+    private const ROUTE_MENU              = 'menu/';
+    private const ROUTE_MENUS             = 'menus';
+    private const ROUTE_PROFILE           = 'profile';
+    private const ROUTE_ORDER_CONFIRMATION = 'order/confirmation/';
+    private const ROUTE_ORDER_DETAIL      = 'order/detail/';
+    private const ROUTE_ORDER_EDIT        = 'order/edit/';
 
     private MenuModel $menuModel;
     private OrderModel $orderModel;
@@ -47,13 +53,13 @@ class OrderController extends AbstractController
 
         if (empty($menu)) {
             Session::setFlash(FlashMessage::WRONG_MENU, 'error');
-            $this->redirectToRoute('menus');
+            $this->redirectToRoute(self::ROUTE_MENUS);
             exit;
         }
 
         if (!isset($menu['stock']) || $menu['stock'] < $menu['min_people']) {
             Session::setFlash(FlashMessage::MENU_UNAVAILABLE, 'error');
-            $this->redirectToRoute('menu/' . $menuId);
+            $this->redirectToRoute(self::ROUTE_MENU . $menuId);
             exit;
         }
 
@@ -79,7 +85,7 @@ class OrderController extends AbstractController
 
         if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
             Session::setFlash(FlashMessage::INVALID_CSRF, 'error');
-            $this->redirectToRoute('menus');
+            $this->redirectToRoute(self::ROUTE_MENUS);
             exit;
         }
 
@@ -87,7 +93,7 @@ class OrderController extends AbstractController
 
         if ($input['menuId'] <= 0 || $input['nbPeople'] <= 0) {
             Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
-            $this->redirectToRoute('menus');
+            $this->redirectToRoute(self::ROUTE_MENUS);
             exit;
         }
 
@@ -102,7 +108,7 @@ class OrderController extends AbstractController
 
         if (empty($menu)) {
             Session::setFlash(FlashMessage::WRONG_MENU, 'error');
-            $this->redirectToRoute('menus');
+            $this->redirectToRoute(self::ROUTE_MENUS);
             exit;
         }
 
@@ -114,7 +120,7 @@ class OrderController extends AbstractController
 
         if (!$this->orderModel->checkStock($input['menuId'], $input['nbPeople'])) {
             Session::setFlash(FlashMessage::STOCK_INSUFFICIENT, 'error');
-            $this->redirectToRoute('menu/' . $input['menuId']);
+            $this->redirectToRoute(self::ROUTE_MENU . $input['menuId']);
             exit;
         }
 
@@ -153,7 +159,7 @@ class OrderController extends AbstractController
         $this->sendOrderConfirmationEmail($orderId, $user, $menu, $orderData);
 
         Session::setFlash(FlashMessage::ORDER_SUCCESS, 'success');
-        $this->redirectToRoute('order/confirmation/' . $orderId);
+        $this->redirectToRoute(self::ROUTE_ORDER_CONFIRMATION . $orderId);
     }
 
     /**
@@ -232,13 +238,13 @@ class OrderController extends AbstractController
 
         if (empty($order)) {
             Session::setFlash(FlashMessage::ORDER_NOT_FOUND, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
         if ($order['user_id'] !== $user['id']) {
             Session::setFlash(FlashMessage::ACCESS_DENIED, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
@@ -266,13 +272,13 @@ class OrderController extends AbstractController
 
         if (empty($order)) {
             Session::setFlash(FlashMessage::ORDER_NOT_FOUND, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
         if ($order['user_id'] !== $user['id'] && !in_array($user['role'], ['employe', 'admin'])) {
             Session::setFlash(FlashMessage::ACCESS_DENIED, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
@@ -308,12 +314,12 @@ class OrderController extends AbstractController
 
             if (empty($order)) {
                 Session::setFlash(FlashMessage::ORDER_NOT_FOUND, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
             if ($order['user_id'] !== $user['id']) {
                 Session::setFlash(FlashMessage::ACCESS_DENIED, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
@@ -331,13 +337,13 @@ class OrderController extends AbstractController
 
             if (!Security::verifyCsrfToken($_POST['csrf_token'])) {
                 Session::setFlash(FlashMessage::INVALID_CSRF, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
             if ($order['user_id'] !== $user['id'] && !in_array($user['role'], ['employe', 'admin'])) {
                 Session::setFlash(FlashMessage::ACCESS_DENIED, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
@@ -347,14 +353,14 @@ class OrderController extends AbstractController
             $validate_required = Security::validateRequired($_POST, $fields);
             if ($validate_required !== []) {
                 Session::setFlash(implode(', ', $validate_required), 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
             $delivery = $this->computeDeliveryCost($_POST['delivery_address'], $_POST['delivery_city']);
             if (!empty($delivery[2])) {
                 Session::setFlash(FlashMessage::GEOCODING_ERROR, 'error');
-                $this->redirectToRoute('order/edit/' . $orderId);
+                $this->redirectToRoute(self::ROUTE_ORDER_EDIT . $orderId);
                 exit;
             }
 
@@ -373,12 +379,12 @@ class OrderController extends AbstractController
 
             if (!$this->orderModel->update($orderId, $data)) {
                 Session::setFlash(FlashMessage::UPDATE_ERROR, 'error');
-                $this->redirectToRoute('profile');
+                $this->redirectToRoute(self::ROUTE_PROFILE);
                 exit;
             }
 
             Session::setFlash(FlashMessage::ORDER_UPDATED, 'success');
-            $this->redirectToRoute('order/detail/'. $orderId);
+            $this->redirectToRoute(self::ROUTE_ORDER_DETAIL . $orderId);
         }
     }
 
@@ -396,7 +402,7 @@ class OrderController extends AbstractController
 
         if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
             Session::setFlash(FlashMessage::INVALID_CSRF, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
@@ -404,23 +410,23 @@ class OrderController extends AbstractController
 
         if (empty($order)) {
             Session::setFlash(FlashMessage::ORDER_NOT_FOUND, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
         if ($user['id'] !== $order['user_id']) {
             Session::setFlash(FlashMessage::ACCESS_DENIED, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
 
         if ($this->orderModel->cancel($orderId, $user['id'])) {
             Session::setFlash(FlashMessage::CANCEL_ORDER, 'success');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         } else {
             Session::setFlash(FlashMessage::CANCEL_ORDER_ERROR, 'error');
-            $this->redirectToRoute('profile');
+            $this->redirectToRoute(self::ROUTE_PROFILE);
             exit;
         }
     }

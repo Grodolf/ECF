@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Core\DatabaseConnection;
-use App\Core\Security;
 use PDO;
 
 /**
@@ -30,7 +29,7 @@ class MenuModel
     public function findAll(bool $isactiveOnly = true): array
     {
         $query = "
-                SELECT m.id, m.title, m.description, m.min_people, m.base_price,
+                SELECT m.id, m.title, m.description, m.min_people, m.base_price, stock, active,
                 t.name AS theme, t.id AS theme_id, r.name AS regime, r.id AS regime_id
                 FROM menus AS m
                 JOIN themes AS t ON m.theme_id = t.id
@@ -78,7 +77,7 @@ class MenuModel
      */
     public function findById(int $id, bool $isactiveOnly = true): ?array
     {
-        $query = "SELECT m.id, m.title, m.description, m.min_people, m.base_price, m.conditions, m.stock, t.name AS theme_name, r.name AS regime_name
+        $query = "SELECT m.*, t.name AS theme_name, r.name AS regime_name
                 FROM menus AS m
                 JOIN themes AS t ON m.theme_id = t.id
                 JOIN regimes AS r ON m.regime_id = r.id
@@ -105,7 +104,7 @@ class MenuModel
      */
     public function getMenuImages(int $id): array
     {
-        $query = "SELECT id, image_url, alt_text FROM menu_images WHERE menu_id = ? ORDER BY display_order";
+        $query = "SELECT * FROM menu_images WHERE menu_id = ? ORDER BY display_order";
         $stmt = self::getDb()->prepare($query);
         $stmt->execute([$id]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -125,8 +124,7 @@ class MenuModel
      */
     public function getMenuDishes(int $id): array
     {
-        $query = "SELECT d.id, d.name, d.description, d.image_url,
-                t.name AS dish_type_name
+        $query = "SELECT d.*, t.name AS dish_type_name, t.id AS type_id
                 FROM menu_dishes AS m
                 JOIN dishes AS d ON m.dish_id = d.id
                 JOIN dish_types AS t ON d.dish_type_id = t.id
@@ -165,6 +163,140 @@ class MenuModel
         $stmt->execute([$id]);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Inserts a new menu into the database.
+     *
+     * @param array $data Menu data (title, description, theme, regime, min_people, price, conditions)
+     * @return int|false The new menu ID on success, false on failure
+     */
+    public function create(array $data): int|false
+    {
+        $query = "
+            INSERT INTO menus (title, description, theme_id, regime_id, min_people, base_price, conditions, stock, active)
+            VALUES (:title, :description, :theme_id, :regime_id, :min_people, :base_price, :conditions, 0, 1)
+        ";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([
+            'title'         => $data['title'],
+            'description'  => $data['description'],
+            'theme_id' => $data['theme'],
+            'regime_id' => $data['regime'],
+            'min_people' => $data['min_people'],
+            'base_price' => $data['price'],
+            'conditions' => $data['conditions'] ?? null
+        ]);
+
+        if ($stmt->rowCount() !== 1) {
+            return false;
+        }
+
+        return (int) self::getDb()->lastInsertId();
+    }
+
+    /**
+     * Links dishes to a menu in the menu_dishes pivot table.
+     *
+     * @param int   $menuId  Menu ID
+     * @param array $dishIds List of dish IDs to associate
+     */
+    public function addDishes(int $menuId, array $dishIds): void
+    {
+        $query = "INSERT INTO menu_dishes (menu_id, dish_id) VALUES (:menu_id, :dish_id)";
+        $stmt  = self::getDb()->prepare($query);
+
+        foreach ($dishIds as $dishId) {
+            $stmt->execute([
+                'menu_id' => $menuId,
+                'dish_id' => $dishId
+                ]);
+        }
+    }
+
+    public function deleteDishes(int $id): void
+    {
+        $query = "DELETE FROM menu_dishes WHERE menu_id = ?";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([$id]);
+    }
+
+    public function update(array $data): bool
+    {
+        $query = "
+            UPDATE menus SET
+            title = :title, description = :description, theme_id = :theme_id, regime_id = :regime_id,
+            min_people = :min_people, base_price = :base_price, conditions = :conditions
+            WHERE id = :id
+        ";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([
+            'title'       => $data['title'],
+            'description' => $data['description'],
+            'theme_id'    => $data['theme_id'],
+            'regime_id'   => $data['regime_id'],
+            'min_people'  => $data['min_people'],
+            'base_price'  => $data['base_price'],
+            'conditions'  => $data['conditions'],
+            'id'          => $data['id']
+        ]);
+
+        // rowCount() returns 0 when no column value changed — treat that as success too
+        return $stmt->rowCount() >= 0;
+    }
+
+    /**
+     * Saves images for a menu with generated alt text and display order.
+     *
+     * @param int    $menuId    Menu ID
+     * @param string $title     Menu title, used to build the alt attribute
+     * @param array  $imageUrls List of image URLs to save
+     */
+    public function addImages(int $menuId, string $title, array $imageUrls): void
+    {
+        $query = "INSERT INTO menu_images (menu_id, image_url, alt_text, display_order) VALUES (:menu_id, :image_url, :alt_text, :display_order)";
+        $stmt  = self::getDb()->prepare($query);
+
+        $i = 1;
+        foreach ($imageUrls as $imageUrl) {
+            $stmt->execute([
+                'menu_id' => $menuId,
+                'image_url' => $imageUrl,
+                'alt_text' => 'Photo du menu '. $title . ' - ' .$i,
+                'display_order' => $i,
+                ]);
+            $i++;
+        }
+    }
+
+    public function deleteImage(int $id): bool
+    {
+        $query = "DELETE FROM menu_images WHERE id = ?";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount() === 1;
+    }
+
+    public function updateImageOrder(array $images): void
+    {
+        $query = "
+            UPDATE menu_images SET display_order = :display_order, alt_text = :alt_text
+            WHERE id =:id
+        ";
+        $stmt = self::getDb()->prepare($query);
+
+        foreach ($images as $image) {
+            $stmt->execute([
+                'display_order' => $image['display_order'],
+                'id'            => $image['id'],
+                'alt_text'      => $image['alt_text']
+            ]);
+        }
     }
 
     /**
@@ -274,4 +406,126 @@ class MenuModel
         ];
     }
 
+    /**
+     * Returns all dishes currently assigned to any menu, with their menu id.
+     *
+     * Results are flat rows keyed by menu_id. Used by the employee menu management
+     * page to build a per-menu dish lookup map without N+1 queries.
+     *
+     * @return array Rows with menu_id, dish id, and dish name.
+     */
+    public function getAllDishes(): array
+    {
+        $query = "
+            SELECT
+            md.menu_id, d.id, d.name
+            FROM menu_dishes AS md
+            JOIN dishes AS d ON d.id = md.dish_id
+        ";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Returns all allergens for every dish assigned to any menu, with their menu id.
+     *
+     * Results are flat rows keyed by menu_id. The controller groups them into a
+     * lookup map to avoid N+1 queries when rendering the management list.
+     *
+     * @return array Rows with menu_id, allergen id, and allergen name.
+     */
+    public function getAllAllergenes(): array
+    {
+        $query = "
+            SELECT
+            md.menu_id, a.id, a.name
+            FROM menu_dishes AS md
+            JOIN dish_allergenes AS da ON da.dish_id = md.dish_id
+            JOIN allergenes AS a ON a.id = da.allergene_id
+        ";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Toggles a menu's active status (active ↔ inactive).
+     *
+     * @param int $id Menu identifier.
+     * @return bool True if exactly one row was updated.
+     */
+    public function toggle(int $id): bool
+    {
+        $query = "UPDATE menus SET active = NOT active WHERE id = ?";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount() === 1;
+    }
+
+    /**
+     * Increments the stock of a menu by the given quantity.
+     *
+     * @param int $id       Menu identifier
+     * @param int $quantity Amount to add to the current stock
+     * @return bool True if exactly one row was updated, false otherwise
+     */
+    public function addStock(int $id, int $quantity): bool
+    {
+        $query = "UPDATE menus SET stock = stock + :quantity WHERE id = :id";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([
+            'id'       => $id,
+            'quantity' => $quantity
+        ]);
+
+        return $stmt->rowCount() === 1;
+    }
+
+    public function getStock(int $id): array
+    {
+        $query = "SELECT stock FROM menus WHERE id = ?";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([$id]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Returns all available themes.
+     *
+     * @return array Rows with id and name.
+     */
+    public function getAllThemes(): array
+    {
+        $query = "SELECT * FROM themes";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Returns all available dietary regimes.
+     *
+     * @return array Rows with id and name.
+     */
+    public function getAllRegimes(): array
+    {
+        $query = "SELECT * FROM regimes";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

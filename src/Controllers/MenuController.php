@@ -15,7 +15,8 @@ use App\Models\MenuModel;
 class MenuController extends AbstractController
 {
     private MenuModel $menuModel;
-    public const PLACEHOLDER = '/img/placeholder.webp';
+    private const ROUTE_MENUS = 'menus';
+    public const PLACEHOLDER  = '/img/placeholder.webp';
 
     public function __construct()
     {
@@ -85,7 +86,7 @@ class MenuController extends AbstractController
 
         if (!$menu) {
             Session::setFlash(FlashMessage::WRONG_MENU, 'error');
-            $this->redirectToRoute('menus');
+            $this->redirectToRoute(self::ROUTE_MENUS);
             die;
         }
 
@@ -103,7 +104,6 @@ class MenuController extends AbstractController
                 'description' => $allergene['allergene_description']
             ];
         }
-        unset($allergene);
 
         $dishesByType = [];
         foreach ($dishes as $dish) {

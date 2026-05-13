@@ -10,6 +10,8 @@ use App\Controllers\MenuController;
 use App\Controllers\UserController;
 use App\Controllers\OrderController;
 use App\Controllers\EmployeController;
+use App\Controllers\DishController;
+use App\Controllers\MenuManageController;
 
 /**
  * Application routing table.
@@ -142,6 +144,71 @@ class Routes
             'controller' => EmployeController::class,
             'method'     => 'orders',
             'http'       => 'GET',
+        ],
+        'employe/dishes' => [
+            'controller' => DishController::class,
+            'method'     => 'list',
+            'http'       => 'GET',
+        ],
+        'employe/dish/create' => [
+            'controller' => DishController::class,
+            'method'     => 'create',
+            'http'       => 'GET',
+        ],
+        'employe/dish/store' => [
+            'controller' => DishController::class,
+            'method'     => 'store',
+            'http'       => 'POST',
+        ],
+        'employe/dish/edit/{id}' => [
+            'controller' => DishController::class,
+            'method'     => 'edit',
+            'http'       => 'GET',
+        ],
+        'employe/dish/update/{id}' => [
+            'controller' => DishController::class,
+            'method'     => 'update',
+            'http'       => 'POST',
+        ],
+        'employe/dish/toggle/{id}' => [
+            'controller' => DishController::class,
+            'method'     => 'toggle',
+            'http'       => 'POST',
+        ],
+        'employe/menus' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'list',
+            'http'       => 'GET'
+        ],
+        'employe/menu/create' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'create',
+            'http'       => 'GET'
+        ],
+        'employe/menu/store' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'store',
+            'http'       => 'POST'
+        ],
+        'employe/menu/edit/{id}' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'edit',
+            'http'       => 'GET'
+        ],
+        'employe/menu/update/{id}' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'update',
+            'http'       => 'POST'
+        ],
+        'employe/menu/toggle/{id}' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'toggle',
+            'http'       => 'POST'
+        ],
+        'employe/menu/addstock/{id}' => [
+            'controller' => MenuManageController::class,
+            'method'     => 'addstock',
+            'http'       => 'POST'
         ],
     ];
 }
