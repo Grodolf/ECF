@@ -49,6 +49,7 @@ class MenuController extends AbstractController
                 $menu['alt'] = 'Menu ' . $menu['title'];
             }
         }
+        unset($menu);
 
         return $menus;
     }

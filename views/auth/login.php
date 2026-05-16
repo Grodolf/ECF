@@ -26,13 +26,7 @@ use App\Core\Security;
 </form>
 
 <div class="links">
-    <div class="btn text">
-        <a href="/reset-password">Mot de passe oublié ?</a>
-    </div>
-    <div class="btn text">
-        <a href="/register">Créer un compte</a>
-    </div>
-    <div class="btn text">
-        <a href="/home">Retour à l'accueil</a>
-    </div>
+    <a class="btn text" href="/reset-password">Mot de passe oublié ?</a>
+    <a class="btn text" href="/register">Créer un compte</a>
+    <a class="btn text" href="/home">Retour à l'accueil</a>
 </div>

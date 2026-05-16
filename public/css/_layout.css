@@ -1,3 +1,8 @@
+.container-full {
+    width: 100dvw;
+    overflow: hidden;
+}
+
 .container {
     width: 100%;
 }
@@ -16,6 +21,7 @@
 
 @media screen and (min-width: 1200px) {
     .wrapper {
+        max-width: 1400px;
         padding: var(--base-unit) calc(var(--base-unit) * 2);
     }
 }

@@ -1,6 +1,6 @@
-<section class="f-col g px d:col-2">
+<section class="f-col g px d:col-3">
 
-    <picture id="devanture" class="d:col-3">
+    <picture>
         <source srcset="/img/devanture_400.webp" media="(max-width: 480px)">
         <source srcset="/img/devanture_600.webp" media="(max-width: 768px)">
         <source srcset="/img/devanture_800.webp" media="(min-width: 769px)">
@@ -10,7 +10,6 @@
     <p>Vite & Gourmand, c'est l'histoire d'une passion partagée entre Julie et José,  deux amoureux de la gastronomie bordelaise qui ont uni leurs talents il y a  25 ans pour créer une entreprise de traiteur d'exception.</p>
     <p>Installés au cœur de Bordeaux depuis 1999, nous mettons notre savoir-faire  au service de vos événements, qu'il s'agisse d'un repas familial convivial  pour Noël ou Pâques, d'une réception professionnelle, ou de toute autre célébration qui compte pour vous.</p>
     <p> Chaque prestation est unique, pensée et  réalisée sur mesure pour faire de votre événement un moment inoubliable.</p>
-
 </section>
 
 <div id="salad" class="d:col-2">
@@ -23,10 +22,9 @@
     <p>Menu traditionnel, végétarien, vegan  ou adapté à des régimes spécifiques, nous composons pour vous des plats  qui raviront vos convives.</p>
 </div>
 
-<section class="f-col g px d:col-2">
+<h2 class="d:col-5">Notre équipe</h2>
 
-    <h2 class="d:col-5">Notre équipe</h2>
-
+<section class="f-col g px d:col-3">
     <picture id="team" class="d:col-3">
         <source srcset="/img/equipe_400.webp" media="(max-width: 480px)">
         <source srcset="/img/equipe_600.webp" media="(max-width: 768px)">
@@ -50,10 +48,12 @@
 
 </section>
 
-<h2>Vos avis</h2>
-
-<div class="galerie-container">
-    <div class="galerie">
-        <!-- TODO gérer les avis dans le backend avant de continuer -->
+<section class="d:col-5">
+    <h2>Vos avis</h2>
+    
+    <div class="galerie-container">
+        <div class="galerie">
+            <!-- TODO gérer les avis dans le backend avant de continuer -->
+        </div>
     </div>
-</div>
+</section>

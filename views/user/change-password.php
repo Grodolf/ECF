@@ -19,7 +19,5 @@
 </form>
 
 <div class="links">
-    <div class="btn text">
-        <a href="/profile">Annuler</a>
-    </div>
+    <a class="btn text" href="/profile">Annuler</a>
 </div>

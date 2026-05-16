@@ -17,6 +17,7 @@ class DishController extends AbstractController
     private const ROUTE_LIST = 'employe/dishes';
     private const ROUTE_CREATE = 'employe/dish/create';
     private const ROUTE_EDIT = 'employe/dish/edit';
+    public const PLACEHOLDER  = '/img/placeholder.webp';
 
     private DishModel $dishModel;
 

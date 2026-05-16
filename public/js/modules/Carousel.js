@@ -52,6 +52,7 @@ class Carousel {
      * Starts the autoplay timer, advancing to the next slide every #autoplayDelay ms.
      */
     #startAutoplay() {
+        this.#stopAutoplay();
         this.#autoplayInterval = setInterval(() => {
             const next = this.#currentIndex === this.#slides.length - 1 ? 0 : this.#currentIndex + 1;
             this.#showSlide(next);

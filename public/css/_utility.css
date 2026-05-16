@@ -154,3 +154,13 @@
 .right10 {
     right: 10%;
 }
+
+/* Divers */
+
+.max {
+    width: max-content;
+}
+
+.over {
+    overflow-x: auto;
+}

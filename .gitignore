@@ -5,6 +5,7 @@
 # IDE
 .vscode/
 .php-cs-fixer.php
+.claude/
 ECF.session.sql
 vendor/
 

@@ -9,6 +9,7 @@
     border-width: 2px;
     outline: none;
     text-align: center;
+    font-size: 1.3rem;
 }
 
 /* Boutons pleins */
@@ -171,4 +172,16 @@ body[data-theme=dark] .btn.text>a,
 body[data-theme=dark] .btn.text>a:active,
 body[data-theme=dark] .btn.text>a:visited {
     color: var(--secondary);
+}
+
+@media screen and (min-width: 768px) {
+    .btn {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .btn {
+        font-size: 1.1rem;
+    }
 }

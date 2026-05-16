@@ -3,10 +3,11 @@
 use App\Core\Security;
 
 ?>
+<div class="flex ju-center d:col-2">
+    <p><strong>Cette section est réservée aux employés de Vite Et Gourmand!</strong></p>
+</div>
 
-<p><strong>Cette section est réservée aux employés de Vite Et Gourmand!</strong></p>
-
-<div class="f-col g">
+<div class="f-col g d:col-3">
     <h2>Commandes :</h2>
     
     <h3>Filtrer les commandes :</h3>
@@ -18,11 +19,10 @@ use App\Core\Security;
                 <option value="">Tous les statuts</option>
                 <?php foreach ($statuses as $status) : ?>
                     <option
-                    value="<?= $status['id'] ?>"
-                    <?= (isset($_GET['status_id']) && $_GET['status_id'] == $status['id']) ? 'selected' : '' ?>
-                >
-                <?= Security::escapeHtml($status['name']) ?>
-</option>
+                        value="<?= $status['id'] ?>"
+                        <?= (isset($_GET['status_id']) && $_GET['status_id'] == $status['id']) ? 'selected' : '' ?>
+                    ><?= Security::escapeHtml($status['name']) ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -34,11 +34,12 @@ use App\Core\Security;
                 value="<?= isset($_GET['search']) ? Security::escapeHtml($_GET['search']) : '' ?>"
             >
         </div>
-        <button type="submit">Appliquer</button>
+        <button class="btn primary" type="submit">Appliquer</button>
     </form>
+</div>
 
-    <h3>Aperçu :</h3>
-
+<div class="over my d:col-5">
+    <h3 class="ml">Aperçu :</h3>
     <table>
         <tr>
             <th>ID</th>
@@ -55,13 +56,13 @@ use App\Core\Security;
         <?php foreach ($orders as $order) : ?>
             <tr>
                 <td><?= $order['id'] ?></td>
-                <td><?= $order['nb_people'] ?></td>
+                <td><?= Security::escapeHtml($order['menu_title']) ?></td>
                 <td><?= Security::escapeHtml($order['nb_people']) ?></td>
-                <td><?= Security::escapeHtml($order['nom']) .' '. Security::escapeHtml($order['prenom']) ?></td>
+                <td><?= Security::escapeHtml($order['nom']) .'&nbsp'. Security::escapeHtml($order['prenom']) ?></td>
                 <td><?= Security::escapeHtml($order['email']) ?></td>
                 <td><?= Security::escapeHtml($order['gsm']) ?></td>
-                <td><?= Security::escapeHtml($order['delivery_address']) .', '. Security::escapeHtml($order['delivery_city']) ?></td>
-                <td><?= date('d/m/Y', strtotime($order['delivery_date'])) .' à '. date('H:i', strtotime($order['delivery_time'])) ?></td>
+                <td><?= Security::escapeHtml($order['delivery_address']) .',<br />'. Security::escapeHtml($order['delivery_city']) ?></td>
+                <td><?= date('d/m/Y', strtotime($order['delivery_date'])) .'<br />à '. date('H:i', strtotime($order['delivery_time'])) ?></td>
                 <td><?= Security::escapeHtml($order['status_name']) ?></td>
                 <td><a href="/order/detail/<?= $order['id'] ?>" class="btn">Détail</a></td>
             </tr>

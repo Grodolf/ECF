@@ -167,7 +167,7 @@ class MenuFilter {
         }
 
         this.#container.innerHTML = menus.map(menu => `
-            <div class="card">
+            <div class="card inline">
                 <div class="card-header">
                     <img src="${escapeHtml(menu.src)}" alt="${escapeHtml(menu.alt)}">
                     <div class="badge"><p>${escapeHtml(menu.theme)}</p></div>
@@ -177,7 +177,7 @@ class MenuFilter {
                     <h3 class="card-title">${escapeHtml(menu.title)}</h3>
                     <p class="card-description">${escapeHtml(menu.description)}</p>
                     <p>Menu pour ${menu.min_people} personnes minimum, au prix de ${formatPrice(menu.base_price)}&nbsp;€.</p>
-                    <div class="btn"><a href="/menu/${menu.id}">Détails</a></div>
+                    <a class="btn" href="/menu/${menu.id}">Détails</a>
                 </div>
             </div>
         `).join('');

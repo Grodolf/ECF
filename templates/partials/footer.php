@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Security;
+
 function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'): string
 {
     $path = $_GET['path'] ?? 'home';
@@ -37,32 +39,30 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
 
 ?>
 
-<div class="container p- flex ju-between">
-    <p><?= breadcrumbs(); ?></p>
+<div class="container flex ju-between">
+    <div><?= breadcrumbs(); ?></div>
     <div class="f-col g- it-end shrink-0">
         <p>05 56 12 34 56</p>
-        <p class="hidden" data-mobile>76 rue des Trois-Conils</p>
-        <p class="hidden" data-mobile>Bordeaux</p>
+        <p class="hidden" data-mobile-footer>76 rue des Trois-Conils</p>
+        <p class="hidden" data-mobile-footer>Bordeaux</p>
     </div>
 </div>
 <div class="">
     <button id="footer-button" class="btn text">
         <p>Horaires :</p>
     </button>
-    <div class="grid-2 g hidden" data-mobile>
-        <ul>
-            <li>Lundi</li>
-            <li>Mardi à Samedi</li>
-            <li>Dimanche</li>
-        </ul>
-        <ul>
-            <li>Fermé</li>
-            <li>9h00 - 18h00</li>
-            <li>9h00 - 12h00</li>
-        </ul>
+    <div class="grid-2 g hidden" data-mobile-footer>
+            <?php foreach ($schedules as $schedule) : ?>
+                <p><b><?= $schedule['day_of_week'] ?> :</b></p>
+                <?php if ($schedule['closed']) : ?>
+                    <p>Fermé</p>
+                <?php else : ?>
+                    <p>Ouvert de <?= $schedule['openning_time'] ?> à <?= $schedule['closing_time'] ?></p>
+                <?php endif; ?>
+            <?php endforeach; ?>
     </div>
 </div>
-<div class="container px- flex ju-between ">
-    <div class="btn text"><a href="/mentions-legales">Mentions Légales</a></div>
-    <div class="btn text"><a href="/cgv">Conditions Générales de Vente</a></div>
+<div class="container flex ju-between">
+    <a class="btn text" href="/mentions-legales">Mentions Légales</a>
+    <a class="btn text" href="/cgv">Conditions Générales de Vente</a>
 </div>

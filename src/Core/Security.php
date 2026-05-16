@@ -83,21 +83,7 @@ class Security
 
         $data = trim($data);
         $data = stripslashes($data);
-        $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
         return $data;
-    }
-
-    /**
-     * Escape htmlspecialchars but keep &nbsp
-     *
-     * @param string $text text input
-     * @return string sanitsed text with &nbsp only
-     */
-    public static function formatText(string $text)
-    {
-        $parts = explode('&nbsp;', $text);
-        $parts = array_map([Security::class, 'escapeHtml'], $parts);
-        return implode('&nbsp;', $parts);
     }
 
     /**

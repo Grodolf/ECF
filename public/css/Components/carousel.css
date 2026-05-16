@@ -110,3 +110,9 @@
     outline: 2px solid white;
     outline-offset: 4px;
 }
+
+@media screen and (min-width: 1200px) {
+    .carousel {
+        height: 60vh;
+    }
+}

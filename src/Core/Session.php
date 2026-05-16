@@ -43,7 +43,7 @@ class Session
             if (isset($_SESSION['last_activity'])) {
                 $inactive = time() - $_SESSION['last_activity'];
 
-                if ($inactive > 1800) {
+                if ($inactive > 3600) {
                     self::destroy();
                     session_start();
                     self::setFlash('Votre session a expiré pour des raisons de sécurité.', 'error');

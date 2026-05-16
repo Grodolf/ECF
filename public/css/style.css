@@ -31,7 +31,7 @@ footer {
 header {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 100;
     padding: calc(var(--base-unit) / 2);
 }
 
@@ -172,6 +172,7 @@ picture>img {
 #salad {
     width: 94%;
     margin: 0 auto;
+    align-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -181,9 +182,6 @@ picture>img {
     border-radius: var(--base-unit);
     border-width: 2px;
     border-style: solid;
-}
-
-#salad picture {
     height: fit-content;
 }
 
@@ -231,7 +229,8 @@ body[data-theme=dark] #salad {
     padding: 0 calc(var(--base-unit) * 2);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    row-gap: var(--base-unit);
+    grid-auto-rows: max-content;
+    gap: var(--base-unit);
 }
 
 body[data-theme=auto] .card-order {
@@ -256,62 +255,20 @@ body[data-theme=dark] .card-order {
     margin: 0 auto;
 }
 
-.filter {
-    display: flex;
-    justify-content: space-between;
+#menu-filter>.input-container>input {
+    width: 10rem;
 }
 
-.filter>input {
-    width: 6rem;
-    text-align: right;
-    height: 2rem;
+/* --- Employe/orders --- */
+
+.over table td {
+    width: max-content;
+    padding: calc(var(--base-unit) / 2) var(--base-unit);
+    text-wrap: nowrap;
 }
 
-.filter>select {
-    width: 6rem;
-    text-align: right;
-    height: 2.5rem;
-}
-
-.card {
-    margin: 0 var(--base-unit);
-}
-
-.filter-suggestions {
-    margin-bottom: 1rem;
-}
-
-.filter-suggestions.hidden {
-    display: none;
-}
-
-.suggestions-buttons {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-top: 0.5rem;
-}
-
-.suggestion-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
-    background: var(--background);
-    border-radius: calc(var(--base-unit) / 2);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
-}
-
-.suggestion-btn:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.suggestion-btn.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
+.over form>input[type="number"] {
+    width: 4rem;
 }
 
 /* --- Footer --- */
@@ -335,6 +292,10 @@ footer li {
 #footer-button.rotate>p::before {
     display: inline-block;
     transform: rotate(-90deg);
+}
+
+footer a.btn {
+    font-size: 0.9rem;
 }
 
 body[data-theme=auto] footer {
@@ -396,7 +357,7 @@ body[data-theme=dark] footer {
     }
 
     nav>ul>li {
-        flex: 1 0 10vw;
+        flex: 1 0;
     }
 
     #nav-bar a {

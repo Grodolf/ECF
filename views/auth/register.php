@@ -50,10 +50,6 @@
 </form>
 
 <div class="links">
-    <div class="btn text">
-        <a href="/login">Déjà un compte ? Se connecter</a>
-    </div>
-    <div class="btn text">
-        <a href="/home">Retour à l'accueil</a>
-    </div>
+    <a class="btn text" href="/login">Déjà un compte ? Se connecter</a>
+    <a class="btn text" href="/home">Retour à l'accueil</a>
 </div>
