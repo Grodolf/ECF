@@ -54,9 +54,11 @@ $date = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatte
         <a class="btn primary" href="/employe/orders">Gestion des commandes</a>
         <a class="btn primary" href="/employe/dishes">Gestion des plats</a>
         <a class="btn primary" href="/employe/menus">Gestion des menus</a>
+        <a class="btn primary" href="/employe/schedules">Modifier les horaires d'ouvertures.</a>
     <?php endif; ?>
     <a class="btn text" href="/edit-profile">Modifier mes informations</a>
     <a class="btn text" href="/change-password">Changer mon mot de passe</a>
     <a class="btn text" href="/logout">Se déconnecter</a>
     <a class="btn text" href="/home">Retour à l'accueil</a>
 </div>
+

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Models\ScheduleModel;
+use App\Core\Session;
 use UnexpectedValueException;
 
 /**
@@ -32,6 +34,12 @@ abstract class AbstractController
         if (!file_exists($viewPath)) {
             throw new UnexpectedValueException("La vue {$view} n'existe pas.");
         }
+
+        if (!Session::has('schedules')) {
+            $scheduleModel = new ScheduleModel();
+            Session::set('schedules', $scheduleModel->findAll());
+        }
+        $schedules = Session::get('schedules');
 
         extract($data);
 

@@ -210,5 +210,15 @@ class Routes
             'method'     => 'addstock',
             'http'       => 'POST'
         ],
+        'employe/schedules' => [
+            'controller' => EmployeController::class,
+            'method'     => 'schedules',
+            'http'       => 'GET'
+        ],
+        'employe/schedule/update' => [
+            'controller' => EmployeController::class,
+            'method'     => 'updateSchedules',
+            'http'       => 'POST'
+        ],
     ];
 }

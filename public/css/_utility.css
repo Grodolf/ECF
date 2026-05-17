@@ -161,6 +161,12 @@
     width: max-content;
 }
 
+.min-max {
+    min-width: max-content;
+}
+
 .over {
+    width: 100%;
+    min-width: 0;
     overflow-x: auto;
 }

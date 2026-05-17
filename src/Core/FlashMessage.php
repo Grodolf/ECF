@@ -83,4 +83,9 @@ class FlashMessage
     public const DISH_EDIT_ERROR     = "Impossible de modifier le plat.";
     public const DISH_UPDATED        = "Le plat a bien été modifié.";
     public const WRONG_DISH          = "Le plat demandé n'existe pas.";
+
+    //Schedules
+    public const SCHEDULES_ERROR   = 'Impossible de mettre à jour les horaires.';
+    public const SCHEDULES_SUCCESS = 'La mise à jour des horaires à été effectuée.';
+
 }

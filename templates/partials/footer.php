@@ -51,13 +51,14 @@ function breadcrumbs(string $separator = ' > ', string $home = 'Vite&Gourmand'):
     <button id="footer-button" class="btn text">
         <p>Horaires :</p>
     </button>
-    <div class="grid-2 g hidden" data-mobile-footer>
+    <div class="grid-2 g-- hidden" data-mobile-footer>
             <?php foreach ($schedules as $schedule) : ?>
-                <p><b><?= $schedule['day_of_week'] ?> :</b></p>
+                <p class="ml"><b><?= Security::escapeHtml($schedule['day_of_week']) ?> :</b></p>
                 <?php if ($schedule['closed']) : ?>
                     <p>Fermé</p>
                 <?php else : ?>
-                    <p>Ouvert de <?= $schedule['openning_time'] ?> à <?= $schedule['closing_time'] ?></p>
+                    <p>Ouvert de <?= date('H:i', strtotime($schedule['opening_time'])) ?>
+                     à <?= date('H:i', strtotime($schedule['closing_time'])) ?></p>
                 <?php endif; ?>
             <?php endforeach; ?>
     </div>

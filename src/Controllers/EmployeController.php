@@ -9,6 +9,7 @@ use App\Core\Security;
 use App\Core\Session;
 use App\Core\Mailer;
 use App\Models\OrderModel;
+use App\Models\ScheduleModel;
 
 /**
  * Handles employee-specific actions: order management and status updates.
@@ -16,11 +17,14 @@ use App\Models\OrderModel;
 class EmployeController extends AbstractController
 {
     private OrderModel $orderModel;
+    private ScheduleModel $scheduleModel;
     private const ORDER = 'order/detail/';
+    private const SCHEDULES = 'employe/schedules';
 
     public function __construct()
     {
         $this->orderModel = new OrderModel();
+        $this->scheduleModel = new ScheduleModel();
     }
 
     /**
@@ -176,4 +180,59 @@ class EmployeController extends AbstractController
             error_log('Erreur envoi email modification statut de commande : ' . $e->getMessage());
         }
     }
+
+    public function schedules(): void
+    {
+        Security::requireEmploye();
+        $this->renderView('employe/schedules.php', [
+            'title' => 'Modification des horaires',
+            'csrfToken' => Security::generateCsrfToken(),
+            'scripts' => ['/js/modules/ScheduleClosed.js'],
+        ]);
+    }
+
+    public function updateSchedules(): void
+    {
+        if (!Security::verifyCsrfToken($_POST['csrf_token'])) {
+            Session::setFlash(FlashMessage::INVALID_CSRF, 'error');
+            $this->redirectToRoute(self::SCHEDULES);
+            exit;
+        }
+
+        $_POST = Security::sanitizeInput($_POST);
+
+        $arrays = [$_POST['id'], $_POST['opening_time'], $_POST['closing_time'], $_POST['closed']];
+        foreach ($arrays as $array) {
+            if (count($array) !== 7) {
+                var_dump($array);
+                Session::setFlash(FlashMessage::SCHEDULES_ERROR, 'error');
+                $this->redirectToRoute(self::SCHEDULES);
+                exit;
+            }
+        }
+
+        foreach ($_POST['id'] as $id => $value) {
+            $schedules[] = [
+                'id' => $id,
+                'opening_time' => $_POST['opening_time'][$id],
+                'closing_time' => $_POST['closing_time'][$id],
+                'closed' => $_POST['closed'][$id]
+            ];
+        }
+
+        foreach ($schedules as $schedule) {
+            if ($schedule['closed'] === '0' && (empty($schedule['opening_time']) || empty($schedule['closing_time']))) {
+                Session::setFlash(FlashMessage::SCHEDULES_ERROR.'empty', 'error');
+                $this->redirectToRoute(self::SCHEDULES);
+                exit;
+            }
+        }
+
+        $this->scheduleModel->updateAll($schedules);
+        Session::setFlash(FlashMessage::SCHEDULES_SUCCESS, 'success');
+        Session::delete('schedules');
+        $this->redirectToRoute(self::SCHEDULES);
+        exit;
+    }
+
 }
