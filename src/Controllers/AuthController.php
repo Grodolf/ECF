@@ -86,7 +86,11 @@ class AuthController extends AbstractController
         if ($redirect !== null) {
             header("Location: {$redirect}");
         } else {
-            $this->redirectToRoute(self::ROUTE_HOME);
+            if (in_array($user['role'], ['employe', 'admin'])) {
+                $this->redirectToRoute('profile');
+            } else {
+                $this->redirectToRoute(self::ROUTE_HOME);
+            }
         }
         exit;
     }

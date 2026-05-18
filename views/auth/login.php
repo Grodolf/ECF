@@ -4,6 +4,7 @@ declare(strict_types=1);
 use App\Core\Security;
 
 ?>
+
 <form method="POST" action="/login">
     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 

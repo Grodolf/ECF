@@ -85,3 +85,6 @@ use App\Core\Security;
     </form>
 
 </div>
+<div class="links">
+    <a class="btn outline" href="/profile">Retour à mon compte</a>
+</div>

@@ -26,6 +26,7 @@ class FlashMessage
     public const INVALID_CSRF  = 'Requête invalide';
     public const GENERIC_ERROR = 'Une erreur est survenue, veuillez réessayer...';
     public const INVALID_MAIL  = "L'adresse Email n'est pas valide";
+    public const EMAIL_SUCCESS = "L'email a été envoyé.";
 
     // Auth
     public const INVALID_CREDENTIALS  = 'Identifiants incorrects';
@@ -97,6 +98,7 @@ class FlashMessage
     public const STATUS_ERROR   = "Le status de la commande est incorrect";
     public const COMMENT_ERROR  = "La raison du refut est obligatoire";
 
-    //contacts
-    public const EMAIL_SUCCESS = "L'email a été envoyé.";
+    //admin
+    public const EMPLOYE_TOGGLED = "Le status du salarié a été modifié";
+
 }

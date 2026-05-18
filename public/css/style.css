@@ -225,10 +225,15 @@ body[data-theme=dark] #salad {
 .links {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--base-unit) * 2);
+    gap: calc(var(--base-unit) * 1);
     align-items: center;
+    padding: 0 calc(var(--base-unit) * 2);
     margin-top: 5vh;
     margin-bottom: 5vh;
+}
+
+.links>.btn {
+    width: 90%;
 }
 
 /* --- Profile --- */
@@ -256,7 +261,7 @@ body[data-theme=dark] .card-order {
     background: linear-gradient(45deg, var(--secondary), var(--primary));
 }
 
-/* --- List --- */
+/* --- Menu List --- */
 
 #menu-button {
     width: max-content;
@@ -277,6 +282,10 @@ body[data-theme=dark] .card-order {
 
 .over form>input[type="number"] {
     width: 4rem;
+}
+
+.over form>.btn:not(.plus) {
+    width: 10rem;
 }
 
 /* Reviews */
@@ -313,6 +322,20 @@ body[data-theme=dark] .reject {
 
 .reject.visible {
     display: block;
+}
+
+/* Admin */
+
+.password {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.warning {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--error);
+    background-color: var(--error-contrast);
 }
 
 /* --- Footer --- */

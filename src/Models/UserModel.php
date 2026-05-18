@@ -238,4 +238,41 @@ class UserModel
 
         return $stmt->rowCount() === 1;
     }
+
+    public function findAllEmployes(): array
+    {
+        $query = "SELECT * FROM users WHERE role = 'employe'";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result ?: [];
+    }
+
+    public function toggleActive(string $id): bool
+    {
+        $query = "UPDATE users SET actif = NOT actif WHERE id = ?";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount() === 1;
+    }
+
+    public function createEmploye(array $data): bool
+    {
+        $query = "INSERT INTO users (nom, prenom, email, password, role)
+                VALUES (:nom, :prenom, :email, :password, 'employe')";
+
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([
+            'nom' => $data['nom'],
+            'prenom' => $data['prenom'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]);
+
+        return $stmt->rowCount() === 1;
+    }
 }

@@ -36,15 +36,17 @@ use App\Core\Security;
         <?php endif; ?>
         
         <main class="container-full">
-            <div class="wrapper grid-1 g d:grid-5">
-                <h1 class="mx d:col-5 d:my">
-                    <?php if (isset($headline)) : ?>
-                        <?= Security::escapeHtml($headline) ?>
-                    <?php else : ?>
-                        <?= Security::escapeHtml($title) ?>
-                    <?php endif; ?>
-                </h1>
-                <?= $content ?>
+            <div class="wrapper">
+                <div class="container grid-1 g d:grid-5">
+                    <h1 class="d:col-5 d:my">
+                        <?php if (isset($headline)) : ?>
+                            <?= Security::escapeHtml($headline) ?>
+                        <?php else : ?>
+                            <?= Security::escapeHtml($title) ?>
+                        <?php endif; ?>
+                    </h1>
+                    <?= $content ?>
+                </div>
             </div>
         </main>
         <footer class="container-full">

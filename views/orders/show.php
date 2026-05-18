@@ -108,6 +108,8 @@ use App\Core\Security;
                 <button type="submit" class="btn outline">Annuler la commande</button>
             </form>
         <?php endif; ?>
-        <a href="/profile" class="btn primary">Retour vers mon profil.</a>
     </div>
+</div>
+<div class="links">
+    <a class="btn outline" href="/profile">Retour à mon compte</a>
 </div>

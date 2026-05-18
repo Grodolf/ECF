@@ -2,15 +2,13 @@
 
 use App\Core\Security;
 
-var_dump($_POST);
-
 ?>
 
 <div class="f-col ju-center g+ it-center d:col-5">
     <p><strong>Cette section est réservée aux employés de Vite Et Gourmand!</strong></p>
 </div>
 
-<div class="d:col-5">
+<section class="d:col-5">
     <form action="/employe/schedule/update" method="post">
         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
             <?php foreach ($schedules as $schedule) : ?>
@@ -36,4 +34,7 @@ var_dump($_POST);
             <?php endforeach; ?>
         <button class="btn primary" type="submit">Enregistrer les modifications</button>
     </form>
+</section>
+<div class="links">
+    <a class="btn outline" href="/profile">Retour à mon compte</a>
 </div>

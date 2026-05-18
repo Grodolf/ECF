@@ -13,6 +13,7 @@ use App\Controllers\EmployeController;
 use App\Controllers\DishController;
 use App\Controllers\MenuManageController;
 use App\Controllers\ReviewController;
+use App\Controllers\AdminController;
 
 /**
  * Application routing table.
@@ -255,6 +256,31 @@ class Routes
             'controller' => ReviewController::class,
             'method'     => 'create',
             'http'       => 'GET'
+        ],
+        'admin/employes' => [
+            'controller' => AdminController::class,
+            'method'     => 'list',
+            'http'       => 'GET'
+        ],
+        'admin/employe/create' => [
+            'controller' => AdminController::class,
+            'method'     => 'create',
+            'http'       => 'GET'
+        ],
+        'admin/employe/store' => [
+            'controller' => AdminController::class,
+            'method'     => 'store',
+            'http'       => 'POST'
+        ],
+        'admin/employe/confirmation' => [
+            'controller' => AdminController::class,
+            'method'     => 'confirmation',
+            'http'       => 'GET'
+        ],
+        'admin/employe/toggle/{id}' => [
+            'controller' => AdminController::class,
+            'method'     => 'toggle',
+            'http'       => 'POST'
         ],
     ];
 }

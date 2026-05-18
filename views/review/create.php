@@ -60,3 +60,6 @@ use App\Core\Security;
         <button class="btn primary" type="submit">Poster votre avis</button>
     </form>
 </section>
+<div class="links">
+    <a class="btn outline" href="/profile">Retour à mon compte</a>
+</div>

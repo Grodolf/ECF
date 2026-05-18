@@ -77,3 +77,6 @@ use App\Core\Security;
         <button type="submit" class="btn primary">Créer le menu!</button>
     </form>
 </div>
+<div class="links">
+    <a class="btn outline" href="/profile">Retour à mon compte</a>
+</div>

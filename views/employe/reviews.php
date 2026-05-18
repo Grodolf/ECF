@@ -8,7 +8,7 @@ use App\Core\Security;
     <p><strong>Cette section est réservée aux employés de Vite Et Gourmand!</strong></p>
 </div>
 
-<div class="f-col d:col-5">
+<section class="f-col g px d:col-5">
     <h2>Avis en attentes de validation :</h2>
 
     <table>
@@ -43,4 +43,7 @@ use App\Core\Security;
             </tr>
         <?php endforeach; ?>
     </table>
+</section>
+<div class="links">
+    <a class="btn outline" href="/profile">Retour à mon compte</a>
 </div>

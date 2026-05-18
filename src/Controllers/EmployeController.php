@@ -228,7 +228,6 @@ class EmployeController extends AbstractController
         $arrays = [$_POST['id'], $_POST['opening_time'], $_POST['closing_time'], $_POST['closed']];
         foreach ($arrays as $array) {
             if (count($array) !== 7) {
-                var_dump($array);
                 Session::setFlash(FlashMessage::SCHEDULES_ERROR, 'error');
                 $this->redirectToRoute(self::SCHEDULES);
                 exit;
