@@ -96,4 +96,7 @@ class FlashMessage
     public const RATING_ERROR   = "La note donnée à la commande doit être de 1 à 5";
     public const STATUS_ERROR   = "Le status de la commande est incorrect";
     public const COMMENT_ERROR  = "La raison du refut est obligatoire";
+
+    //contacts
+    public const EMAIL_SUCCESS = "L'email a été envoyé.";
 }

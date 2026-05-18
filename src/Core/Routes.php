@@ -36,6 +36,21 @@ class Routes
             'method'     => 'contact',
             'http'       => 'GET',
         ],
+        'sendmail' => [
+            'controller' => MainController::class,
+            'method'     => 'sendmail',
+            'http'       => 'POST'
+        ],
+        'mentions-legales' => [
+            'controller' => MainController::class,
+            'method'     => 'legalNotice',
+            'http'       => 'GET'
+        ],
+        'cgv' => [
+            'controller' => MainController::class,
+            'method'     => 'cgv',
+            'http'       => 'GET'
+        ],
         'login' => [
             'controller' => AuthController::class,
             'method'     => 'login',
