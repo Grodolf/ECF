@@ -183,7 +183,7 @@ class AuthController extends AbstractController
             exit;
         }
 
-        // Hit toujours incrémenté (avant email-exists) pour éviter l'énumération via le rate limiter.
+        // Always incremented before the email-exists check to prevent user enumeration via the rate limiter.
         RateLimiter::hit('reset_password', $resetId);
 
         // Flash set before the email-exists check intentionally: we never reveal

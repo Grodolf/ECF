@@ -1,3 +1,10 @@
+/**
+ * AJAX menu availability toggle.
+ *
+ * For each form matching [data-form="menu-toggle"], intercepts the button click,
+ * POSTs to /employe/menu/toggle/{id} with the CSRF token in the X-CSRF-Token header,
+ * and toggles the button between "Active" (primary) and "Inactive" (outline) on success.
+ */
 const forms = document.querySelectorAll('[data-form="menu-toggle"]');
 
 forms?.forEach(form => {

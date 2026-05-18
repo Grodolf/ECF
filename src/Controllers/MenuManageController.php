@@ -320,6 +320,14 @@ class MenuManageController extends AbstractController
         ]);
     }
 
+    /**
+     * Persists menu edits, handles image deletions, reordering, and new uploads.
+     *
+     * Pipeline: CSRF check → field validation → model update → image deletions
+     * → image reorder → new image uploads → redirect to menu list.
+     *
+     * @param int $id Menu identifier.
+     */
     public function update(int $id): void
     {
         Security::requireEmploye();
@@ -378,6 +386,11 @@ class MenuManageController extends AbstractController
         exit;
     }
 
+    /**
+     * Deletes images from the database and removes their files from disk.
+     *
+     * @param array $images List of arrays with 'id' (DB row) and 'url' (public path).
+     */
     private function handleImageDeletions(array $images): void
     {
         foreach ($images as $image) {
@@ -389,6 +402,15 @@ class MenuManageController extends AbstractController
         }
     }
 
+    /**
+     * Updates display_order and alt_text for existing menu images.
+     *
+     * Skips the update silently when the three arrays have mismatched lengths.
+     *
+     * @param array $ids      Image IDs in the new order.
+     * @param array $orders   New display_order values, indexed by position.
+     * @param array $altTexts New alt_text values, indexed by position.
+     */
     private function handleImageReorder(array $ids, array $orders, array $altTexts): void
     {
         $images = [];
@@ -407,6 +429,16 @@ class MenuManageController extends AbstractController
         $this->menuModel->updateImageOrder($images);
     }
 
+    /**
+     * Validates and moves newly uploaded menu images, then persists their URLs.
+     *
+     * Accepts only JPEG, PNG, WebP, and GIF files up to 5 MB (verified via getimagesize).
+     * Redirects with an error flash if any file fails validation or the move fails.
+     *
+     * @param int    $id    Menu identifier.
+     * @param string $title Menu title used to generate alt text.
+     * @param array  $files The $_FILES superglobal (or a slice of it).
+     */
     private function handleImageUploads(int $id, string $title, array $files): void
     {
         $imageUrls = [];

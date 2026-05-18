@@ -1,4 +1,4 @@
-/* Boutons */
+/* Buttons */
 
 .btn {
     border-radius: calc(var(--base-unit) / 2);
@@ -12,7 +12,7 @@
     font-size: 1.3rem;
 }
 
-/* Boutons pleins */
+/* Filled buttons */
 
 body[data-theme=auto] .btn {
     color: light-dark(var(--secondary), var(--primary));
@@ -50,7 +50,7 @@ body[data-theme=dark] a:visited.btn {
     color: var(--primary);
 }
 
-/* Boutons outline */
+/* Outline buttons */
 
 body[data-theme=auto] .btn.outline {
     color: light-dark(var(--primary), var(--secondary));
@@ -121,7 +121,7 @@ body[data-theme=dark] .btn.outline:hover>a:visited {
     color: var(--dark-1);
 }
 
-/* Boutons textes */
+/* Text buttons */
 
 body[data-theme=auto] .btn.text {
     color: light-dark(var(--dark-1), var(--light-1));

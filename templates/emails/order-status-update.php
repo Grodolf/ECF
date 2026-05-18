@@ -26,7 +26,11 @@
         </tr>
     </table>
 
-    <p>Connectez-vous à votre espace pour suivre l'évolution de votre commande.</p>
+    <p>{{connect}}</p>
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="{{link_url}}" style="display: inline-block; background-color: #6B1F3F; color: #ffffff; padding: 15px 40px;text-decoration: none; border-radius: 5px; font-weight: bold;">
+        {{link_text}}</a>
+        </div>
     <p style="margin-top: 30px;">Cordialement,<br><strong>L'équipe Vite & Gourmand</strong></p>
 </div>
 <div style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9em;">

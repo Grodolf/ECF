@@ -215,6 +215,11 @@ class MenuModel
         }
     }
 
+    /**
+     * Removes all dish associations for a menu from the pivot table.
+     *
+     * @param int $id Menu identifier.
+     */
     public function deleteDishes(int $id): void
     {
         $query = "DELETE FROM menu_dishes WHERE menu_id = ?";
@@ -223,6 +228,16 @@ class MenuModel
         $stmt->execute([$id]);
     }
 
+    /**
+     * Updates the core fields of an existing menu.
+     *
+     * Expected $data keys: id, title, description, theme_id, regime_id,
+     * min_people, base_price, conditions.
+     * Returns true even when rowCount() = 0 (no column value changed).
+     *
+     * @param array $data Menu fields including the menu id.
+     * @return bool True on success (including no-op updates).
+     */
     public function update(array $data): bool
     {
         $query = "
@@ -272,6 +287,12 @@ class MenuModel
         }
     }
 
+    /**
+     * Deletes a single menu image row by primary key.
+     *
+     * @param int $id Image row identifier.
+     * @return bool True if exactly one row was deleted.
+     */
     public function deleteImage(int $id): bool
     {
         $query = "DELETE FROM menu_images WHERE id = ?";
@@ -282,6 +303,11 @@ class MenuModel
         return $stmt->rowCount() === 1;
     }
 
+    /**
+     * Updates display_order and alt_text for a batch of menu images.
+     *
+     * @param array $images List of arrays with 'id', 'display_order', and 'alt_text' keys.
+     */
     public function updateImageOrder(array $images): void
     {
         $query = "
@@ -489,6 +515,12 @@ class MenuModel
         return $stmt->rowCount() === 1;
     }
 
+    /**
+     * Returns the current stock value for a menu.
+     *
+     * @param int $id Menu identifier.
+     * @return array Row with a single 'stock' key.
+     */
     public function getStock(int $id): array
     {
         $query = "SELECT stock FROM menus WHERE id = ?";

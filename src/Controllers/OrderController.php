@@ -30,6 +30,7 @@ class OrderController extends AbstractController
     private OrderModel $orderModel;
     private GeocodingService $geocodingService;
 
+    /** Initialises MenuModel, OrderModel, and GeocodingService dependencies. */
     public function __construct()
     {
         $this->menuModel = new MenuModel();

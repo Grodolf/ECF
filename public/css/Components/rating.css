@@ -1,0 +1,77 @@
+/* Read-only star display */
+.stars-display {
+    display: flex;
+    gap: 0.1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+body[data-theme=auto] .stars-display .star {
+    color: light-dark(var(--dark-3), var(--light-3));
+}
+body[data-theme=light] .stars-display .star {
+    color: var(--dark-3);
+}
+body[data-theme=dark] .stars-display .star {
+    color: var(--light-3);
+}
+
+body[data-theme=auto] .stars-display .star--filled {
+    color: light-dark(var(--primary), var(--secondary));
+}
+body[data-theme=light] .stars-display .star--filled {
+    color: var(--primary);
+}
+body[data-theme=dark] .stars-display .star--filled {
+    color: var(--secondary);
+}
+
+/* Rating five stars */
+.rating {
+    display: inline-block;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    float: right;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+body[data-theme=auto] .rating label {
+    color: light-dark(var(--dark-1), var(--light-1));
+}
+
+body[data-theme=light] .rating label {
+    color: var(--dark-1);
+}
+
+body[data-theme=dark] .rating label {
+    color: var(--light-1);
+}
+
+.rating label:before {
+    content: '\2605';
+    font-size: 2rem;
+}
+
+body[data-theme=auto] .rating label:hover,
+body[data-theme=auto] .rating label:hover~label,
+body[data-theme=auto] .rating input:checked~label {
+    color: light-dark(var(--primary), var(--secondary));
+}
+
+body[data-theme=light] .rating label:hover,
+body[data-theme=light] .rating label:hover~label,
+body[data-theme=light] .rating input:checked~label {
+    color: var(--primary);
+}
+
+body[data-theme=dark] .rating label:hover,
+body[data-theme=dark] .rating label:hover~label,
+body[data-theme=dark] .rating input:checked~label {
+    color: var(--secondary);
+}

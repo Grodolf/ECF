@@ -32,7 +32,7 @@ body[data-theme=dark] .price-display {
     background: var(--dark-2);
 }
 
-/* --- Conteneur --- */
+/* --- Container --- */
 
 .range-slider {
     position: relative;
@@ -41,7 +41,7 @@ body[data-theme=dark] .price-display {
     align-items: center;
 }
 
-/* Variables de couleur par thème */
+/* Theme color variables */
 
 body[data-theme=auto] .range-slider {
     --slider-track: light-dark(#d8cec7, var(--dark-2));
@@ -67,7 +67,7 @@ body[data-theme=dark] .range-slider {
     --slider-focus: rgba(212, 175, 55, 0.3);
 }
 
-/* Piste grise — fond complet */
+/* Grey track — full background */
 
 .range-slider::before {
     content: '';
@@ -83,7 +83,7 @@ body[data-theme=dark] .range-slider {
     z-index: 0;
 }
 
-/* Zone colorée entre les deux poignées */
+/* Colored zone between the two thumbs */
 
 .range-slider::after {
     content: '';
@@ -112,7 +112,7 @@ body[data-theme=dark] .range-slider {
     z-index: 2;
 }
 
-/* Track transparent webkit (la piste visible est portée par ::before / ::after) */
+/* Transparent webkit track (the visible track is handled by ::before / ::after) */
 
 .range-slider input[type="range"]::-webkit-slider-runnable-track {
     height: 44px;
@@ -135,7 +135,7 @@ body[data-theme=dark] .range-slider {
     width: 20px;
     height: 20px;
     margin-top: 12px;
-    /* (44px - 20px) / 2 : centrage vertical */
+    /* (44px - 20px) / 2 : vertical centering */
     background: var(--slider-thumb-bg, var(--primary));
     border: 2px solid var(--slider-thumb-border, var(--light-1));
     border-radius: 50%;

@@ -70,7 +70,9 @@ class Security
     }
 
     /**
-     * Sanitises a string or array of strings (trim + stripslashes + htmlspecialchars).
+     * Sanitises a string or array of strings (trim + stripslashes only).
+     *
+     * Does not HTML-encode: call escapeHtml() at output time instead.
      *
      * @param string|array $data Raw input
      * @return string|array Sanitised output
@@ -254,11 +256,14 @@ class Security
     }
 
     /**
- * Valider une URL de redirection interne
- *
- * @param string $redirect URL de redirection
- * @return string|null URL validée ou null si invalide
- */
+     * Validates and normalises an internal redirect URL.
+     *
+     * Rejects absolute URLs (http/https/data/javascript schemes) and paths
+     * that contain characters outside a safe set. Always prepends a leading slash.
+     *
+     * @param string $redirect Raw redirect path from the request
+     * @return string|null Normalised path, or null if the value is invalid
+     */
     public static function validateRedirect(string $redirect): ?string
     {
         $valid = true;

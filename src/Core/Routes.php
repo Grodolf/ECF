@@ -12,6 +12,7 @@ use App\Controllers\OrderController;
 use App\Controllers\EmployeController;
 use App\Controllers\DishController;
 use App\Controllers\MenuManageController;
+use App\Controllers\ReviewController;
 
 /**
  * Application routing table.
@@ -219,6 +220,26 @@ class Routes
             'controller' => EmployeController::class,
             'method'     => 'updateSchedules',
             'http'       => 'POST'
+        ],
+        'employe/reviews' => [
+            'controller' => ReviewController::class,
+            'method'     => 'list',
+            'http'       => 'GET'
+        ],
+        'review/store/{id}' => [
+            'controller' => ReviewController::class,
+            'method'     => 'store',
+            'http'       => 'POST'
+        ],
+        'review/validate/{id}' => [
+            'controller' => ReviewController::class,
+            'method'     => 'valid',
+            'http'       => 'POST'
+        ],
+        'review/{id}' => [
+            'controller' => ReviewController::class,
+            'method'     => 'create',
+            'http'       => 'GET'
         ],
     ];
 }

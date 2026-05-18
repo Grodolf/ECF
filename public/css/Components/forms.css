@@ -31,6 +31,10 @@ select {
     border-width: 2px;
 }
 
+textarea {
+    resize: none;
+}
+
 fieldset {
     border-radius: calc(var(--base-unit) / 2);
     padding: calc(var(--base-unit));

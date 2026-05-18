@@ -1,3 +1,10 @@
+/**
+ * Image display-order swap for the menu edit form.
+ *
+ * Listens for changes on all display_order[] inputs. When a value is changed to
+ * one already occupied by another input, the two values are swapped automatically,
+ * preventing duplicate order numbers without requiring manual correction.
+ */
 const inputs = document.querySelectorAll('input[name="display_order[]"]');
 
 inputs.forEach(input => {

@@ -113,6 +113,11 @@ class RateLimiter
         return hash('sha256', $ip);
     }
 
+    /**
+     * Retrieves the rate limit row for the given action/identifier pair.
+     *
+     * @return array|null Row with id, attempts, first_attempt_at, blocked_until, or null if not found.
+     */
     private static function fetchRow(string $action, string $identifier): ?array
     {
         $stmt = self::getDb()->prepare("

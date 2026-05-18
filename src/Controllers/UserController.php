@@ -132,6 +132,13 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * Handles the POST branch of the password-change flow.
+     *
+     * Verifies CSRF, enforces rate limiting, validates required fields,
+     * checks the current password against the stored hash, enforces the
+     * password policy, then updates the hash and redirects to the profile page.
+     */
     private function processChangePassword(array $currentUser): void
     {
         if (!Security::verifyCsrfToken($_POST['csrf_token'])) {

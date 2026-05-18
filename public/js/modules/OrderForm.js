@@ -94,7 +94,7 @@ if (orderForm && priceDetails) {
                 reductionInfo.textContent = `🎉 Réduction de 10% applicable (${nbPeople} personnes ≥ ${minPeople + 5})`;
                 reductionInfo.classList.remove('hidden');
             } else {
-                // Afficher combien il manque pour avoir la réduction
+                // Show how many more guests are needed to reach the discount threshold.
                 const peopleNeeded = (minPeople + 5) - nbPeople;
                 if (peopleNeeded > 0) {
                     reductionInfo.textContent = `💡 Ajoutez ${peopleNeeded} personne${peopleNeeded > 1 ? 's' : ''} de plus pour bénéficier de 10% de réduction`;

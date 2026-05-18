@@ -1,3 +1,9 @@
+<?php
+
+use App\Core\Security;
+
+?>
+
 <section class="f-col g px d:col-3">
 
     <picture>
@@ -51,9 +57,24 @@
 <section class="d:col-5">
     <h2>Vos avis</h2>
     
-    <div class="galerie-container">
-        <div class="galerie">
-            <!-- TODO gérer les avis dans le backend avant de continuer -->
+    <div class="over">
+        <div class="flex ju-around max">
+            <?php foreach ($reviews as $review) : ?>
+                <div class="card review">
+                    <div class="card-header flex ju-around">
+                        <div class="stars-display">
+                            <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                <span class="star<?= $i <= $review['rating'] ? ' star--filled' : '' ?>">&#9733;</span>
+                            <?php endfor; ?>
+                        </div>
+                        <h3 class="card-title"><?= $review['rating'] ?> / 5</h3>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-description"><?= Security::escapeHtml($review['comment']) ?></p>
+                      <p><?= Security::escapeHtml($review['prenom']) ?> <?= Security::escapeHtml($review['nom']) ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

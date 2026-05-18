@@ -9,7 +9,6 @@ use App\Core\Security;
     <section class="f-col g">
         <h2>Récapitulatif</h2>
         <div class="f-col g">
-            
             <div class="flex ju-between d:g++">
                 <p><strong>Statut :</strong></p>
                 <p><?= Security::escapeHtml($order['status_name']) ?></p>
@@ -90,7 +89,7 @@ use App\Core\Security;
                 </div>
                 <div class="input-container">
                     <label for="cancellation_reason">Motif d'annulation</label>
-                    <input type="text" name="cancellation_reason" id="cancellation_reason" 
+                    <input type="text" name="cancellation_reason" id="cancellation_reason"
                            placeholder="Motif obligatoire" required>
                 </div>
                 <button type="submit" class="btn outline">Annuler la commande</button>

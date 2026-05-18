@@ -8,21 +8,12 @@
 }
 
 .wrapper {
-    padding: var(--base-unit) calc(var(--base-unit) / 2);
     width: 100%;
-    margin: 0 auto;
-}
-
-@media screen and (min-width: 768px) {
-    .wrapper {
-        padding: var(--base-unit) calc(var(--base-unit));
-    }
 }
 
 @media screen and (min-width: 1200px) {
     .wrapper {
         max-width: 1400px;
-        padding: var(--base-unit) calc(var(--base-unit) * 2);
     }
 }
 

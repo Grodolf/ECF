@@ -3,15 +3,15 @@ use App\Core\Security;
 
 ?>
 
-<div class="container">
+<div class="container d:col-5">
     <div class="f-col g">
-        <h1>Commande confirmée !</h1>
+        <h2>Commande confirmée !</h2>
         
-        <p class="">Votre commande <strong>#<?= $order['id'] ?></strong> a été enregistrée avec succès.</p>
+        <p>Votre commande <strong>N° <?= $order['id'] ?></strong> a été enregistrée avec succès.</p>
         
         <div class="f-col g">
             <h2>Récapitulatif</h2>
-            <table class="">
+            <table>
                 <tr>
                     <td><strong>Menu :</strong></td>
                     <td><?= Security::escapeHtml($order['menu_title']) ?></td>
@@ -40,7 +40,7 @@ use App\Core\Security;
             <p>Votre commande sera traitée dans les plus brefs délais. Vous serez notifié par email à chaque étape.</p>
         </div>
         
-        <div class="f-col g">
+        <div class="f-col g it-center">
             <a href="/profile" class="btn primary">Voir mes commandes</a>
             <a href="/menus" class="btn outline">Retour aux menus</a>
         </div>

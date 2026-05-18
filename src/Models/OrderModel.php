@@ -150,7 +150,7 @@ class OrderModel
     public function findById(int $id): ?array
     {
         $query = "
-            SELECT o.*, u.nom, u.prenom, u.email, m.title AS menu_title, m.id AS menu_id,
+            SELECT o.*, u.nom, u.prenom, u.email, m.title AS menu_title, m.description AS menu_description,
                    s.name AS status_name
             FROM orders AS o
             JOIN users AS u ON o.user_id = u.id

@@ -1,3 +1,10 @@
+/**
+ * AJAX menu stock replenishment.
+ *
+ * For each form matching [data-form="menu-addstock"], intercepts the button click,
+ * POSTs to /employe/menu/addstock/{id} with the CSRF token in the X-CSRF-Token header,
+ * and updates the [data-stock] cell in the same table row with the new stock value.
+ */
 const forms = document.querySelectorAll('[data-form="menu-addstock"]');
 
 forms?.forEach(form => {

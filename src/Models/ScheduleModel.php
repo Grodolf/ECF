@@ -17,6 +17,11 @@ class ScheduleModel
         return DatabaseConnection::getInstance();
     }
 
+    /**
+     * Returns all schedule rows ordered by id (Monday first).
+     *
+     * @return array Seven rows with id, day, opening_time, closing_time, and closed.
+     */
     public function findAll(): array
     {
         $query = "SELECT * FROM schedules ORDER BY id";
@@ -27,6 +32,14 @@ class ScheduleModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Updates opening_time, closing_time, and closed for each schedule row.
+     *
+     * Empty string values for time fields are converted to NULL so the database
+     * stores proper NULLs rather than empty strings.
+     *
+     * @param array $datas List of arrays with 'id', 'opening_time', 'closing_time', 'closed'.
+     */
     public function updateAll(array $datas): void
     {
         $query = "

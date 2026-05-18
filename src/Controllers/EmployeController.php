@@ -20,6 +20,7 @@ class EmployeController extends AbstractController
     private ScheduleModel $scheduleModel;
     private const ORDER = 'order/detail/';
     private const SCHEDULES = 'employe/schedules';
+    private const STATUS_TERMINEE = 7;
 
     public function __construct()
     {
@@ -89,6 +90,15 @@ class EmployeController extends AbstractController
         }
 
         $orderData = $this->orderModel->findById($orderId);
+        $orderData['connect'] = "Connectez-vous à votre espace pour suivre l'évolution de votre commande.";
+        $orderData['link_url'] = $_ENV['APP_URL'] . '/login';
+        $orderData['link_text'] = 'Me connecter';
+
+        if ($statusId === self::STATUS_TERMINEE) {
+            $orderData['connect'] = "Vous pouvez donner votre avis sur notre prestation en cliquant sur le liens suivant :";
+            $orderData['link_url'] = $_ENV['APP_URL'] . '/login?redirect=/review/' . $orderId;
+            $orderData['link_text'] = 'Donner mon avis';
+        }
 
         $this->sendStatusUpdateOrderEmail($orderId, $orderData, $comment);
         Session::setFlash(FlashMessage::STATUS_UPDATED, 'success');
@@ -172,8 +182,11 @@ class EmployeController extends AbstractController
                     'delivery_date'    => date('d/m/Y', strtotime($orderData['delivery_date'])),
                     'delivery_time'    => $orderData['delivery_time'],
                     'status_name'      => $orderData['status_name'],
-                    'comment_label' => !empty($comment) ? 'Commentaire :' : '',
-                    'comment'       => $comment
+                    'comment_label'    => !empty($comment) ? 'Commentaire :' : '',
+                    'comment'          => $comment,
+                    'connect'          => $orderData['connect'],
+                    'link_url'       => $orderData['link_url'],
+                    'link_text'       => $orderData['link_text'],
                 ]
             );
         } catch (\Exception $e) {
@@ -181,6 +194,11 @@ class EmployeController extends AbstractController
         }
     }
 
+    /**
+     * Renders the schedule management page for employees.
+     *
+     * Passes the CSRF token and the ScheduleClosed JS module to the view.
+     */
     public function schedules(): void
     {
         Security::requireEmploye();
@@ -191,6 +209,12 @@ class EmployeController extends AbstractController
         ]);
     }
 
+    /**
+     * Persists all seven schedule rows submitted from the schedule form.
+     *
+     * Pipeline: CSRF check → array length validation (must be exactly 7 entries
+     * per field) → open-day time validation → model batch update → redirect.
+     */
     public function updateSchedules(): void
     {
         if (!Security::verifyCsrfToken($_POST['csrf_token'])) {
