@@ -32,8 +32,9 @@ COPY . /var/www/html
 
 # Installer les dépendances Composer et donner les permissions
 WORKDIR /var/www/html
-RUN composer install --no-dev --optimize-autoloader \ 
-    && chown -R www-data:www-data /var/www/html \
+RUN composer install --no-dev --optimize-autoloader
+
+RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 EXPOSE 80
