@@ -142,6 +142,11 @@ class Routes
             'method' => 'list',
             'http' => 'GET'
         ],
+        'order' => [
+            'controller' => OrderController::class,
+            'method'     => 'create',
+            'http'       => 'GET'
+        ],
         'order/{menuId}' => [
             'controller' => OrderController::class,
             'method'     => 'create',
@@ -282,5 +287,10 @@ class Routes
             'method'     => 'toggle',
             'http'       => 'POST'
         ],
+        'admin/stats' => [
+            'controller' => AdminController::class,
+            'method'     => 'stats',
+            'http'       => 'GET'
+        ]
     ];
 }

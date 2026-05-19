@@ -6,9 +6,9 @@ use App\Core\Security;
 
 <div class="container">
 
-    <section class="order-summary">
+    <section class="px d:col-5">
         <h2>Récapitulatif</h2>
-        <div class="summary-content">
+        <div class="f-col g-">
             <p><strong>Menu :</strong> <?= Security::escapeHtml($menu['title']) ?></p>
             <p><strong>Thème :</strong> <?= Security::escapeHtml($menu['theme_name']) ?></p>
             <p><strong>Régime :</strong> <?= Security::escapeHtml($menu['regime_name']) ?></p>
@@ -25,7 +25,7 @@ use App\Core\Security;
             <legend>Nombre de convives</legend>
             
             <div class="input-container">
-                <label for="nb_people">Nombre de personnes *</label>
+                <label for="nb_people">Nombre de personnes :</label>
                 <input type="number"
                        id="nb_people"
                        name="nb_people"
@@ -39,7 +39,7 @@ use App\Core\Security;
             <legend>Livraison</legend>
             
             <div class="input-container">
-                <label for="delivery_address">Adresse de livraison *</label>
+                <label for="delivery_address">Adresse de livraison :</label>
                 <input type="text"
                        id="delivery_address"
                        name="delivery_address"
@@ -49,7 +49,7 @@ use App\Core\Security;
             </div>
             
             <div class="input-container">
-                <label for="delivery_city">Ville *</label>
+                <label for="delivery_city">Ville :</label>
                 <input type="text"
                        id="delivery_city"
                        name="delivery_city"
@@ -59,7 +59,7 @@ use App\Core\Security;
             </div>
             
             <div class="input-container">
-                <label for="delivery_date">Date de livraison *</label>
+                <label for="delivery_date">Date de livraison :</label>
                 <input type="date"
                        id="delivery_date"
                        name="delivery_date"
@@ -69,7 +69,7 @@ use App\Core\Security;
             </div>
             
             <div class="input-container">
-                <label for="delivery_time">Heure souhaitée *</label>
+                <label for="delivery_time">Heure souhaitée :</label>
                 <input type="time"
                        id="delivery_time"
                        name="delivery_time"

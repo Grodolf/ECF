@@ -9,16 +9,19 @@ use App\Core\Session;
 use App\Core\FlashMessage;
 use App\Core\Mailer;
 use App\Models\UserModel;
+use App\Models\StatsModel;
 
 class AdminController extends AbstractController
 {
     private UserModel $userModel;
+    private StatsModel $statsModel;
     private const ROUTE_LIST    = 'admin/employes';
     private const ROUTE_CREATE  = 'admin/employe/create';
 
     public function __construct()
     {
         $this->userModel = new UserModel();
+        $this->statsModel = new StatsModel();
     }
 
     public function list(): void
@@ -165,5 +168,30 @@ class AdminController extends AbstractController
         } catch (\Exception $e) {
             error_log('Erreur envoi email modification statut de commande : ' . $e->getMessage());
         }
+    }
+
+    public function stats(): void
+    {
+        Security::requireAdmin();
+
+        $filters = [
+            'year_start'  => (int) ($_GET['year_start'] ?? 2025),
+            'year_end'    => (int) ($_GET['year_end'] ?? 2026),
+            'month_start' => (int) ($_GET['month_start'] ?? 12),
+            'month_end'   => (int) ($_GET['month_end'] ?? 05)
+        ];
+        if (isset($_GET['menu_id'])) {
+            $filters['menu_id'] = $_GET['menu_id'];
+        }
+
+        $this->renderView('admin/stats.php', [
+            'revenues'    => $this->statsModel->getRevenueByMenu($filters),
+            'orders'      => $this->statsModel->getOrdersByMenu(),
+            'years'       => $this->statsModel->getAvailableYears(),
+            'filters'     => $filters,
+            'title'       => 'Statisques des ventes',
+            'description' => "Page d'affichage des ventes avec tri",
+            'scripts'     => ['/js/modules/StatsCharts.js']
+        ]);
     }
 }

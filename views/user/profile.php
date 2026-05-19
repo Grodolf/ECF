@@ -59,6 +59,7 @@ $date = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatte
     <?php endif; ?>
     <?php if ($user['role'] === 'admin') : ?>
         <a class="btn primary" href="/admin/employes">Comptes employé</a>
+        <a class="btn primary" href="/admin/stats">Statistiques</a>
     <?php endif; ?>
     <a class="btn outline" href="/edit-profile">Modifier mes informations</a>
     <a class="btn outline" href="/change-password">Changer mon mot de passe</a>

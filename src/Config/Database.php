@@ -15,8 +15,8 @@ class Database
             'dbname'   => $_ENV['DB_DATABASE'],
             'username' => $_ENV['DB_USER'],
             'password' => $_ENV['DB_PASSWORD'],
-            'ssl' => $_ENV['DB_SSL_MODE'],
-            'ca_cert' => $_ENV['DB_CA_CERT'],
+            'ssl'      => $_ENV['DB_SSL_MODE'],
+            'ca_cert'  => $_ENV['DB_CA_CERT'],
             'charset'  => 'utf8mb4'
             ];
     }

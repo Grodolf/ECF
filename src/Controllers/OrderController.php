@@ -46,32 +46,41 @@ class OrderController extends AbstractController
      *
      * @param int $menuId Menu identifier.
      */
-    public function create(int $menuId): void
+    public function create(int $menuId = 0): void
     {
         $user = Security::requireAuth();
 
-        $menu = $this->menuModel->findById($menuId);
+        $menu = null;
+        if ($menuId > 0) {
+            $menu = $this->menuModel->findById($menuId);
 
-        if (empty($menu)) {
-            Session::setFlash(FlashMessage::WRONG_MENU, 'error');
-            $this->redirectToRoute(self::ROUTE_MENUS);
-            exit;
+            if (empty($menu)) {
+                Session::setFlash(FlashMessage::WRONG_MENU, 'error');
+                $this->redirectToRoute(self::ROUTE_MENUS);
+                exit;
+            }
+
+            if (!isset($menu['stock']) || $menu['stock'] < $menu['min_people']) {
+                Session::setFlash(FlashMessage::MENU_UNAVAILABLE, 'error');
+                $this->redirectToRoute(self::ROUTE_MENU . $menuId);
+                exit;
+            }
         }
 
-        if (!isset($menu['stock']) || $menu['stock'] < $menu['min_people']) {
-            Session::setFlash(FlashMessage::MENU_UNAVAILABLE, 'error');
-            $this->redirectToRoute(self::ROUTE_MENU . $menuId);
-            exit;
-        }
-
-        $this->renderView('orders/create.php', [
-            'title'       => 'Commander : ' . $menu['title'],
+        $data = [
+            'title'       => $menu ? 'Commander : ' . $menu['title'] : 'Passer une commande',
             'description' => 'Passez votre commande',
             'menu'        => $menu,
             'user'        => $user,
             'csrfToken'   => Security::generateCsrfToken(),
             'scripts'     => ['/js/modules/OrderForm.js']
-        ]);
+        ];
+
+        if ($menuId === 0) {
+            $data['list'] = $this->menuModel->findAll();
+        }
+
+        $this->renderView('orders/create.php', $data);
     }
 
     /**

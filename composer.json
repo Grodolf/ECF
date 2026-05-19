@@ -1,6 +1,7 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^7.0"
+        "phpmailer/phpmailer": "^7.0",
+        "mongodb/mongodb": "^2.3"
     },
     "autoload": {
         "psr-4": {

@@ -35,7 +35,7 @@ if (orderForm && priceDetails) {
     const deliveryAddressInput = orderForm.querySelector('#delivery_address');
     const deliveryCityInput = orderForm.querySelector('#delivery_city');
     
-    const minPeople = Number.parseInt(nbPeopleInput.min);
+    let minPeople = Number.parseInt(nbPeopleInput.min);
     
     /**
      * Fetches a live price estimate from the server and updates the UI.
@@ -174,6 +174,35 @@ if (orderForm && priceDetails) {
         priceDetails.innerHTML = html;
     }
     
+    const menuSelect = orderForm.querySelector('select[name="menu_id"]');
+    if (menuSelect) {
+        const onMenuChange = () => {
+            const menu = (globalThis.menusList ?? []).find(m => String(m.id) === menuSelect.value);
+            if (!menu) return;
+
+            minPeople = menu.min_people;
+            nbPeopleInput.min = menu.min_people;
+            if (Number(nbPeopleInput.value) < menu.min_people) {
+                nbPeopleInput.value = menu.min_people;
+            }
+
+            const basePriceEl = document.getElementById('base-price');
+            if (basePriceEl) {
+                basePriceEl.innerHTML = `<strong>Prix de base :</strong> ${formatPrice(menu.base_price)}&nbsp;€`;
+            }
+
+            const minPeopleInfo = document.getElementById('min-people-info');
+            if (minPeopleInfo) {
+                minPeopleInfo.textContent = `Minimum : ${menu.min_people} personnes`;
+            }
+
+            calculatePrice();
+        };
+
+        menuSelect.addEventListener('change', onMenuChange);
+        onMenuChange();
+    }
+
     nbPeopleInput.addEventListener('input', debounce(calculatePrice, 500));
     deliveryAddressInput.addEventListener('input', debounce(calculatePrice, 800));
     deliveryCityInput.addEventListener('change', calculatePrice);

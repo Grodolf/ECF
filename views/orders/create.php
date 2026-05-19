@@ -1,27 +1,48 @@
 <?php
 use App\Core\Security;
 
-$minPeople = $menu['min_people'];
-$basePrice = $menu['base_price'];
+if ($menu) {
+    $menuPrice = $menu['base_price'];
+    $minPeople = $menu['min_people'];
+} else {
+    $menuPrice = 0;
+    $minpeople = 0;
+}
 ?>
 
 <div class="container">
+    <?php if ($menu) : ?>
 
-    <section class="order-summary">
-        <h2>Récapitulatif</h2>
-        <div class="summary-content">
-            <p><strong>Menu :</strong> <?= Security::escapeHtml($menu['title']) ?></p>
-            <p><strong>Thème :</strong> <?= Security::escapeHtml($menu['theme_name']) ?></p>
-            <p><strong>Régime :</strong> <?= Security::escapeHtml($menu['regime_name']) ?></p>
-            <p><strong>Nombre minimum de personnes :</strong> <?= $minPeople ?></p>
-            <p><strong>Prix de base :</strong> <?= number_format($basePrice, 2, ',', ' ') ?>&nbsp;€</p>
-        </div>
-    </section>
-    
-    <form id="order-form" method="POST" action="/order/store">
-        <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
-        <input type="hidden" name="menu_id" value="<?= $menu['id'] ?>">
+        <section class="px d:col-5">
+            <h2>Récapitulatif</h2>
+            <div class="f-col g-">
+                <p><strong>Menu :</strong> <?= Security::escapeHtml($menu['title']) ?></p>
+                <p><strong>Thème :</strong> <?= Security::escapeHtml($menu['theme_name']) ?></p>
+                <p><strong>Régime :</strong> <?= Security::escapeHtml($menu['regime_name']) ?></p>
+                <p><strong>Nombre minimum de personnes :</strong> <?= $menu['min_people'] ?></p>
+                <p><strong>Prix de base :</strong> <?= number_format($menuPrice, 2, ',', ' ') ?>&nbsp;€</p>
+            </div>
+        </section>
         
+        <form class="my" id="order-form" method="POST" action="/order/store">
+            <input type="hidden" name="menu_id" value="<?= $menu['id'] ?>">
+
+    <?php else : ?>
+
+        <form class="my" id="order-form" method="POST" action="/order/store">
+            <div class="input-container">
+                <label for="menu_id">Choix du menu</label>
+                <select name="menu_id" id="menu_id">
+                    <?php foreach ($list as $l) : ?>
+                        <option value="<?= $l['id'] ?>"><?= $l['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <p id="base-price"><strong>Prix de base :</strong> <?= number_format($menuPrice, 2, ',', ' ') ?>&nbsp;€</p>
+
+    <?php endif; ?>
+
+        <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
         <fieldset>
             <legend>Vos informations</legend>
             
@@ -98,7 +119,7 @@ $basePrice = $menu['base_price'];
                        min="<?= $minPeople ?>"
                        value="<?= $minPeople ?>"
                        required>
-                <p class="help-text">Minimum : <?= $minPeople ?> personnes</p>
+                <p class="help-text" id="min-people-info">Minimum : <?= $minPeople ?> personnes</p>
                 <p class="help-text success hidden" id="reduction-info">
                     Réduction de 10% applicable !
                 </p>
@@ -122,3 +143,11 @@ $basePrice = $menu['base_price'];
         </div>
     </form>
 </div>
+
+<script>
+window.menusList = <?= json_encode(array_map(fn ($l) => [
+    'id'         => $l['id'],
+    'base_price' => $l['base_price'],
+    'min_people' => $l['min_people'],
+], $list ?? [])) ?>;
+</script>
