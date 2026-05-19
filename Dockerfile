@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y \
     intl \
     && a2enmod rewrite headers ssl
 
+RUN apt-get install -y libmongoc-dev \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
 # Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
