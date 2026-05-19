@@ -11,6 +11,10 @@ use App\Core\Mailer;
 use App\Models\UserModel;
 use App\Models\StatsModel;
 
+/**
+ * Handles admin-only actions: employee listing, account creation, activation toggling,
+ * and sales statistics display.
+ */
 class AdminController extends AbstractController
 {
     private UserModel $userModel;
@@ -24,6 +28,9 @@ class AdminController extends AbstractController
         $this->statsModel = new StatsModel();
     }
 
+    /**
+     * Displays the employee management list.
+     */
     public function list(): void
     {
         $user = Security::requireAdmin();
@@ -39,6 +46,14 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * Toggles an employee's active status via AJAX.
+     *
+     * Requires the CSRF token in the HTTP_X_CSRF_TOKEN header.
+     * Returns a JSON response with a success or error key.
+     *
+     * @param string $id Employee user identifier.
+     */
     public function toggle(string $id): void
     {
         header('Content-Type: application/json');
@@ -62,6 +77,9 @@ class AdminController extends AbstractController
         exit;
     }
 
+    /**
+     * Renders the new employee account creation form.
+     */
     public function create(): void
     {
         $user = Security::requireAdmin();
@@ -73,6 +91,12 @@ class AdminController extends AbstractController
             'description' => "Page de création d'un nouveau compte employé"
         ]);
     }
+    /**
+     * Persists a new employee account submitted via the creation form.
+     *
+     * Pipeline: CSRF check → required fields → email format and uniqueness
+     * → random password generation → DB insert → confirmation email → redirect.
+     */
     public function store(): void
     {
         Security::requireAdmin();
@@ -128,6 +152,12 @@ class AdminController extends AbstractController
         exit;
     }
 
+    /**
+     * Displays the post-creation confirmation page showing the temporary password.
+     *
+     * The temporary password is read from session and deleted immediately after,
+     * so this page can only be viewed once.
+     */
     public function confirmation(): void
     {
         Security::requireAdmin();
@@ -148,6 +178,13 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * Sends the welcome email containing login credentials to the new employee.
+     *
+     * Failures are silently caught and logged so they never block account creation.
+     *
+     * @param array $data Employee data (nom, prenom, email).
+     */
     private function sendEmployeMail(array $data): void
     {
         try {
@@ -166,10 +203,15 @@ class AdminController extends AbstractController
                 ]
             );
         } catch (\Exception $e) {
-            error_log('Erreur envoi email modification statut de commande : ' . $e->getMessage());
+            error_log('Employee welcome email error: ' . $e->getMessage());
         }
     }
 
+    /**
+     * Renders the sales statistics dashboard.
+     *
+     * Accepts optional GET filters: year_start, year_end, month_start, month_end, menu_id.
+     */
     public function stats(): void
     {
         Security::requireAdmin();

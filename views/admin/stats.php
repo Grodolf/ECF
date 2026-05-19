@@ -7,7 +7,7 @@ $month = ['Janvier', 'FÃ©vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'AoÃ
 ?>
 
 <section class="px d:col-5">
-    <h2>Options de filtrages</h2>
+    <h2>Options de filtrage</h2>
     
     <form method="GET" action="/admin/stats">
         <fieldset>

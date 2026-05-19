@@ -19,7 +19,7 @@ use App\Core\Security;
                 <th>Stock</th>
                 <th>Ajouter du stock</th>
                 <th>Plats</th>
-                <th>Allergenes</th>
+                <th>Allergènes</th>
                 <th>Statut</th>
                 <th></th>
             </tr>

@@ -86,7 +86,7 @@ class Mailer
         $templatePath = dirname(__DIR__, 2) . '/templates/emails/' . $templateName . '.php';
 
         if (!file_exists($templatePath)) {
-            throw new \UnexpectedValueException("Template email introuvable : $templateName");
+            throw new \UnexpectedValueException("Email template not found: $templateName");
         }
 
         $content = file_get_contents($templatePath);

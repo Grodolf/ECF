@@ -11,6 +11,9 @@ use App\Models\ReviewModel;
 use App\Models\OrderModel;
 use App\Core\Mailer;
 
+/**
+ * Handles customer review submission and employee moderation.
+ */
 class ReviewController extends AbstractController
 {
     private ReviewModel $reviewModel;
@@ -227,7 +230,7 @@ class ReviewController extends AbstractController
                 ]
             );
         } catch (\Exception $e) {
-            error_log('Erreur envoi email modification statut de commande : ' . $e->getMessage());
+            error_log('Review validation email error: ' . $e->getMessage());
         }
     }
 }

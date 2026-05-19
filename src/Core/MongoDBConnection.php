@@ -40,7 +40,7 @@ class MongoDBConnection
             } catch (ConnectionException $e) {
                 error_log('MongoDB connection failed: ' . $e->getMessage());
                 http_response_code(503);
-                die('Service temporairement indisponible.');
+                die('Service temporarily unavailable.');
             }
         }
 

@@ -381,7 +381,7 @@ body[data-theme=dark] footer {
 }
 
 /**
-        === Tablette ===
+        === Tablet ===
 **/
 
 @media screen and (min-width: 768px) {
@@ -404,7 +404,7 @@ body[data-theme=dark] footer {
 }
 
 /**
-        === desktop ===
+        === Desktop ===
 **/
 
 @media screen and (min-width: 1200px) {

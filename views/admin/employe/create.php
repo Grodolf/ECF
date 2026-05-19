@@ -12,7 +12,7 @@
             <input type="text" name="nom" id="nom" required>
         </div>
         <div class="input-container">
-            <label for="prenom">Prenom :</label>
+            <label for="prenom">Prénom :</label>
             <input type="text" name="prenom" id="prenom" required>
         </div>
         <div class="input-container">

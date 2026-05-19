@@ -55,7 +55,7 @@ $date = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatte
         <a class="btn primary" href="/employe/dishes">Gestion des plats</a>
         <a class="btn primary" href="/employe/menus">Gestion des menus</a>
         <a class="btn primary" href="/employe/reviews">Modération des avis</a>
-        <a class="btn primary" href="/employe/schedules">Horaires d'ouvertures.</a>
+        <a class="btn primary" href="/employe/schedules">Horaires d'ouverture</a>
     <?php endif; ?>
     <?php if ($user['role'] === 'admin') : ?>
         <a class="btn primary" href="/admin/employes">Comptes employé</a>

@@ -190,7 +190,7 @@ class EmployeController extends AbstractController
                 ]
             );
         } catch (\Exception $e) {
-            error_log('Erreur envoi email modification statut de commande : ' . $e->getMessage());
+            error_log('Order status update email error: ' . $e->getMessage());
         }
     }
 

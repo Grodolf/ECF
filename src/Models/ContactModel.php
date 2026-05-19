@@ -7,6 +7,9 @@ namespace App\Models;
 use App\Core\DatabaseConnection;
 use PDO;
 
+/**
+ * Data-access layer for the contacts table.
+ */
 class ContactModel
 {
     /**
@@ -17,6 +20,11 @@ class ContactModel
         return DatabaseConnection::getInstance();
     }
 
+    /**
+     * Returns all processed contact messages, joined with the name of the user who processed them.
+     *
+     * @return array Rows with contact fields plus nom and prenom from users.
+     */
     public function findProcessed(): array
     {
         $query = "
@@ -31,6 +39,11 @@ class ContactModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Returns all contact messages that have not yet been processed (processed = 0).
+     *
+     * @return array Rows with id, email, title, and message.
+     */
     public function findToProcessed(): array
     {
         $query = "
@@ -45,6 +58,12 @@ class ContactModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Inserts a new contact message.
+     *
+     * @param array $data Associative array with email, title, and message keys.
+     * @return bool True if exactly one row was inserted.
+     */
     public function create(array $data): bool
     {
         $query = "

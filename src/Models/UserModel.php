@@ -239,6 +239,11 @@ class UserModel
         return $stmt->rowCount() === 1;
     }
 
+    /**
+     * Returns all users with the 'employe' role.
+     *
+     * @return array List of employee rows, or an empty array if none exist.
+     */
     public function findAllEmployes(): array
     {
         $query = "SELECT * FROM users WHERE role = 'employe'";
@@ -250,6 +255,12 @@ class UserModel
         return $result ?: [];
     }
 
+    /**
+     * Toggles the actif flag of a user (active ↔ inactive).
+     *
+     * @param string $id User identifier.
+     * @return bool True if exactly one row was updated.
+     */
     public function toggleActive(string $id): bool
     {
         $query = "UPDATE users SET actif = NOT actif WHERE id = ?";
@@ -260,6 +271,15 @@ class UserModel
         return $stmt->rowCount() === 1;
     }
 
+    /**
+     * Inserts a new employee account with the 'employe' role.
+     *
+     * Expects $data to contain: nom, prenom, email, and password (already hashed).
+     * Unlike create(), this method sets role = 'employe' and omits address fields.
+     *
+     * @param array $data Employee fields.
+     * @return bool True if exactly one row was inserted.
+     */
     public function createEmploye(array $data): bool
     {
         $query = "INSERT INTO users (nom, prenom, email, password, role)

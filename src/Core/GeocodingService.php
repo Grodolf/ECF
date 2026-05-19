@@ -24,7 +24,7 @@ class GeocodingService
         $this->apiKey = $_ENV['ORS_API_KEY'] ?? '';
 
         if (empty($this->apiKey)) {
-            throw new \InvalidArgumentException('ORS_API_KEY non définie dans .env');
+            throw new \InvalidArgumentException('ORS_API_KEY is not defined in .env');
         }
     }
 

@@ -99,7 +99,7 @@ use App\Core\Security;
     
     <div class="f-col g it-center">
         <?php if (in_array($user['role'], ['employe', 'admin'])) : ?>
-            <a href="/employe/orders" class="btn primary">Retour à la liste des commandes.</a>
+            <a href="/employe/orders" class="btn primary">Retour à la liste des commandes</a>
         <?php endif; ?>
         <?php if ($order['status_name'] === 'En attente' && $user['id'] === $order['user_id']) : ?>
             <a href="/order/edit/<?= $order['id'] ?>" class="btn outline">Modifier la commande</a>

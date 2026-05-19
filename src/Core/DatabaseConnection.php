@@ -46,7 +46,7 @@ class DatabaseConnection
                 if (!empty($config['ca_cert']) && file_exists($config['ca_cert'])) {
                     $options[PDO::MYSQL_ATTR_SSL_CA] = $config['ca_cert'];
                 } else {
-                    throw new PDOException("Certificat SSL CA introuvable ou non configuré");
+                    throw new PDOException("SSL CA certificate not found or not configured");
                 }
             }
 
@@ -60,7 +60,7 @@ class DatabaseConnection
             } catch (PDOException $e) {
                 error_log('DB connection failed: ' . $e->getMessage());
                 http_response_code(503);
-                die('Service temporairement indisponible.');
+                die('Service temporarily unavailable.');
             }
         }
 

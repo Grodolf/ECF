@@ -2,13 +2,13 @@
   <div class="card-header">
     <img
       src="..."
-      alt="Description de l'image"
+      alt="Image description"
     />
     <div class="badge"></div>
     <div class="badge"></div>
   </div>
   <div class="card-body">
-    <h3 class="card-title">Titre</h3>
+    <h3 class="card-title">Title</h3>
     <p class="card-description">Lorem ipsum dolor sit amet...</p>
     <div class="card-actions">
       ...
@@ -96,7 +96,7 @@ body[data-theme=dark] .card {
 }
 
 /**
-    === Tablette ===
+    === Tablet ===
 **/
 
 @media screen and (min-width: 768px) {

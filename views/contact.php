@@ -8,7 +8,7 @@
             <input type="text" name="nom" id="nom" required>
         </div>
         <div class="input-container">
-            <label for="email">Adresse Email :</label>
+            <label for="email">Adresse email :</label>
             <input type="email" name="email" id="email" required>
         </div>
         <div class="input-container">

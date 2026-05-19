@@ -31,7 +31,7 @@ forms?.forEach(form => {
         });
 
         if (!response.ok) {
-            throw new Error('Erreur serveur');
+            throw new Error('Server error');
         }
 
         const data = await response.json();

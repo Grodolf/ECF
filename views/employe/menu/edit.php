@@ -18,7 +18,7 @@ use App\Core\Security;
                 <input type="text" name="title" id="title" value="<?= Security::escapeHtml($menu['title']) ?>" required>
             </div>
             <div class="input-container">
-                <label for="description">Decription du menu :</label>
+                <label for="description">Description du menu :</label>
                 <input type="text" name="description" id="description" value="<?= Security::escapeHtml($menu['description']) ?>" required>
             </div>
             <div class="input-container">
@@ -52,11 +52,11 @@ use App\Core\Security;
                 <input type="number" name="min_people" id="min_people" value="<?= $menu['min_people'] ?>" required>
             </div>
             <div class="input-container">
-                <label for="base_price">Prix par personnes :</label>
+                <label for="base_price">Prix par personne :</label>
                 <input type="number" name="base_price" id="base_price" step="0.01" value="<?= $menu['base_price'] ?>" required>
             </div>
             <div class="input-container">
-                <label for="conditions">Contraintes spécifiques au menus :</label>
+                <label for="conditions">Contraintes spécifiques aux menus :</label>
                 <input type="text" name="conditions" id="conditions" value="<?= $menu['conditions'] ?>">
             </div>
         </fieldset>

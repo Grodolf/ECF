@@ -10,13 +10,13 @@ use App\Core\Security;
 </div>
 
 <section class="d:col-5">
-    <h2>Liste des comptes employé :</h2>
+    <h2>Liste des comptes employés :</h2>
 
     <div class="over">
         <table>
             <tr>
                 <th>Nom</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <th>Email</th>
                 <th>Status</th>
             </tr>

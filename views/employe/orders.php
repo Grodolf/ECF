@@ -14,7 +14,7 @@ use App\Core\Security;
 
     <form id="filter_orders" method="GET" action="/employe/orders">
         <div class="input-container">
-            <label for="status_id">Statut de la commandes</label>
+            <label for="status_id">Statut de la commande</label>
             <select name="status_id" id="status_id">
                 <option value="">Tous les statuts</option>
                 <?php foreach ($statuses as $status) : ?>
@@ -30,7 +30,7 @@ use App\Core\Security;
             <label for="search">Recherche :</label>
             <input
                 type="text" name="search" id="search"
-                placeholder="Nom, Prenom ou Email"
+                placeholder="Nom, Prénom ou Email"
                 value="<?= isset($_GET['search']) ? Security::escapeHtml($_GET['search']) : '' ?>"
             >
         </div>

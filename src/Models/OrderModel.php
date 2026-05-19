@@ -80,13 +80,13 @@ class OrderModel
             $orderId = $this->create($orderData);
 
             if (!$orderId) {
-                throw new PDOException('Erreur création commande');
+                throw new PDOException('Order creation failed');
             }
 
             $this->addStatusHistory($orderId, 1, $userId, '');
 
             if (!$this->decrementStock($orderData['menu_id'], $orderData['nb_people'])) {
-                throw new PDOException('Erreur mise à jour stock');
+                throw new PDOException('Stock update failed');
             }
 
             self::getDb()->commit();
@@ -95,7 +95,7 @@ class OrderModel
 
         } catch (\Exception $e) {
             self::getDb()->rollBack();
-            error_log('Erreur création commande : ' . $e->getMessage());
+            error_log('Order creation error: ' . $e->getMessage());
             return null;
         }
     }
@@ -125,17 +125,17 @@ class OrderModel
             $stmt = self::getDb()->prepare($query);
             $stmt->execute([$orderId]);
             if ($stmt->rowCount() !== 1) {
-                throw new PDOException('Impossible de supprimer la commande, elle a été validée.');
+                throw new PDOException('Cannot cancel the order: it has already been processed.');
             }
 
-            $this->addStatusHistory($orderId, 8, $userId, 'Commande annulée à la demande du client.');
+            $this->addStatusHistory($orderId, 8, $userId, 'Order cancelled at customer request.');
 
             self::getDb()->commit();
 
             return true;
         } catch (\Exception $e) {
             self::getDb()->rollBack();
-            error_log('Erreur annulation de commande : ' . $e->getMessage());
+            error_log('Order cancellation error: ' . $e->getMessage());
             return false;
         }
     }
@@ -367,7 +367,7 @@ class OrderModel
             $stmt = self::getDb()->prepare($query);
             $stmt->execute([$statusId, $orderId]);
             if ($stmt->rowCount() !== 1) {
-                throw new PDOException('Impossible de mettre à jour le statut de la commande.');
+                throw new PDOException('Failed to update order status.');
             }
 
             $this->addStatusHistory($orderId, $statusId, $userId, $comment);
@@ -377,7 +377,7 @@ class OrderModel
             return true;
         } catch (\Exception $e) {
             self::getDb()->rollBack();
-            error_log('Erreur mise à jour statut : ' . $e->getMessage());
+            error_log('Order status update error: ' . $e->getMessage());
             return false;
         }
     }
@@ -411,10 +411,10 @@ class OrderModel
                 $orderId
             ]);
             if ($stmt->rowCount() !== 1) {
-                throw new PDOException('Impossible de supprimer la commande.');
+                throw new PDOException('Failed to cancel the order.');
             }
 
-            $com = $user['prenom'] . ' ' . $user['nom'] . ' a annulé la commande. Motif : ' . $data['cancellation_reason'];
+            $com = $user['prenom'] . ' ' . $user['nom'] . ' cancelled the order. Reason: ' . $data['cancellation_reason'];
             $this->addStatusHistory($orderId, 8, $user['id'], $com);
 
             self::getDb()->commit();
@@ -422,7 +422,7 @@ class OrderModel
             return true;
         } catch (\Exception $e) {
             self::getDb()->rollBack();
-            error_log('Erreur création commande : ' . $e->getMessage());
+            error_log('Employee order cancellation error: ' . $e->getMessage());
             return false;
         }
     }

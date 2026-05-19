@@ -1,5 +1,22 @@
+/**
+ * Sales statistics charts rendered with Plotly.
+ *
+ * Reads globalThis.ordersData and globalThis.revenuesData (arrays injected by the
+ * server-side view) and renders two bar charts: total orders per menu and revenue
+ * per menu. Charts are re-rendered whenever the body data-theme attribute changes
+ * so colours stay in sync with the active theme.
+ *
+ * Expected DOM:
+ *   - #chart-orders   — container for the orders-per-menu bar chart
+ *   - #chart-revenues — container for the revenue-per-menu bar chart
+ */
 import Plotly from 'https://esm.sh/plotly.js-dist-min';
 
+/**
+ * Reads the current body text colour for use as Plotly font colour.
+ *
+ * @returns {{ text: string }} Object with the resolved text colour string.
+ */
 function getThemeColors() {
     const styles = getComputedStyle(document.body);
     return {
@@ -7,6 +24,12 @@ function getThemeColors() {
     };
 }
 
+/**
+ * Builds a shared Plotly layout object with transparent background and themed font.
+ *
+ * @param {string} yTitle Label for the y-axis.
+ * @returns {object} Plotly layout configuration.
+ */
 function buildLayout(yTitle) {
     const { text } = getThemeColors();
     return {
@@ -22,6 +45,11 @@ function buildLayout(yTitle) {
 
 const config = { responsive: true, displayModeBar: false };
 
+/**
+ * Renders a bar chart of total orders per menu into #chart-orders.
+ *
+ * @param {Array<{title: string, total_sales: number}>} data Aggregated orders data.
+ */
 function renderOrdersChart(data) {
     const el = document.getElementById('chart-orders');
     if (!el || !data?.length) return;
@@ -38,6 +66,11 @@ function renderOrdersChart(data) {
     Plotly.newPlot(el, [trace], buildLayout('Nombre de ventes'), config);
 }
 
+/**
+ * Renders a bar chart of total revenue per menu into #chart-revenues.
+ *
+ * @param {Array<{title: string, total_price: number}>} data Aggregated revenue data.
+ */
 function renderRevenuesChart(data) {
     const el = document.getElementById('chart-revenues');
     if (!el || !data?.length) return;

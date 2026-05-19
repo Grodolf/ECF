@@ -1,3 +1,10 @@
+/**
+ * AJAX employee activation toggle.
+ *
+ * For each form matching [data-form="employe-toggle"], intercepts the button click,
+ * POSTs to /admin/employe/toggle/{id} with the CSRF token in the X-CSRF-Token header,
+ * and toggles the button between "Active" (primary) and "Inactive" (outline) on success.
+ */
 const forms = document.querySelectorAll('[data-form="employe-toggle"]');
 
 forms?.forEach(form => {
@@ -19,7 +26,7 @@ forms?.forEach(form => {
         });
 
         if (!response.ok) {
-            throw new Error('Erreur serveur');
+            throw new Error('Server error');
         }
     
         const data = await response.json();

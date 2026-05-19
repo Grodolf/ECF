@@ -119,7 +119,7 @@ body[data-theme=dark] .range-slider {
     background: transparent;
 }
 
-/* Track transparent Firefox */
+/* Transparent Firefox track */
 
 .range-slider input[type="range"]::-moz-range-track {
     height: 44px;

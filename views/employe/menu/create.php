@@ -63,7 +63,7 @@ use App\Core\Security;
             <input type="number" name="price" id="price" step="0.01" required>
         </div>
         <div class="input-container">
-            <label for="conditions">Contraintes spécifiques au menus :</label>
+            <label for="conditions">Contraintes spécifiques aux menus :</label>
             <input type="text" name="conditions" id="conditions">
         </div>
         <div class="input-container">

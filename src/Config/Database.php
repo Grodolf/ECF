@@ -4,8 +4,18 @@ declare(strict_types=1);
 
 namespace App\Config;
 
+/**
+ * MySQL database configuration provider.
+ *
+ * Reads connection parameters from environment variables populated by Env::loadEnv().
+ */
 class Database
 {
+    /**
+     * Returns the database connection configuration array.
+     *
+     * @return array Keys: host, port, dbname, username, password, ssl, ca_cert, charset.
+     */
     public static function getConfig(): array
     {
 

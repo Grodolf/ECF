@@ -7,6 +7,9 @@ namespace App\Models;
 use App\Core\DatabaseConnection;
 use PDO;
 
+/**
+ * Data-access layer for the schedules table (seven rows, one per day of the week).
+ */
 class ScheduleModel
 {
     /**

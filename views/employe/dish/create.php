@@ -36,7 +36,7 @@ use App\Core\Security;
             <label for="image">Photo du plat (jpg, png, webp) :</label>
             <input type="file" id="image" name="image" accept="image/*">
         </div>
-        <button type="submit" class="btn primary">Créer le plats!</button>
+        <button type="submit" class="btn primary">Créer le plat !</button>
     </form>
 </div>
 <div class="links">

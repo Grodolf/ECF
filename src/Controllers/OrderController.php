@@ -623,7 +623,7 @@ class OrderController extends AbstractController
                 ]
             );
         } catch (\Exception $e) {
-            error_log('Erreur envoi email confirmation commande : ' . $e->getMessage());
+            error_log('Order confirmation email error: ' . $e->getMessage());
         }
     }
 }

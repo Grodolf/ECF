@@ -4,8 +4,18 @@ declare(strict_types=1);
 
 namespace App\Config;
 
+/**
+ * SMTP email configuration provider.
+ *
+ * Reads connection parameters from environment variables populated by Env::loadEnv().
+ */
 class Smtp
 {
+    /**
+     * Returns the SMTP configuration array.
+     *
+     * @return array Keys: host, port, useAuth, user, password, fromEmail, fromName, debug.
+     */
     public static function getConfig(): array
     {
         return [

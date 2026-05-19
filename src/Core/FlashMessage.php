@@ -85,11 +85,11 @@ class FlashMessage
     public const DISH_UPDATED        = "Le plat a bien été modifié.";
     public const WRONG_DISH          = "Le plat demandé n'existe pas.";
 
-    //Schedules
+    // Schedules
     public const SCHEDULES_ERROR   = 'Impossible de mettre à jour les horaires.';
     public const SCHEDULES_SUCCESS = 'La mise à jour des horaires à été effectuée.';
 
-    //reviews
+    // Reviews
     public const REVIEW_SUCCESS = "Votre avis est bien enregistré, en attente de validation.";
     public const VALID_SUCCESS  = "L'avis a bien été validé.";
     public const WRONG_REVIEW   = "La commande n'existe pas.";
@@ -98,7 +98,7 @@ class FlashMessage
     public const STATUS_ERROR   = "Le status de la commande est incorrect";
     public const COMMENT_ERROR  = "La raison du refut est obligatoire";
 
-    //admin
+    // Admin
     public const EMPLOYE_TOGGLED = "Le status du salarié a été modifié";
 
 }

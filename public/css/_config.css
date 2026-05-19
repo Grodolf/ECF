@@ -30,7 +30,7 @@
     --error: #C41E3A;
     --error-contrast: var(--light-1);
 
-    /* Typogaphie */
+    /* Typography */
     --font-headline: Playfair, serif;
     --font-primary: Lora, sans-serif;
     --font-secondary: Playwrite, serif;
@@ -93,7 +93,7 @@ a:visited {
     appearance: none;
 }
 
-/* Gestion des themes */
+/* Theme management */
 body[data-theme=auto] {
     color: light-dark(var(--dark-1), var(--light-1));
     background-color: light-dark(var(--light-1), var(--dark-1));

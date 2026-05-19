@@ -3,7 +3,7 @@
 // ========
 
 // ---------------
-// Theme
+// Theme selector
 // ---------------
 
 const themeToggle = document.querySelector('#mode');
@@ -20,7 +20,7 @@ themeToggle?.addEventListener('change', (e) => {
 });
 
 // ---------------------------
-// VISIBILITÉ MOT DE PASSE
+// Password visibility toggle
 // ---------------------------
 
 const eyeButton = document.querySelector('#eye');
@@ -36,7 +36,7 @@ eyeButton?.addEventListener('click', () => {
 });
 
 // ---------------
-// Messages flash
+// Flash messages
 // ---------------
 
 const flash = document.querySelector('.flash-container');
@@ -48,13 +48,13 @@ if (flash) {
 }
 
 // ============================
-// 📱 RESPONSIVE - MEDIA QUERY
+// RESPONSIVE - MEDIA QUERIES
 // ============================
 
 const mobile = window.matchMedia('(max-width: 1199px)');
 
 // ------------------
-// Navigation mobile
+// Mobile navigation
 // ------------------
 
 const navButton = document.querySelector('#nav-button');
@@ -79,7 +79,7 @@ handleMobileNav(mobile);
 mobile.addEventListener('change', handleMobileNav);
 
 // --------------
-// Footer mobile
+// Mobile footer
 // --------------
 
 const footerButton = document.querySelector('#footer-button');
@@ -105,7 +105,7 @@ handleMobileFooter(mobile);
 mobile.addEventListener('change', handleMobileFooter);
 
 // -------------------
-// Filtre menu mobile
+// Mobile menu filter
 // -------------------
 
 const menuButton = document.querySelector('#menu-button');
@@ -130,7 +130,7 @@ handleMobileFilter(mobile);
 mobile.addEventListener('change', handleMobileFilter);
 
 // -------------------
-// Navigation desktop
+// Desktop navigation
 // -------------------
 
 const desktop = window.matchMedia('(min-width: 1200px)');

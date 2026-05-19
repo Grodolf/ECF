@@ -6,6 +6,12 @@ namespace App\Models;
 
 use App\Core\MongoDBConnection;
 
+/**
+ * Data-access layer for sales statistics stored in MongoDB.
+ *
+ * All queries target the 'sales' collection, where each document represents
+ * a monthly sales summary with a nested 'sales' array of individual order records.
+ */
 class StatsModel
 {
     private \MongoDB\Collection $collection;
@@ -15,11 +21,21 @@ class StatsModel
         $this->collection = MongoDBConnection::getInstance()->selectCollection('sales');
     }
 
+    /**
+     * Returns all distinct years present in the sales collection.
+     *
+     * @return array List of year values (int).
+     */
     public function getAvailableYears(): array
     {
         return $this->collection->distinct('year');
     }
 
+    /**
+     * Returns total order count and revenue grouped by menu, across all time.
+     *
+     * @return array Aggregated rows with _id (menu_id), title, total_sales, total_price.
+     */
     public function getOrdersByMenu(): array
     {
         $pipeline = [
@@ -36,6 +52,16 @@ class StatsModel
         return $orders->toArray();
     }
 
+    /**
+     * Returns total order count and revenue grouped by menu for a given date range.
+     *
+     * When year_start equals year_end the query filters on month range within that year.
+     * When the years differ it matches documents from month_start of year_start through
+     * month_end of year_end. An optional menu_id filter further restricts results.
+     *
+     * @param array $filters Keys: year_start, year_end, month_start, month_end, menu_id (optional).
+     * @return array Aggregated rows with _id (menu_id), title, total_sales, total_price.
+     */
     public function getRevenueByMenu(array $filters): array
     {
         $pipeline = [];

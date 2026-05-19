@@ -9,7 +9,7 @@ use App\Core\Security;
 </div>
 
 <section class="f-col g px d:col-5">
-    <h2>Avis en attentes de validation :</h2>
+    <h2>Avis en attente de validation :</h2>
 
     <table>
         <tr>

@@ -53,6 +53,11 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * Handles the contact form submission (POST only).
+     *
+     * Pipeline: CSRF check → required fields → DB insert → confirmation email → redirect.
+     */
     public function sendmail(): void
     {
         if (!isset($_POST['csrf_token']) || !Security::verifyCsrfToken($_POST['csrf_token'])) {
@@ -79,6 +84,9 @@ class MainController extends AbstractController
         exit;
     }
 
+    /**
+     * Renders the legal notices (mentions légales) page.
+     */
     public function legalNotice(): void
     {
         $this->renderView('ml.php', [
@@ -87,6 +95,9 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * Renders the general terms and conditions (CGV) page.
+     */
     public function cgv(): void
     {
         $this->renderView('cgv.php', [
@@ -95,6 +106,13 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * Forwards the contact form data to the admin mailbox.
+     *
+     * Failures are silently caught and logged so they never block the form submission flow.
+     *
+     * @param array $data Sanitised POST data (nom, email, title, message).
+     */
     private function sendContactMail(array $data): void
     {
         try {
@@ -114,7 +132,7 @@ class MainController extends AbstractController
                 ]
             );
         } catch (\Exception $e) {
-            error_log('Erreur envoi email modification statut de commande : ' . $e->getMessage());
+            error_log('Contact email error: ' . $e->getMessage());
         }
     }
 }
