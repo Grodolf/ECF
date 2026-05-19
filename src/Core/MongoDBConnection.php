@@ -26,13 +26,7 @@ class MongoDBConnection
         if (self::$instance === null) {
             $config = MongoDB::getConfig();
 
-            $uri = sprintf(
-                'mongodb://%s:%s@%s:%d',
-                rawurlencode($config['user']),
-                rawurlencode($config['password']),
-                $config['host'],
-                $config['port']
-            );
+            $uri = $config['uri'];
 
             try {
                 $client = new Client($uri);

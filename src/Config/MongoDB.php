@@ -15,15 +15,12 @@ class MongoDB
     /**
      * Returns the MongoDB connection configuration array.
      *
-     * @return array Keys: host, port, user, password, database.
+     * @return array Keys: uri, database.
      */
     public static function getConfig(): array
     {
         return [
-            'host'     => $_ENV['MONGO_HOST'] ?? 'localhost',
-            'port'     => (int) ($_ENV['MONGO_PORT'] ?? 27017),
-            'user'     => $_ENV['MONGO_USER'],
-            'password' => $_ENV['MONGO_PASS'],
+            'uri'      => $_ENV['MONGO_URI'],
             'database' => $_ENV['MONGO_DATABASE'],
         ];
     }
