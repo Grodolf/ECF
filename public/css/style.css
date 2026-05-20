@@ -163,6 +163,8 @@ h2 {
 
 section {
     width: 100%;
+    margin-top: 1dvh;
+    margin-bottom: 1dvh;
 }
 
 /* --- Home --- */
@@ -220,6 +222,13 @@ body[data-theme=dark] #salad {
     flex: 0 0 70dvw;
 }
 
+@media screen and (min-width: 1200px) {
+    .review {
+        flex-direction: column;
+        flex: 0 0 28rem;
+    }
+}
+
 /* --- Login - Register - reset,new password --- */
 
 .links {
@@ -234,6 +243,12 @@ body[data-theme=dark] #salad {
 
 .links>.btn {
     width: 90%;
+}
+
+@media screen and (min-width: 1200px) {
+    .links>.btn {
+        width: 20rem;
+    }
 }
 
 /* --- Profile --- */
@@ -329,11 +344,13 @@ body[data-theme=dark] .reject {
 .password {
     font-size: 1.6rem;
     font-weight: 800;
+    margin: 1dvh 0;
 }
 
 .warning {
     font-size: 1.2rem;
     font-weight: 600;
+    margin: 1dvh 0;
     color: var(--error);
     background-color: var(--error-contrast);
 }
@@ -352,7 +369,7 @@ footer li {
 }
 
 #footer-button>p::before {
-    content: '\2BC6';
+    content: '▼';
     margin-right: calc(var(--base-unit) / 4);
 }
 
@@ -411,6 +428,10 @@ body[data-theme=dark] footer {
 
     /* --- Header --- */
 
+    header select {
+        padding: 0 calc(var(--base-unit) / 2);
+    }
+
     #nav-button {
         display: none;
     }
@@ -447,13 +468,11 @@ body[data-theme=dark] footer {
         text-align: start;
     }
 
-    #devanture {
-        grid-row: 2 / span 2;
-    }
-
-    #team {
-        grid-column: 3 /span 3;
-        grid-row: 5 / span 3;
+    #devanture,
+    #team,
+    #salad {
+        width: 70%;
+        margin: 0 auto;
     }
 
     /* --- Login - Register - reset,new password --- */

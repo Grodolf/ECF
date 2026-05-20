@@ -7,7 +7,7 @@ use App\Core\Security;
     <p><strong>Cette section est réservée aux employés de Vite Et Gourmand!</strong></p>
 </div>
 
-<section class="f-col g px d:col-3">
+<section class="f-col it-center d:col-3">
     <h2>Commandes :</h2>
     
     <h3>Filtrer les commandes :</h3>
@@ -38,9 +38,9 @@ use App\Core\Security;
     </form>
 </section>
 
-<section class="d:col-5">
-<h2>Aperçu :</h2>
-    <div class="over my d:col-5">
+<section class="px d:col-5">
+    <h2>Aperçu :</h2>
+    <div class="over my">
         <table>
             <tr>
                 <th>ID</th>
@@ -59,7 +59,7 @@ use App\Core\Security;
                     <td><?= $order['id'] ?></td>
                     <td><?= Security::escapeHtml($order['menu_title']) ?></td>
                     <td><?= Security::escapeHtml($order['nb_people']) ?></td>
-                    <td><?= Security::escapeHtml($order['nom']) .'&nbsp'. Security::escapeHtml($order['prenom']) ?></td>
+                    <td><?= Security::escapeHtml($order['nom']) .'<br />'. Security::escapeHtml($order['prenom']) ?></td>
                     <td><?= Security::escapeHtml($order['email']) ?></td>
                     <td><?= Security::escapeHtml($order['gsm']) ?></td>
                     <td><?= Security::escapeHtml($order['delivery_address']) .',<br />'. Security::escapeHtml($order['delivery_city']) ?></td>

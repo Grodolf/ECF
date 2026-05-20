@@ -94,6 +94,13 @@ class EmployeController extends AbstractController
         $orderData['link_url'] = $_ENV['APP_URL'] . '/login';
         $orderData['link_text'] = 'Me connecter';
 
+        if ($statusId === 6) {
+            $this->orderModel->setMaterialLoaned($orderId);
+            $orderData['connect'] = "Vous avez 10 jours ouvrés pour restituer le matériel prêté. Sans retour dans ce délai, des frais de 600€ vous seront facturés conformément aux CGV.";
+            $orderData['link_url'] = $_ENV['APP_URL'] . '/contact';
+            $orderData['link_text'] = 'Contacter Vite & Gourmand';
+        }
+
         if ($statusId === self::STATUS_TERMINEE) {
             $orderData['connect'] = "Vous pouvez donner votre avis sur notre prestation en cliquant sur le liens suivant :";
             $orderData['link_url'] = $_ENV['APP_URL'] . '/login?redirect=/review/' . $orderId;
@@ -147,6 +154,9 @@ class EmployeController extends AbstractController
         }
 
         $orderData = $this->orderModel->findById($orderId);
+        $orderData['connect']   = '';
+        $orderData['link_url']  = '';
+        $orderData['link_text'] = '';
 
         $this->sendStatusUpdateOrderEmail($orderId, $orderData, $_POST['cancellation_reason']);
         Session::setFlash(FlashMessage::CANCEL_ORDER, 'success');
@@ -185,8 +195,8 @@ class EmployeController extends AbstractController
                     'comment_label'    => !empty($comment) ? 'Commentaire :' : '',
                     'comment'          => $comment,
                     'connect'          => $orderData['connect'],
-                    'link_url'       => $orderData['link_url'],
-                    'link_text'       => $orderData['link_text'],
+                    'link_url'         => $orderData['link_url'],
+                    'link_text'        => $orderData['link_text'],
                 ]
             );
         } catch (\Exception $e) {

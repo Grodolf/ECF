@@ -4,8 +4,8 @@ use App\Core\Security;
 
 ?>
 
-<div class="container flex ju-center">
-    <div class="f-col g- it-end shrink-0">
+<div class="container flex ju-end">
+    <div class="f-col g- it-end shrink-0 mr">
         <p>05 56 12 34 56</p>
         <p class="hidden" data-mobile-footer>76 rue des Trois-Conils</p>
         <p class="hidden" data-mobile-footer>Bordeaux</p>

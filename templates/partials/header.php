@@ -22,7 +22,7 @@ use App\Core\Session;
                 <?php endif; ?>
             </div>
             <div class="d:col-1">
-                <label for="mode">Thème :</label>
+                <label for="mode">🌗</label>
                 <select name="mode" id="mode">
                     <option value="auto" selected>Auto</option>
                     <option value="light">Clair</option>

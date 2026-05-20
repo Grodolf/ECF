@@ -20,7 +20,7 @@
 </ul>
 
 <div style="text-align: center; margin: 30px 0;">
-    <a href="http://localhost:9080" style="display: inline-block; background-color: #6B1F3F; color: #ffffff; padding: 15px 40px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+    <a href="{{link}}" style="display: inline-block; background-color: #6B1F3F; color: #ffffff; padding: 15px 40px; text-decoration: none; border-radius: 5px; font-weight: bold;">
         Découvrir nos menus
     </a>
 </div>

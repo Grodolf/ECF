@@ -31,7 +31,7 @@ eyeButton?.addEventListener('click', () => {
     passwordInput.type = type;
     
     const isVisible = type === 'text';
-    eyeButton.setAttribute('src', isVisible ? './img/eye-off.svg' : './img/eye.svg');
+    eyeButton.setAttribute('src', isVisible ? '/img/eye-off.svg' : '/img/eye.svg');
     eyeButton.setAttribute('aria-label', isVisible ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
 });
 

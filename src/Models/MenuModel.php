@@ -109,7 +109,7 @@ class MenuModel
         $stmt->execute([$id]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result ?: null;
+        return $result ?: [];
     }
 
     /**

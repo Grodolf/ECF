@@ -9,7 +9,7 @@ use App\Core\Security;
     <p><small>La vérification se fait uniquement pour éviter les propos déplacés, haineux ou insultants. Nous publierons tous les avis, même négatifs.</small></p>
 </div>
 
-<section class="f-col d:col-5">
+<section class="f-col g px it-center d:col-5">
     <h2>Détail de la commande :</h2>
 
     <table>
@@ -36,7 +36,7 @@ use App\Core\Security;
     </table>
 </section>
 
-<section class="f-col d:col-5">
+<section class="f-col g px it-center d:col-5">
     <h2>Votre avis :</h2>
 
     <form method="POST" action="/review/store/<?= $order['id'] ?>">

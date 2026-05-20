@@ -4,6 +4,8 @@ use App\Core\Security;
 
 ?>
 
+<section class="d:col-5">
+
 <h1>Compte Créé</h1>
 
 <p>Le compte lié à <?= Security::escapeHtml($email) ?> a bien été créé.</p>
@@ -14,3 +16,5 @@ use App\Core\Security;
 <p class="warning">Assurez-vous d'avoir bien noté le mot de passe avant de cliquer sur le lien ci-dessous !</p>
 
 <a class="btn primary" href="/admin/employes">Retour à la liste</a>
+
+</section>

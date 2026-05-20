@@ -129,7 +129,7 @@ class AdminController extends AbstractController
             exit;
         }
 
-        $password = Security::generateToken(16);
+        $password = Security::generateToken(8);
         $hash = Security::hashPassword($password);
         $employe = [
             'nom'      => $_POST['nom'],
@@ -174,7 +174,8 @@ class AdminController extends AbstractController
 
         $this->renderView('admin/employe/confirmation.php', [
             'password' => $password,
-            'email'    => $email
+            'email'    => $email,
+            'title'    => 'Mot de passe!'
         ]);
     }
 

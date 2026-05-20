@@ -6,11 +6,11 @@ $month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao�
 
 ?>
 
-<section class="px d:col-5">
+<section class="f-col g px it-center d:col-1">
     <h2>Options de filtrage</h2>
     
     <form method="GET" action="/admin/stats">
-        <fieldset>
+        <fieldset class="f-col g">
             <legend>Date de début</legend>
             <div class="input-container">
                 <label for="year_start">Année :</label>
@@ -37,7 +37,7 @@ $month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao�
                 </select>
             </div>
         </fieldset>
-        <fieldset>
+        <fieldset class="f-col g">
             <legend>Date de fin</legend>
             <div class="input-container">
                 <label for="year_end">Année :</label>
@@ -80,16 +80,17 @@ $month = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao�
     </form>
 </section>
 
-<section class="px d:col-5">
-    <h3>Nombre de ventes</h3>
-    <div class="charts">
-        <div class="px" id="chart-orders"></div>
-    </div>
-</section>
-<section class="px d:col-5">
+<section class="d:col-4">
     <h3>Chiffre d'affaires</h3>
     <div class="charts">
         <div class="px" id="chart-revenues"></div>
+    </div>
+</section>
+<div></div>
+<section class="d:col-4">
+    <h3>Nombre de ventes</h3>
+    <div class="charts">
+        <div class="px" id="chart-orders"></div>
     </div>
 </section>
 

@@ -104,12 +104,12 @@ class GeocodingService
      * @param string $deliveryCity    City
      * @return float|null Distance in kilometres, or null if geocoding fails
      */
-    public function getDistanceFromBordeaux(string $deliveryAddress, string $deliveryCity): ?float
+    public function getDistanceFromBordeaux(string $deliveryAddress, string $deliveryPostalCode, string $deliveryCity): ?float
     {
         $bordeauxLat = 44.837789;
         $bordeauxLon = -0.57918;
 
-        $fullAddress = "$deliveryAddress, $deliveryCity, France";
+        $fullAddress = "$deliveryAddress, $deliveryPostalCode, $deliveryCity, France";
 
         if (isset($_SESSION['geocode_cache'][$fullAddress])) {
             return $_SESSION['geocode_cache'][$fullAddress];

@@ -2,6 +2,9 @@
 
 use App\Core\Security;
 
+$themes_seen = [];
+$regimes_seen = [];
+
 ?>
 
 <div class="f-col g it-center d:col-5 d:mx++">
@@ -53,14 +56,12 @@ use App\Core\Security;
             <label for="theme">Thème</label>
             <select name="theme" id="theme">
                 <option value="">Tous les thèmes</option>
-                <?php
-                $themes_seen = [];
-foreach ($menus as $menu) :
-    if (in_array($menu['theme_id'], $themes_seen)) {
-        continue;
-    }
-    $themes_seen[] = $menu['theme_id'];
-    ?>
+                <?php foreach ($menus as $menu) :
+                    if (in_array($menu['theme_id'], $themes_seen)) {
+                        continue;
+                    }
+                    $themes_seen[] = $menu['theme_id'];
+                    ?>
                     <option value="<?= $menu['theme_id'] ?>"><?= Security::escapeHtml($menu['theme']) ?></option>
                 <?php endforeach; ?>
             </select>
@@ -70,14 +71,12 @@ foreach ($menus as $menu) :
             <label for="regime">Régime</label>
             <select name="regime" id="regime">
                 <option value="">Tous les régimes</option>
-                <?php
-    $regimes_seen = [];
-foreach ($menus as $menu) :
-    if (in_array($menu['regime_id'], $regimes_seen)) {
-        continue;
-    }
-    $regimes_seen[] = $menu['regime_id'];
-    ?>
+                <?php foreach ($menus as $menu) :
+                    if (in_array($menu['regime_id'], $regimes_seen)) {
+                        continue;
+                    }
+                    $regimes_seen[] = $menu['regime_id'];
+                    ?>
                     <option value="<?= $menu['regime_id'] ?>"><?= Security::escapeHtml($menu['regime']) ?></option>
                 <?php endforeach; ?>
             </select>
@@ -89,7 +88,7 @@ foreach ($menus as $menu) :
     <p id="results-count" class="text-muted"></p>
 </div>
 
-<div id="menus-container" class="f-col g d:col-3">
+<div id="menus-container" class="f-col g mb d:col-3">
     <?php foreach ($menus as $menu) : ?>
         <div class="card inline">
             <div class="card-header">

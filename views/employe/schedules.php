@@ -8,7 +8,7 @@ use App\Core\Security;
     <p><strong>Cette section est réservée aux employés de Vite Et Gourmand!</strong></p>
 </div>
 
-<section class="d:col-5">
+<section class="f-col g px it-center d:col-5">
     <form action="/employe/schedule/update" method="post">
         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
             <?php foreach ($schedules as $schedule) : ?>

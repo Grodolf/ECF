@@ -6,9 +6,10 @@ use App\Core\Security;
 
 <div class="container">
 
-    <section class="px d:col-5">
-        <h2>Récapitulatif</h2>
-        <div class="f-col g-">
+    <section class="f-col it-center px d:col-5">
+        <div class="f-col g">
+            <h2>Récapitulatif</h2>
+
             <p><strong>Menu :</strong> <?= Security::escapeHtml($menu['title']) ?></p>
             <p><strong>Thème :</strong> <?= Security::escapeHtml($menu['theme_name']) ?></p>
             <p><strong>Régime :</strong> <?= Security::escapeHtml($menu['regime_name']) ?></p>

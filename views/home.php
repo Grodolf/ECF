@@ -4,9 +4,9 @@ use App\Core\Security;
 
 ?>
 
-<section class="f-col g px d:col-3">
+<section class="f-col g px d:col-5 d:px++">
 
-    <picture>
+    <picture id="devanture">
         <source srcset="/img/devanture_400.webp" media="(max-width: 480px)">
         <source srcset="/img/devanture_600.webp" media="(max-width: 768px)">
         <source srcset="/img/devanture_800.webp" media="(min-width: 769px)">
@@ -18,19 +18,9 @@ use App\Core\Security;
     <p> Chaque prestation est unique, pensée et  réalisée sur mesure pour faire de votre événement un moment inoubliable.</p>
 </section>
 
-<div id="salad" class="d:col-2">
-    <picture>
-        <source srcset="/img/salad_400.webp" media="(max-width: 480px)">
-        <source srcset="/img/salad_600.webp" media="(max-width: 768px)">
-        <source srcset="/img/salad_800.webp" media="(min-width: 769px)">
-        <img src="/img/salad_400.webp" alt="Petits plats, grande qualité">
-    </picture>
-    <p>Menu traditionnel, végétarien, vegan  ou adapté à des régimes spécifiques, nous composons pour vous des plats  qui raviront vos convives.</p>
-</div>
+<section class="f-col g px d:col-5 d:px++">
+    <h2>Notre équipe</h2>
 
-<h2 class="d:col-5">Notre équipe</h2>
-
-<section class="f-col g px d:col-3">
     <picture id="team" class="d:col-3">
         <source srcset="/img/equipe_400.webp" media="(max-width: 480px)">
         <source srcset="/img/equipe_600.webp" media="(max-width: 768px)">
@@ -43,22 +33,29 @@ use App\Core\Security;
 
 </section>
 
-
-<section class="f-col g px d:col-2">
-
-    <h3>L'excellence&nbsp;au&nbsp;service de&nbsp;vos&nbsp;événements</h3>
+<section class="f-col g px d:col-5 d:px++">
+    <h2>L'excellence au service de vos événements</h2>
 
     <p>Fort de notre expérience de 25 ans dans le secteur du traiteur, nous avons  développé un savoir-faire reconnu et une expertise qui nous permet de gérer  avec aisance tous types d'événements, des plus intimes aux plus prestigieux. </p>
     <p>Notre équipe vous accompagne à chaque étape de votre projet : de la conception  de votre menu personnalisé jusqu'au service le jour J, en passant par la mise  à disposition de matériel si nécessaire. Nous prenons en charge tous les détails  pour que vous puissiez profiter pleinement de votre événement.</p>
     <p>Ponctualité, présentation soignée et respect de vos attentes sont les maîtres-mots  de notre engagement envers vous. Chaque prestation est l'occasion de prouver que  qualité et réactivité peuvent aller de pair.</p>
-
 </section>
+
+<div id="salad" class="d:col-5">
+    <picture>
+        <source srcset="/img/salad_400.webp" media="(max-width: 480px)">
+        <source srcset="/img/salad_600.webp" media="(max-width: 768px)">
+        <source srcset="/img/salad_800.webp" media="(min-width: 769px)">
+        <img src="/img/salad_400.webp" alt="Petits plats, grande qualité">
+    </picture>
+    <p>Menu traditionnel, végétarien, vegan  ou adapté à des régimes spécifiques, nous composons pour vous des plats  qui raviront vos convives.</p>
+</div>
 
 <section class="d:col-5">
     <h2>Vos avis</h2>
     
     <div class="over">
-        <div class="flex ju-around max">
+        <div class="flex g ju-around max">
             <?php foreach ($reviews as $review) : ?>
                 <div class="card review">
                     <div class="card-header flex ju-around">

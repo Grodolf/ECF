@@ -20,9 +20,5 @@ public/uploads/*
 tmp/
 
 # Fly.io
-fly.toml
 .dockerignore
 
-# A remettre en ligne
-_documentation/
-_docker/

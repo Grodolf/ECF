@@ -19,12 +19,12 @@ use App\Models\OrderModel;
 class OrderController extends AbstractController
 {
     private const ORDER_ROUTE              = 'order/';
-    private const ROUTE_MENU              = 'menu/';
-    private const ROUTE_MENUS             = 'menus';
-    private const ROUTE_PROFILE           = 'profile';
+    private const ROUTE_MENU               = 'menu/';
+    private const ROUTE_MENUS              = 'menus';
+    private const ROUTE_PROFILE            = 'profile';
     private const ROUTE_ORDER_CONFIRMATION = 'order/confirmation/';
-    private const ROUTE_ORDER_DETAIL      = 'order/detail/';
-    private const ROUTE_ORDER_EDIT        = 'order/edit/';
+    private const ROUTE_ORDER_DETAIL       = 'order/detail/';
+    private const ROUTE_ORDER_EDIT         = 'order/edit/';
 
     private MenuModel $menuModel;
     private OrderModel $orderModel;
@@ -135,7 +135,7 @@ class OrderController extends AbstractController
         }
 
         $pricing = $this->computeMenuPrice($menu, $input['nbPeople']);
-        [$deliveryCost, , $geocodingError] = $this->computeDeliveryCost($input['deliveryAddress'], $input['deliveryCity']);
+        [$deliveryCost, , $geocodingError] = $this->computeDeliveryCost($input['deliveryAddress'], $input['deliveryPostalCode'], $input['deliveryCity']);
 
         if ($geocodingError !== null) {
             Session::setFlash($geocodingError, 'error');
@@ -197,6 +197,7 @@ class OrderController extends AbstractController
         $menuId          = (int) ($_POST['menu_id'] ?? 0);
         $nbPeople        = (int) ($_POST['nb_people'] ?? 0);
         $deliveryAddress = $_POST['delivery_address'] ?? '';
+        $deliveryPostalCode = $_POST['delivery_postal_code'] ?? '';
         $deliveryCity    = $_POST['delivery_city'] ?? '';
 
         $menu = $this->menuModel->findById($menuId);
@@ -213,7 +214,7 @@ class OrderController extends AbstractController
         }
 
         $pricing = $this->computeMenuPrice($menu, $nbPeople);
-        [$deliveryCost, $distance, $geocodingError] = $this->computeDeliveryCost($deliveryAddress, $deliveryCity);
+        [$deliveryCost, $distance, $geocodingError] = $this->computeDeliveryCost($deliveryAddress, $deliveryPostalCode, $deliveryCity);
 
         if ($geocodingError !== null) {
             echo json_encode(['error' => $geocodingError]);
@@ -367,7 +368,7 @@ class OrderController extends AbstractController
                 exit;
             }
 
-            $delivery = $this->computeDeliveryCost($_POST['delivery_address'], $_POST['delivery_city']);
+            $delivery = $this->computeDeliveryCost($_POST['delivery_address'], $_POST['delivery_postal_code'], $_POST['delivery_city']);
             if (!empty($delivery[2])) {
                 Session::setFlash(FlashMessage::GEOCODING_ERROR, 'error');
                 $this->redirectToRoute(self::ROUTE_ORDER_EDIT . $orderId);
@@ -456,12 +457,13 @@ class OrderController extends AbstractController
     private function parseOrderPost(): array
     {
         return [
-            'menuId'          => (int) ($_POST['menu_id'] ?? 0),
-            'nbPeople'        => (int) ($_POST['nb_people'] ?? 0),
-            'deliveryAddress' => trim($_POST['delivery_address'] ?? ''),
-            'deliveryCity'    => trim($_POST['delivery_city'] ?? ''),
-            'deliveryDate'    => trim($_POST['delivery_date'] ?? ''),
-            'deliveryTime'    => trim($_POST['delivery_time'] ?? ''),
+            'menuId'             => (int) ($_POST['menu_id'] ?? 0),
+            'nbPeople'           => (int) ($_POST['nb_people'] ?? 0),
+            'deliveryAddress'    => trim($_POST['delivery_address'] ?? ''),
+            'deliveryPostalCode' => trim($_POST['delivery_postal_code'] ?? ''),
+            'deliveryCity'       => trim($_POST['delivery_city'] ?? ''),
+            'deliveryDate'       => trim($_POST['delivery_date'] ?? ''),
+            'deliveryTime'       => trim($_POST['delivery_time'] ?? ''),
         ];
     }
 
@@ -479,6 +481,7 @@ class OrderController extends AbstractController
         $route  = self::ORDER_ROUTE . $input['menuId'];
         $fields = [
             'delivery_address' => $input['deliveryAddress'],
+            'delivery_postal_code' => $input['deliveryPostalCode'],
             'delivery_city'    => $input['deliveryCity'],
             'delivery_date'    => $input['deliveryDate'],
             'delivery_time'    => $input['deliveryTime'],
@@ -535,7 +538,7 @@ class OrderController extends AbstractController
      * @param string $city    Delivery city.
      * @return array{0: float, 1: float|null, 2: string|null} [cost, distance in km, error message]
      */
-    private function computeDeliveryCost(string $address, string $city): array
+    private function computeDeliveryCost(string $address, string $code, string $city): array
     {
         if ($city === 'Bordeaux' || empty($address) || empty($city)) {
             return [0, null, null];
@@ -546,7 +549,7 @@ class OrderController extends AbstractController
         $error    = null;
 
         try {
-            $distance = $this->geocodingService->getDistanceFromBordeaux($address, $city);
+            $distance = $this->geocodingService->getDistanceFromBordeaux($address, $code, $city);
             if ($distance !== null) {
                 $cost = 5 + ($distance * 0.59);
             } else {

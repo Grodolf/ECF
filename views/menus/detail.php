@@ -28,7 +28,7 @@ $stockOk = isset($menu['stock']) && $menu['stock'] >= $menu['min_people'];
     <?php endif; ?>
 </div>
 
-<div class="f-col g mt d:col-3">
+<section class="f-col g px it-center d:col-3">
     <?php if (!empty($dishesByType)) : ?>
         <p class="px"><?= Security::escapeHtml($menu['description']) ?></p>
     <?php else : ?>
@@ -65,7 +65,7 @@ $stockOk = isset($menu['stock']) && $menu['stock'] >= $menu['min_people'];
             <?php endforeach; ?>
         </section>
     <?php endforeach; ?>
-</div>
+</section>
 
 <div class="f-col g it-center d:col-2">
     <?php if (!empty($menu['conditions'])) : ?>
@@ -75,6 +75,7 @@ $stockOk = isset($menu['stock']) && $menu['stock'] >= $menu['min_people'];
 
     <?php if ($stockOk) : ?>
         <p class="px">Il y a actuellement <?= $menu['stock'] ?> menus disponibles à la commande.</p>
+        <p class="px">Au prix de <?= $menu['base_price'] ?>€ par personne.</p>
     <?php else : ?>
         <p class="px">Ce menu est actuellement indisponible.</p>
     <?php endif; ?>

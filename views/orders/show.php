@@ -6,7 +6,7 @@ use App\Core\Security;
 <div class="container f-col it-center g d:col-5">
     <p class="">Voici le détail de votre commande <strong>#<?= $order['id'] ?></strong>.</p>
     
-    <section class="f-col g">
+    <section class="f-col g px it-center d:col-5">
         <h2>Récapitulatif</h2>
         <div class="f-col g">
             <div class="flex ju-between d:g++">
@@ -36,7 +36,7 @@ use App\Core\Security;
         </div>
     </section>
     
-    <section class="f-col g">
+    <section class="f-col g px it-center d:col-5">
         <h2>Suivi de la commande</h2>
         <?php if (empty($history)) : ?>
             <p class="text-muted">Aucun historique disponible.</p>
@@ -64,6 +64,9 @@ use App\Core\Security;
                     <label for="status_id">Nouveau statut</label>
                     <select name="status_id" id="status_id">
                         <?php foreach ($statuses as $status) : ?>
+                            <?php if ($status['id'] < $order['status_id']) {
+                                continue;
+                            } ?>
                             <option value="<?= $status['id'] ?>" <?= $status['id'] == $order['status_id'] ? 'selected' : '' ?>>
                                 <?= Security::escapeHtml($status['name']) ?>
                             </option>

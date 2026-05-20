@@ -64,7 +64,7 @@ class MenuController extends AbstractController
         $menus = $this->imagesByMenuId($menus, $images);
 
         $this->renderView('menus/list.php', [
-            'title' => 'Découvrez nos&nbsp;menus',
+            'title' => 'Découvrez nos menus',
             'description' => 'Vous trouverez l\'ensemble de nos menus, à base de produits frais et de saison.',
             'menus' => $menus,
             'scripts' => ['/js/modules/MenuFilter.js']

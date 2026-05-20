@@ -414,7 +414,7 @@ class OrderModel
                 throw new PDOException('Failed to cancel the order.');
             }
 
-            $com = $user['prenom'] . ' ' . $user['nom'] . ' cancelled the order. Reason: ' . $data['cancellation_reason'];
+            $com = $user['prenom'] . ' ' . $user['nom'] . ' a annulé la commande pour la raison suivante: ' . $data['cancellation_reason'];
             $this->addStatusHistory($orderId, 8, $user['id'], $com);
 
             self::getDb()->commit();
@@ -468,6 +468,37 @@ class OrderModel
             $orderId,
         ]);
 
+        return $stmt->rowCount() === 1;
+    }
+
+    /**
+     * Marks material as loaned and computes the return deadline (10 business days from today).
+     *
+     * @param int $orderId
+     * @return bool True if the row was updated.
+     */
+    public function setMaterialLoaned(int $orderId): bool
+    {
+        $deadline = new \DateTime();
+        $daysAdded = 0;
+
+        while ($daysAdded < 10) {
+            $deadline->modify('+1 day');
+            $dayOfWeek = (int) $deadline->format('N');
+            if ($dayOfWeek < 6) {
+                $daysAdded++;
+            }
+        }
+
+        $query = "UPDATE orders 
+              SET material_loaned = TRUE, 
+                  material_return_deadline = :deadline 
+              WHERE id = :id";
+        $stmt = self::getDb()->prepare($query);
+        $stmt->execute([
+            'deadline' => $deadline->format('Y-m-d H:i:s'),
+            'id'       => $orderId
+        ]);
         return $stmt->rowCount() === 1;
     }
 }

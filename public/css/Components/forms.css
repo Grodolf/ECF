@@ -3,11 +3,11 @@
 **/
 
 form {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     gap: calc(var(--base-unit) * 1.5);
-    padding: 0 var(--base-unit);
+    margin: 0 auto;
 }
 
 label {

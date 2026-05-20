@@ -263,7 +263,7 @@ class AuthController extends AbstractController
         $this->requireFields($_POST, ['password', 'csrf_token', 'reset_token'], self::ROUTE_RESET_PASSWORD);
         $this->requireValidPassword($password, self::ROUTE_RESET_PASSWORD);
 
-        if (!$this->userModel->updatePassword($tokenData['user_id'], Security::hashPassword($password))) {
+        if (!$this->userModel->updatePassword((int) $tokenData['user_id'], Security::hashPassword($password))) {
             Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
             $this->redirectToRoute(self::ROUTE_RESET_PASSWORD);
             exit;
@@ -354,7 +354,11 @@ class AuthController extends AbstractController
                 $post['prenom'] . ' ' . $post['nom'],
                 'Bienvenue',
                 'welcome',
-                ['nom' => $post['nom'], 'prenom' => $post['prenom']]
+                [
+                    'nom' => $post['nom'],
+                    'prenom' => $post['prenom'],
+                    'link' => $_ENV['APP_URL'] . '/menus'
+                ],
             );
         } catch (\Exception $e) {
             error_log('Welcome email error: ' . $e->getMessage());

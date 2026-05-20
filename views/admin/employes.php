@@ -9,7 +9,7 @@ use App\Core\Security;
     <a class="btn primary" href="employe/create">Créer un nouveau compte employé</a>
 </div>
 
-<section class="d:col-5">
+<section class="f-col g px it-center d:col-5">
     <h2>Liste des comptes employés :</h2>
 
     <div class="over">

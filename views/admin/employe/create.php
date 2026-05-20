@@ -1,9 +1,9 @@
 
-<div class="f-col ju-center g+ it-center d:col-5">
+<div class="f-col ju-center it-center d:col-5">
     <p><strong>Cette section est réservée à l'administrateur de Vite Et Gourmand!</strong></p>
 </div>
 
-<section class="f-col d:col-5">
+<section class="f-col g px it-center d:col-5">
     <h2>Création d'un compte employé</h2>
     <form action="/admin/employe/store" method="POST">
         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">

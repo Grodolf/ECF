@@ -49,7 +49,7 @@ $date = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatte
     <?php endif; ?>
 </section>
 
-<div class="links d:col-5">
+<div class="links">
     <?php if (in_array($user['role'], ['employe', 'admin'])) : ?>
         <a class="btn primary" href="/employe/orders">Gestion des commandes</a>
         <a class="btn primary" href="/employe/dishes">Gestion des plats</a>

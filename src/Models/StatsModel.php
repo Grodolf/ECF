@@ -43,9 +43,10 @@ class StatsModel
             ['$group' => [
                 '_id'         => '$sales.menu_id',
                 'title'       => ['$first' => '$sales.title'],
-                'total_sales' => ['$sum' => 1],
+                'total_sales' => ['$sum' => '$sales.people'],
                 'total_price' => ['$sum' => '$sales.total_price']
-            ]]
+            ]],
+            ['$sort' => ['title' => 1]]
         ];
         $orders = $this->collection->aggregate($pipeline);
 
@@ -96,9 +97,10 @@ class StatsModel
                 '$group' => [
                     '_id'         => '$sales.menu_id',
                     'title'       => ['$first' => '$sales.title'],
-                    'total_sales' => ['$sum' => 1],
+                    'total_sales' => ['$sum' => '$sales.people'],
                     'total_price' => ['$sum' => '$sales.total_price']
             ]];
+        $pipeline[] = ['$sort' => ['title' => 1]];
 
         $revenue = $this->collection->aggregate($pipeline);
 

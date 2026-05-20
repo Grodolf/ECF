@@ -13,7 +13,7 @@ if ($menu) {
 <div class="container">
     <?php if ($menu) : ?>
 
-        <section class="px d:col-5">
+        <section class="f-col g px d:col-5">
             <h2>Récapitulatif</h2>
             <div class="f-col g-">
                 <p><strong>Menu :</strong> <?= Security::escapeHtml($menu['title']) ?></p>
@@ -29,17 +29,19 @@ if ($menu) {
 
     <?php else : ?>
 
-        <form class="my" id="order-form" method="POST" action="/order/store">
+        <form id="order-form" method="POST" action="/order/store">
             <div class="input-container">
                 <label for="menu_id">Choix du menu</label>
-                <select name="menu_id" id="menu_id">
+                <select class="mr" name="menu_id" id="menu_id">
                     <?php foreach ($list as $l) : ?>
+                        <?php if ($l['min_people'] > $l['stock']) {
+                            continue;
+                        } ?>
                         <option value="<?= $l['id'] ?>"><?= $l['title'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <p id="base-price"><strong>Prix de base :</strong> <?= number_format($menuPrice, 2, ',', ' ') ?>&nbsp;€</p>
-
     <?php endif; ?>
 
         <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
@@ -48,22 +50,22 @@ if ($menu) {
             
             <div class="input-container">
                 <label for="nom">Nom</label>
-                <input type="text" id="nom" value="<?= Security::escapeHtml($user['nom']) ?>" disabled>
+                <input type="text" id="nom" value="<?= Security::escapeHtml($user['nom']) ?>"readonly>
             </div>
             
             <div class="input-container">
                 <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" value="<?= Security::escapeHtml($user['prenom']) ?>" disabled>
+                <input type="text" id="prenom" value="<?= Security::escapeHtml($user['prenom']) ?>"readonly>
             </div>
             
             <div class="input-container">
                 <label for="email">Email</label>
-                <input type="email" id="email" value="<?= Security::escapeHtml($user['email']) ?>" disabled>
+                <input type="email" id="email" value="<?= Security::escapeHtml($user['email']) ?>"readonly>
             </div>
             
             <div class="input-container">
                 <label for="gsm">Téléphone</label>
-                <input type="tel" id="gsm" value="<?= Security::escapeHtml($user['gsm'] ?? '') ?>" disabled>
+                <input type="tel" id="gsm" value="<?= Security::escapeHtml($user['gsm'] ?? '') ?>"readonly>
             </div>
         </fieldset>
         
@@ -71,7 +73,7 @@ if ($menu) {
             <legend>Livraison</legend>
             
             <div class="input-container">
-                <label for="delivery_address">Adresse de livraison *</label>
+                <label for="delivery_address">Adresse de livraison :</label>
                 <input type="text"
                        id="delivery_address"
                        name="delivery_address"
@@ -79,9 +81,19 @@ if ($menu) {
                        value="<?= Security::escapeHtml($user['adresse'] ?? '') ?>"
                        required>
             </div>
+
+            <div class="input-container">
+                <label for="delivery_postal_code">Code postale :</label>
+                <input type="text"
+                       id="delivery_postal_code"
+                       name="delivery_postal_code"
+                       placeholder="Code postale"
+                       value="<?= Security::escapeHtml($user['code_postal'] ?? '') ?>"
+                       required>
+            </div>
             
             <div class="input-container">
-                <label for="delivery_city">Ville *</label>
+                <label for="delivery_city">Ville :</label>
                 <input type="text"
                        id="delivery_city"
                        name="delivery_city"
@@ -91,7 +103,7 @@ if ($menu) {
             </div>
             
             <div class="input-container">
-                <label for="delivery_date">Date de livraison *</label>
+                <label for="delivery_date">Date de livraison :</label>
                 <input type="date"
                        id="delivery_date"
                        name="delivery_date"
@@ -100,7 +112,7 @@ if ($menu) {
             </div>
             
             <div class="input-container">
-                <label for="delivery_time">Heure souhaitée *</label>
+                <label for="delivery_time">Heure souhaitée :</label>
                 <input type="time"
                        id="delivery_time"
                        name="delivery_time"
@@ -112,7 +124,7 @@ if ($menu) {
             <legend>Nombre de convives</legend>
             
             <div class="input-container">
-                <label for="nb_people">Nombre de personnes *</label>
+                <label for="nb_people">Nombre de personnes :</label>
                 <input type="number"
                        id="nb_people"
                        name="nb_people"

@@ -1,4 +1,4 @@
-<section class="d:col-5">
+<section class="f-col g px it-center d:col-5">
     <h2>Formulaire de contact</h2>
 
     <form action="/sendmail" method="POST">
