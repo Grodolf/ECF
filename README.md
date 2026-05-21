@@ -169,9 +169,11 @@ ECF/
 │   ├── Dockerfile            Image PHP 8.2 + Apache (dev)
 │   ├── config/               php.ini, .env
 │   └── README.md
-├── _documentation/           MCD, MLD, SQL, notes projet
-│   ├── Mode d'emploi
-│   └── MCD_MLD.md
+├── _documentation/
+│   ├── design /              mockups et wireframes
+│   ├── MCD_MLD.md
+│   ├── Mode d'emploi.pdf
+│   └── PROJECT.md
 ├── config/
 │   └── ssl/                  Certificat CA Aiven (prod)
 ├── public/                   DocumentRoot
@@ -208,6 +210,6 @@ ECF/
 | Champ | Valeur |
 | --- | --- |
 | Email | `admin@vite-et-gourmand.fr` |
-| Mot de passe | `Admin123!` |
+| Mot de passe | Dans le document **"Copie à rendre"** |
 
 > À changer immédiatement après la première connexion en production.

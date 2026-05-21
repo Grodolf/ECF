@@ -55,7 +55,7 @@ use App\Core\Security;
     <h2>Vos avis</h2>
     
     <div class="over">
-        <div class="flex g ju-around max">
+        <div class="flex g">
             <?php foreach ($reviews as $review) : ?>
                 <div class="card review">
                     <div class="card-header flex ju-around">

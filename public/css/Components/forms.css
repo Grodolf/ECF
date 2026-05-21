@@ -83,7 +83,7 @@ form>button {
     gap: calc(var(--base-unit) / 2);
 }
 
-#eye {
+.eye {
     cursor: pointer;
     position: absolute;
     right: 0;
@@ -101,7 +101,7 @@ form>button {
         margin: 0 auto;
     }
 
-    #eye {
+    .eye {
         right: calc(var(--base-unit) * -2.5);
         top: calc(var(--base-unit) * 2.2);
         scale: 1;
@@ -126,7 +126,7 @@ form>button {
         align-items: center;
     }
 
-    #eye {
+    .eye {
         right: calc(var(--base-unit) * -2.5);
         top: calc(var(--base-unit) * 0.5);
         scale: 1;

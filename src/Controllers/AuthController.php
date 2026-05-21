@@ -21,6 +21,7 @@ class AuthController extends AbstractController
     private const ROUTE_REGISTER       = 'register';
     private const ROUTE_RESET_PASSWORD = 'reset-password';
     private const ROUTE_HOME           = 'home';
+    private const ROUTE_LIST           = 'menus';
 
     private UserModel $userModel;
 
@@ -77,6 +78,12 @@ class AuthController extends AbstractController
             exit;
         }
 
+        if (!$user['actif']) {
+            Session::setFlash('Ce compte a été désactivé.', 'error');
+            $this->redirectToRoute(self::ROUTE_HOME);
+            exit;
+        }
+
         RateLimiter::reset('login', $loginId);
         Session::setUser($user);
         Session::setFlash(FlashMessage::LOGIN_SUCCESS, 'success');
@@ -89,7 +96,7 @@ class AuthController extends AbstractController
             if (in_array($user['role'], ['employe', 'admin'])) {
                 $this->redirectToRoute('profile');
             } else {
-                $this->redirectToRoute(self::ROUTE_HOME);
+                $this->redirectToRoute(self::ROUTE_LIST);
             }
         }
         exit;
@@ -263,7 +270,7 @@ class AuthController extends AbstractController
         $this->requireFields($_POST, ['password', 'csrf_token', 'reset_token'], self::ROUTE_RESET_PASSWORD);
         $this->requireValidPassword($password, self::ROUTE_RESET_PASSWORD);
 
-        if (!$this->userModel->updatePassword((int) $tokenData['user_id'], Security::hashPassword($password))) {
+        if (!$this->userModel->updatePassword($tokenData['user_id'], Security::hashPassword($password))) {
             Session::setFlash(FlashMessage::GENERIC_ERROR, 'error');
             $this->redirectToRoute(self::ROUTE_RESET_PASSWORD);
             exit;

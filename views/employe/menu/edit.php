@@ -108,7 +108,7 @@ use App\Core\Security;
                 <?php foreach ($images as $image) : ?>
                     <div class="f-col">
                         <input type="hidden" name="image_id[]" value="<?= $image['id'] ?>">
-                        <img src="<?= $image['image_url'] ?>" alt="">
+                        <img class="menu-img" src="<?= $image['image_url'] ?>" alt="">
                         <label for="alt_text<?= $image['id'] ?>">Alt :</label>
                         <input type="text" name="alt_text[]" id="alt_text<?= $image['id'] ?>" value="<?= Security::escapeHtml($image['alt_text']) ?>" required>
                         <label for="display_order<?= $image['id'] ?>">Ordre d'affichage :</label>

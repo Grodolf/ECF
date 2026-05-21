@@ -41,7 +41,7 @@
     <div class="input-container rel">
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" name="password" required>
-        <img id="eye" src="/img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
+        <img class="eye" src="/img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
     </div>
 
     <small>10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial</small>

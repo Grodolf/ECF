@@ -18,13 +18,10 @@
 
 ## 1. MCD — Modèle Conceptuel de Données
 
-Le MCD représente les entités métier et leurs associations sans détail d'implémentation (pas de clés étrangères).  
-Les tables d'association pures (`menu_dishes`, `dish_allergenes`) sont représentées par des relations N,N directes.
-
 ### Cardinalités
 
 | Notation Mermaid | Signification |
-|---|---|
+| --- | --- |
 | `\|\|` | Exactement 1 |
 | `\|o` | 0 ou 1 |
 | `o{` | 0 ou plusieurs |
@@ -189,8 +186,6 @@ erDiagram
 ---
 
 ## 2. MLD — Modèle Logique de Données
-
-Le MLD est la traduction relationnelle du MCD : toutes les clés primaires, clés étrangères et types physiques sont explicites.
 
 ### 2.1 Domaine Catalogue
 
@@ -443,7 +438,7 @@ erDiagram
 ### Table `users`
 
 | Colonne | Type | Contrainte | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `id` | `CHAR(36)` | PK, DEFAULT UUID() | Identifiant UUID unique |
 | `nom` | `VARCHAR(100)` | NOT NULL | Nom de famille |
 | `prenom` | `VARCHAR(100)` | NOT NULL | Prénom |
@@ -461,7 +456,7 @@ erDiagram
 ### Table `menus`
 
 | Colonne | Type | Contrainte | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `id` | `INT` | PK, AUTO_INCREMENT | Identifiant |
 | `title` | `VARCHAR(200)` | NOT NULL | Intitulé du menu |
 | `description` | `TEXT` | NULL | Description détaillée |
@@ -476,7 +471,7 @@ erDiagram
 ### Table `orders`
 
 | Colonne | Type | Contrainte | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `id` | `INT` | PK, AUTO_INCREMENT | Identifiant commande |
 | `user_id` | `CHAR(36)` | FK → users | Client commandant |
 | `menu_id` | `INT` | FK → menus | Menu commandé |
@@ -500,7 +495,7 @@ erDiagram
 ### Table `reviews`
 
 | Colonne | Type | Contrainte | Description |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `id` | `INT` | PK, AUTO_INCREMENT | Identifiant |
 | `order_id` | `INT` | FK → orders, UNIQUE | Commande évaluée (1 seul avis) |
 | `user_id` | `CHAR(36)` | FK → users | Auteur de l'avis |
@@ -528,7 +523,7 @@ erDiagram
 ### Workflow des statuts commande
 
 | Ordre | Statut | Description |
-|---|---|---|
+| --- | --- | --- |
 | 1 | En attente | Reçue, en attente de validation |
 | 2 | Acceptée | Validée par l'équipe |
 | 3 | En préparation | En cours de préparation |
@@ -552,7 +547,7 @@ Table de sécurité applicative (anti-brute-force) : non modélisée dans le MCD
 ### Rôles utilisateurs
 
 | Rôle | Accès |
-|---|---|
+| --- | --- |
 | `user` | Catalogue, commandes propres, avis |
-| `employe` | Gestion commandes, modération avis, contacts |
-| `admin` | Accès complet — gestion catalogue, utilisateurs, horaires |
+| `employe` | Gestion commandes, modération avis, plats et menus, horaires |
+| `admin` | Accès complet + gestion des employés |

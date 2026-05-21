@@ -7,11 +7,13 @@
 }
 
 body[data-theme=auto] .stars-display .star {
-    color: light-dark(var(--dark-3), var(--light-3));
+    color: light-dark(#5F5F5F, var(--light-3));
 }
+
 body[data-theme=light] .stars-display .star {
-    color: var(--dark-3);
+    color: #5F5F5F;
 }
+
 body[data-theme=dark] .stars-display .star {
     color: var(--light-3);
 }
@@ -19,9 +21,11 @@ body[data-theme=dark] .stars-display .star {
 body[data-theme=auto] .stars-display .star--filled {
     color: light-dark(var(--primary), var(--secondary));
 }
+
 body[data-theme=light] .stars-display .star--filled {
     color: var(--primary);
 }
+
 body[data-theme=dark] .stars-display .star--filled {
     color: var(--secondary);
 }
@@ -42,11 +46,11 @@ body[data-theme=dark] .stars-display .star--filled {
 }
 
 body[data-theme=auto] .rating label {
-    color: light-dark(var(--dark-1), var(--light-1));
+    color: light-dark(#5F5F5F, var(--light-1));
 }
 
 body[data-theme=light] .rating label {
-    color: var(--dark-1);
+    color: #5F5F5F;
 }
 
 body[data-theme=dark] .rating label {

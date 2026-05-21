@@ -102,7 +102,7 @@ body[data-theme=dark] .card {
 @media screen and (min-width: 768px) {
     .card {
         width: 70%;
-        margin: 0 auto;
+        margin: var(--base-unit) auto;
     }
 }
 
@@ -115,6 +115,7 @@ body[data-theme=dark] .card {
     .card {
         width: 100%;
         flex-direction: row;
+        margin: 0;
     }
 
     .card.inline .card-header {

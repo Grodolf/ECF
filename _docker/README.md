@@ -22,7 +22,7 @@ Stack de développement containerisée avec 5 services :
 ## Prérequis
 
 - Docker et Docker Compose
-- Fichier `config/.env` configuré (copier `.env.example`)
+- Fichier `config/.env.local` configuré (copier `.env.example`)
 
 ## Démarrage
 
@@ -42,7 +42,7 @@ docker compose down
 ```txt
 _docker/
 ├── docker-compose.yml    # Orchestration des services
-├── Dockerfile            # Image PHP 8.2 + Apache
+├── Dockerfile            # Image PHP 8.2 + Apache + Composer
 ├── config/
 │   └── php.ini           # Configuration PHP personnalisée
 └── README.md             # Ce fichier
@@ -244,21 +244,18 @@ Le projet utilise Composer pour gérer les dépendances PHP :
 ```bash
 # Installer les dépendances (depuis le container web)
 docker exec -it ECF-web composer install
+ocker exec ECF-web composer require phpmailer/phpmailer
+docker exec ECF-web composer require mongodb/mongodb
 
 # Ou depuis le dossier projet en local
 composer install
 ```
+
+`ext-mongodb` est installé via `pecl` dans `_docker/Dockerfile`.
 
 ### Packages installés
 
 | Package | Version | Usage |
 | ------- | ------- | ----- |
 | **phpmailer/phpmailer** | ^7.0 | Envoi d'emails via SMTP |
-
-## Passage en production
-
-1. Modifier `APP_ENV=production` dans `.env`
-2. Dans `php.ini`, désactiver `display_errors`
-3. Activer `session.cookie_secure = 1` (HTTPS requis)
-4. Configurer un vrai serveur SMTP au lieu de MailHog (`SMTP_USE_AUTH=true` + identifiants)
-5. Utiliser des secrets Docker pour les mots de passe
+| **mongodb/mongodb** | ^2.3 | Base de donnée non SQL |

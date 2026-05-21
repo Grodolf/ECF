@@ -25,31 +25,36 @@ $date = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatte
     <p><?= $date->format(new DateTime($user['created_at'])) ?></p>
 </section>
 
-<section id="orders" class="f-col g d:col-3">
-    <h2>Mes commandes</h2>
+<?php if (!in_array($user['role'], ['employe', 'admin'])) : ?>
+    <section id="orders" class="f-col g d:col-3">
+        <h2>Mes commandes</h2>
 
-    <?php if (empty($orders)) : ?>
-        <p class="text-muted">Vous n'avez pas encore passé de commande.</p>
-    <?php else : ?>
-        <?php foreach ($orders as $order) : ?>
-            <div class="card inline">
-                <div class="card-header card-order">
-                    <h3 class="card-title d:mt+"><?= Security::escapeHtml($order['menu_title']) ?></h3>
-                    <div class="badge"><?= Security::escapeHtml($order['status_name']) ?></div>
-                </div>
-                <div class="card-body">
-                    <p class="card-description"><?= $order['nb_people'] ?> personnes — <?= number_format($order['total_price'], 2, ',', ' ') ?> €</p>
-                    <p class="card-description"><?= date('d/m/Y', strtotime($order['delivery_date'])) ?></p>
-                    <div class="card-actions">
-                        <a class="btn" href="/order/detail/<?= $order['id'] ?>">Détails</a>
+        <?php if (empty($orders)) : ?>
+            <p class="text-muted">Vous n'avez pas encore passé de commande.</p>
+        <?php else : ?>
+            <?php foreach ($orders as $order) : ?>
+                <div class="card inline">
+                    <div class="card-header card-order">
+                        <h3 class="card-title d:mt+"><?= Security::escapeHtml($order['menu_title']) ?></h3>
+                        <div class="badge"><?= Security::escapeHtml($order['status_name']) ?></div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description"><?= $order['nb_people'] ?> personnes — <?= number_format($order['total_price'], 2, ',', ' ') ?> €</p>
+                        <p class="card-description"><?= date('d/m/Y', strtotime($order['delivery_date'])) ?></p>
+                        <div class="card-actions">
+                            <a class="btn" href="/order/detail/<?= $order['id'] ?>">Détails</a>
+                            <?php if ($order['status_id'] === 7) : ?>
+                                <a class="btn" href="/review/<?= $order['id'] ?>">Laisser un avis</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</section>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </section>
+<?php endif; ?>
 
-<div class="links">
+<div class="links profile">
     <?php if (in_array($user['role'], ['employe', 'admin'])) : ?>
         <a class="btn primary" href="/employe/orders">Gestion des commandes</a>
         <a class="btn primary" href="/employe/dishes">Gestion des plats</a>

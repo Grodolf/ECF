@@ -23,16 +23,16 @@ themeToggle?.addEventListener('change', (e) => {
 // Password visibility toggle
 // ---------------------------
 
-const eyeButton = document.querySelector('#eye');
-const passwordInput = document.querySelector('input[type="password"]');
+document.querySelectorAll('.eye').forEach(eye => {
+    const input = eye.closest('.input-container')?.querySelector('input[type="password"]');
+    if (!input) return;
 
-eyeButton?.addEventListener('click', () => {
-    const type = passwordInput.type === 'password' ? 'text' : 'password';
-    passwordInput.type = type;
-    
-    const isVisible = type === 'text';
-    eyeButton.setAttribute('src', isVisible ? '/img/eye-off.svg' : '/img/eye.svg');
-    eyeButton.setAttribute('aria-label', isVisible ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+    eye.addEventListener('click', () => {
+        const isVisible = input.type === 'password';
+        input.type = isVisible ? 'text' : 'password';
+        eye.setAttribute('src', isVisible ? '/img/eye.svg' : '/img/eye-off.svg');
+        eye.setAttribute('aria-label', isVisible ? 'Masquer le mot de passe' : 'Afficher le mot de passe');
+    });
 });
 
 // ---------------

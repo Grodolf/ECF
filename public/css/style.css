@@ -303,6 +303,11 @@ body[data-theme=dark] .card-order {
     width: 10rem;
 }
 
+.menu-img {
+    height: 15dvh;
+    width: auto;
+}
+
 /* Reviews */
 
 .reject {
@@ -314,7 +319,7 @@ body[data-theme=dark] .card-order {
     border-radius: calc(var(--base-unit) / 2);
     padding: calc(var(--base-unit) / 2);
     z-index: 10;
-    width: 20rem;
+    width: max-content;
 }
 
 body[data-theme=auto] .reject {
@@ -479,6 +484,15 @@ body[data-theme=dark] footer {
 
     .links {
         grid-column: span 5;
+    }
+
+    .links.profile {
+        grid-column: span 3;
+    }
+
+    .menu-img {
+        height: 10dvh;
+        width: auto;
     }
 
     /* --- Footer --- */

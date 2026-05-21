@@ -129,7 +129,7 @@ class UserModel
      * @param array $data Sanitised and validated profile fields.
      * @return bool True if exactly one row was updated.
      */
-    public function update(int $id, array $data): bool
+    public function update(string $id, array $data): bool
     {
         $query = "UPDATE users SET nom = :nom, prenom = :prenom, gsm = :gsm, adresse = :adresse, code_postal = :code_postal, city = :city WHERE id = :id";
         $stmt = self::getDb()->prepare($query);
@@ -149,11 +149,11 @@ class UserModel
     /**
      * Replaces the stored password hash for a user.
      *
-     * @param int    $id          User identifier.
+     * @param string $id          User UUID.
      * @param string $newPassword Bcrypt hash of the new password.
      * @return bool True if exactly one row was updated.
      */
-    public function updatePassword(int $id, string $newPassword): bool
+    public function updatePassword(string $id, string $newPassword): bool
     {
         $query = "UPDATE users SET password = :password WHERE id = :id";
         $stmt = self::getDb()->prepare($query);

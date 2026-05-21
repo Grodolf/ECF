@@ -8,7 +8,7 @@
     <div class="input-container rel">
         <label for="password">Nouveau mot de passe *</label>
         <input type="password" id="password" name="password" required autofocus>
-        <img id="eye" src="/img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
+        <img class="eye" src="/img/eye-off.svg" alt="Afficher le mot de passe" aria-label="Afficher le mot de passe">
     </div>
     <small style="display: block; margin-top: 5px; color: #666;">
         10 caractères minimum, avec majuscule, minuscule, chiffre et caractère spécial
